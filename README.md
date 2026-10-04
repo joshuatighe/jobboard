@@ -43,36 +43,36 @@ calm, fast product: seekers get a feed tuned to them, recruiters get a pipeline 
 | **Frontend** | Vite · React · TypeScript · Tailwind CSS · shadcn/ui · Lucide |
 | **Data** | TanStack Query · react-hook-form · zod |
 | **Backend** | Supabase: Postgres, Auth, Storage, Row Level Security |
+| **Tooling** | pnpm · Supabase CLI · ESLint · Vitest |
 | **Hosting** | Vercel |
 
 ## Getting started
 
 ### 1. Prerequisites
-- Node.js 20+
+- Node.js 20+ and [pnpm](https://pnpm.io) 9+ (`corepack enable`)
 - A free [Supabase](https://supabase.com) project
-- The [Supabase CLI](https://supabase.com/docs/guides/cli) (`npm i -g supabase`)
 
 ### 2. Install
 
 ```bash
 git clone https://github.com/joshuatighe/jobboard.git
 cd jobboard
-npm install
+pnpm install
 cp .env.example .env.local   # then fill in your Supabase keys
 ```
 
 ### 3. Set up the database
 
 ```bash
-supabase link --project-ref <your-project-ref>
-supabase db push          # apply schema, RLS policies, and storage bucket
-npm run db:seed           # demo companies, jobs, users, and applications
+pnpm supabase link --project-ref <your-project-ref>
+pnpm supabase db push     # apply schema, RLS policies, and storage bucket
+pnpm db:seed              # demo companies, jobs, users, and applications
 ```
 
 ### 4. Run
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open [localhost:5173](http://localhost:5173).
@@ -98,17 +98,17 @@ After seeding, sign in as either side of the marketplace:
 
 | Command | What it does |
 | --- | --- |
-| `npm run dev` | Start the dev server |
-| `npm run build` | Typecheck and build for production |
-| `npm run lint` | Lint the codebase |
-| `npm run test` | Run unit tests |
-| `npm run db:types` | Regenerate TypeScript types from the database |
-| `npm run db:seed` | Seed demo data |
+| `pnpm dev` | Start the dev server |
+| `pnpm build` | Typecheck and build for production |
+| `pnpm lint` | Lint the codebase |
+| `pnpm test` | Run unit tests |
+| `pnpm db:types` | Regenerate TypeScript types from the database |
+| `pnpm db:seed` | Seed demo data |
 
 ## Deploy
 
 1. Import the repo into [Vercel](https://vercel.com/new). The framework preset is **Vite**.
-2. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` as environment variables.
+2. Vercel detects pnpm from `pnpm-lock.yaml`. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` as environment variables.
 3. In Supabase → **Authentication → URL Configuration**, add your Vercel domain as the Site URL.
 4. Deploy. Client-side routes are handled by `vercel.json`.
 

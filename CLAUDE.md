@@ -54,6 +54,7 @@ Each requirement has an ID. Reference the ID in commits and PRs where relevant (
 
 | Concern | Choice |
 | --- | --- |
+| Package manager | **pnpm**, the only package manager. Commit `pnpm-lock.yaml`; never `npm`/`yarn` or their lockfiles |
 | Build | **Vite** |
 | Language | **TypeScript** (strict) |
 | UI | **React** |
@@ -65,6 +66,7 @@ Each requirement has an ID. Reference the ID in commits and PRs where relevant (
 | Forms | **react-hook-form** + **zod** |
 | Backend | **Supabase**: Postgres, Auth, Storage, Row Level Security |
 | Toasts | **sonner** (shadcn's toast) |
+| DB tooling | **Supabase CLI** as a devDependency, run via `pnpm supabase ...` |
 | Hosting | **Vercel** (static SPA; `vercel.json` rewrites all routes to `index.html`) |
 
 Don't add new dependencies when one of the above already covers the need.
@@ -164,14 +166,16 @@ Target the look of Linear, Vercel, Ramp and Ashby: restrained, crisp, expensive-
 ## Commands
 
 ```bash
-npm install
-npm run dev            # Vite dev server
-npm run build          # typecheck + production build (must pass before pushing)
-npm run lint           # ESLint
-npm run typecheck      # tsc --noEmit
-npm run test           # Vitest (unit tests for lib/, e.g. matching.ts)
-npm run db:types       # regenerate src/types/database.ts from Supabase
-npm run db:seed        # run scripts/seed-users.ts (needs SUPABASE_SERVICE_ROLE_KEY)
+pnpm install
+pnpm dev                 # Vite dev server
+pnpm build               # typecheck + production build (must pass before pushing)
+pnpm lint                # ESLint
+pnpm typecheck           # tsc --noEmit
+pnpm test                # Vitest (unit tests for lib/, e.g. matching.ts)
+pnpm db:types            # regenerate src/types/database.ts from Supabase
+pnpm db:seed             # run scripts/seed-users.ts (needs SUPABASE_SERVICE_ROLE_KEY)
+pnpm supabase db push    # apply migrations to the linked project
+pnpm add <pkg>           # add a dependency (-D for dev). Never npm/yarn
 ```
 
 ## Environment variables
@@ -192,7 +196,7 @@ npm run db:seed        # run scripts/seed-users.ts (needs SUPABASE_SERVICE_ROLE_
 - Use relative dates for recency ("Posted 3d ago"), absolute dates in tooltips.
 - Commit messages follow Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`) and reference requirement IDs
   where it applies.
-- Before pushing, `npm run build` and `npm run lint` must pass.
+- Before pushing, `pnpm build` and `pnpm lint` must pass.
 
 ## Decisions & assumptions
 
