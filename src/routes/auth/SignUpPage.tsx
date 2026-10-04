@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { BriefcaseBusiness, Loader2, Search, type LucideIcon } from 'lucide-react'
+import { type CarbonIconType, CircleDash, Portfolio, Search } from '@carbon/icons-react'
 import { useForm, useWatch } from 'react-hook-form'
 import { Link, Navigate, useNavigate, useSearchParams } from 'react-router'
 import { z } from 'zod'
@@ -32,9 +32,9 @@ const schema = z
 
 type Values = z.infer<typeof schema>
 
-const ROLES: { value: UserRole; label: string; description: string; icon: LucideIcon }[] = [
+const ROLES: { value: UserRole; label: string; description: string; icon: CarbonIconType }[] = [
   { value: 'seeker', label: "I'm job hunting", description: 'Find and apply to jobs', icon: Search },
-  { value: 'recruiter', label: "I'm hiring", description: 'Post jobs, review talent', icon: BriefcaseBusiness },
+  { value: 'recruiter', label: "I'm hiring", description: 'Post jobs, review talent', icon: Portfolio },
 ]
 
 export function SignUpPage() {
@@ -109,7 +109,7 @@ export function SignUpPage() {
                   role === value && 'border-foreground bg-card ring-1 ring-foreground hover:bg-card',
                 )}
               >
-                <Icon className={cn('size-5', role === value ? 'text-foreground' : 'text-muted-foreground')} strokeWidth={1.75} />
+                <Icon className={cn('size-5', role === value ? 'text-foreground' : 'text-muted-foreground')} />
                 <div>
                   <div className="font-serif text-lg leading-tight">{label}</div>
                   <div className="text-xs text-muted-foreground">{description}</div>
@@ -163,7 +163,7 @@ export function SignUpPage() {
             </p>
           )}
           <Button type="submit" disabled={isSubmitting} className="mt-2 w-full">
-            {isSubmitting && <Loader2 className="animate-spin" />}
+            {isSubmitting && <CircleDash className="animate-spin" />}
             Create account
           </Button>
         </form>

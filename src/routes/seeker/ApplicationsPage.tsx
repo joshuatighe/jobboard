@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Inbox, Search, Sparkles, TriangleAlert } from 'lucide-react'
+import { Recommend, Search, Task, WarningAlt } from '@carbon/icons-react'
 import { Link, useSearchParams } from 'react-router'
 
 import { ApplicationRow } from '@/components/applications/ApplicationRow'
@@ -97,7 +97,7 @@ export function ApplicationsPage() {
         {header}
         <EmptyState
           tone="error"
-          icon={TriangleAlert}
+          icon={WarningAlt}
           title="We couldn't load your applications"
           description="Check your connection and try again."
           action={<Button onClick={() => void applications.refetch()}>Try again</Button>}
@@ -111,7 +111,7 @@ export function ApplicationsPage() {
       <>
         {header}
         <EmptyState
-          icon={Inbox}
+          icon={Task}
           title="No applications yet"
           description="When you apply to a job, you'll be able to follow it from first look to offer right here."
           action={
@@ -123,7 +123,7 @@ export function ApplicationsPage() {
               </Button>
               <Button asChild variant="outline">
                 <Link to="/for-you">
-                  <Sparkles /> See your matches
+                  <Recommend /> See your matches
                 </Link>
               </Button>
             </>
@@ -167,7 +167,7 @@ export function ApplicationsPage() {
 
           <TabsContent value={tab}>
             {visible.length === 0 && tab !== 'all' ? (
-              <EmptyState icon={Inbox} {...EMPTY_TAB[tab]} className="border-b py-12" />
+              <EmptyState icon={Task} {...EMPTY_TAB[tab]} className="border-b py-12" />
             ) : (
               <ul className="divide-y border-b">
                 {visible.map((application) => (

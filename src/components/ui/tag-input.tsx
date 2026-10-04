@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { X } from 'lucide-react'
+import { Close } from '@carbon/icons-react'
 
 import { cn } from '@/lib/utils'
 
@@ -78,7 +78,7 @@ function TagInput({
               }}
               className="inline-flex size-5 cursor-pointer items-center justify-center text-muted-foreground transition-colors outline-none hover:bg-background hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/30"
             >
-              <X className="size-3" />
+              <Close className="size-3" />
             </button>
           </li>
         ))}

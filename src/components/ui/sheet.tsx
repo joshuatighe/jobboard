@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Dialog as SheetPrimitive } from 'radix-ui'
-import { XIcon } from 'lucide-react'
+import { Close } from '@carbon/icons-react'
 
 import { cn } from '@/lib/utils'
 
@@ -61,7 +61,7 @@ function SheetContent({
       >
         {children}
         <SheetPrimitive.Close className="absolute top-4 right-4 inline-flex size-8 cursor-pointer items-center justify-center text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-hidden disabled:pointer-events-none">
-          <XIcon className="size-4" />
+          <Close className="size-4" />
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>

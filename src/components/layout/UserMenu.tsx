@@ -1,4 +1,4 @@
-import { LogOut, UserRound } from 'lucide-react'
+import { Logout, User } from '@carbon/icons-react'
 import { Link, useNavigate } from 'react-router'
 import { toast } from 'sonner'
 
@@ -48,12 +48,12 @@ export function UserMenu() {
         {profile?.role === 'seeker' && (
           <DropdownMenuItem asChild>
             <Link to="/profile">
-              <UserRound /> Profile
+              <User /> Profile
             </Link>
           </DropdownMenuItem>
         )}
         <DropdownMenuItem onClick={() => void handleSignOut()}>
-          <LogOut /> Sign out
+          <Logout /> Sign out
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -1,5 +1,15 @@
 import { useState } from 'react'
-import { ArrowLeft, ExternalLink, FilePen, Inbox, MapPin, SearchX, SquarePen, TriangleAlert, Users } from 'lucide-react'
+import {
+  ArrowLeft,
+  DocumentSketch,
+  Edit,
+  Launch,
+  Location,
+  Search,
+  Task,
+  UserMultiple,
+  WarningAlt,
+} from '@carbon/icons-react'
 import { Link, useParams, useSearchParams } from 'react-router'
 
 import { PostedAt } from '@/components/jobs/PostedAt'
@@ -100,7 +110,7 @@ export function PostingApplicantsPage() {
         <BackLink />
         <EmptyState
           tone="error"
-          icon={TriangleAlert}
+          icon={WarningAlt}
           title={failed ? "We couldn't load the applicants" : "Your account isn't linked to a company"}
           description={failed ? 'Check your connection and try again.' : 'Recruiter accounts belong to a company.'}
           action={
@@ -124,7 +134,7 @@ export function PostingApplicantsPage() {
       <>
         <BackLink />
         <EmptyState
-          icon={SearchX}
+          icon={Search}
           title="Posting not found"
           description="It may have been deleted, or it belongs to another company."
           action={
@@ -201,7 +211,7 @@ export function PostingApplicantsPage() {
           </div>
           <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1">
-              <MapPin className="size-3.5" /> {job.location}
+              <Location className="size-3.5" /> {job.location}
             </span>
             <span aria-hidden>·</span>
             <span className="tabular-nums">{formatPay(job)}</span>
@@ -231,13 +241,13 @@ export function PostingApplicantsPage() {
           {job.status === 'open' && (
             <Button asChild variant="ghost">
               <Link to={`/jobs/${job.id}`}>
-                <ExternalLink /> View live
+                <Launch /> View live
               </Link>
             </Button>
           )}
           <Button asChild variant="outline">
             <Link to={`/postings/${job.id}/edit`}>
-              <SquarePen /> Edit posting
+              <Edit /> Edit posting
             </Link>
           </Button>
         </div>
@@ -245,7 +255,7 @@ export function PostingApplicantsPage() {
 
       {job.status === 'draft' ? (
         <EmptyState
-          icon={FilePen}
+          icon={DocumentSketch}
           title="This posting is a draft"
           description="Seekers can't see or apply to drafts. Publish it to start collecting applicants."
           action={
@@ -256,7 +266,7 @@ export function PostingApplicantsPage() {
         />
       ) : all.length === 0 ? (
         <EmptyState
-          icon={Users}
+          icon={UserMultiple}
           title="No applicants yet"
           description={
             job.status === 'open'
@@ -300,7 +310,7 @@ export function PostingApplicantsPage() {
               >
                 <h2 id={`stage-${stage}`} className="flex items-center justify-between meta">
                   <span className="flex items-center gap-1.5">
-                    {stage === 'applied' && <Inbox className="size-3.5 text-muted-foreground" />}
+                    {stage === 'applied' && <Task className="size-3.5 text-muted-foreground" />}
                     {STAGE_LABELS[stage]}
                   </span>
                   <span className="text-muted-foreground">{groups[stage].length}</span>

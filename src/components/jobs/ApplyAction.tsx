@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowRight, CircleCheck, Lock } from 'lucide-react'
+import { ArrowRight, CheckmarkOutline, Locked } from '@carbon/icons-react'
 import { Link, useLocation } from 'react-router'
 
 import { ApplicationStatusBadge } from '@/components/applications/ApplicationStatusBadge'
@@ -45,7 +45,7 @@ export function ApplyAction({ job }: { job: JobWithCompany }) {
   if (profile.role === 'recruiter') {
     return (
       <p className="flex gap-2 border bg-muted/40 px-3 py-2.5 text-sm text-muted-foreground">
-        <Lock className="mt-0.5 size-4 shrink-0" />
+        <Locked className="mt-0.5 size-4 shrink-0" />
         You're signed in as a recruiter. Applying needs a job seeker account.
       </p>
     )
@@ -58,7 +58,7 @@ export function ApplyAction({ job }: { job: JobWithCompany }) {
         <div className="border p-3">
           <div className="flex items-center justify-between gap-2">
             <span className="inline-flex items-center gap-1.5 text-sm font-medium">
-              <CircleCheck className="size-4 text-success" /> Applied
+              <CheckmarkOutline className="size-4 text-success" /> Applied
             </span>
             <ApplicationStatusBadge status={appStatus} />
           </div>

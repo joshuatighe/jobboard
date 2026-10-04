@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Check } from 'lucide-react'
+import { Checkmark } from '@carbon/icons-react'
 
 import { cn } from '@/lib/utils'
 
@@ -27,7 +27,7 @@ export function FilterCheckbox({
           checked && 'border-foreground bg-foreground text-background',
         )}
       >
-        {checked && <Check className="size-3" strokeWidth={3} />}
+        {checked && <Checkmark className="size-3" />}
       </span>
       {children}
     </button>

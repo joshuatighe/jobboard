@@ -1,5 +1,5 @@
 import { useRef, useState, type DragEvent } from 'react'
-import { ExternalLink, FileText, Loader2, Lock, Upload } from 'lucide-react'
+import { CircleDash, Document, Launch, Locked, Upload } from '@carbon/icons-react'
 
 import { ProfileSection } from '@/components/profile/ProfileSection'
 import { ResumeUploadButton } from '@/components/profile/ResumeUploadButton'
@@ -39,7 +39,7 @@ export function ResumeCard({ seeker }: { seeker: SeekerProfile }) {
       title="Resume"
       description={
         <span className="inline-flex items-center gap-1.5">
-          <Lock className="size-3.5" /> Only you and companies you apply to can see it.
+          <Locked className="size-3.5" /> Only you and companies you apply to can see it.
         </span>
       }
     >
@@ -54,7 +54,7 @@ export function ResumeCard({ seeker }: { seeker: SeekerProfile }) {
           <div className="grid gap-3">
             <div className="flex items-center gap-3 border p-3">
               <div className="inline-flex size-10 shrink-0 items-center justify-center border bg-background text-muted-foreground">
-                {isPending ? <Loader2 className="size-4 animate-spin" /> : <FileText className="size-4" />}
+                {isPending ? <CircleDash className="size-4 animate-spin" /> : <Document className="size-4" />}
               </div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium">
@@ -79,7 +79,7 @@ export function ResumeCard({ seeker }: { seeker: SeekerProfile }) {
                     aria-disabled={!url.data}
                     className={cn(!url.data && 'pointer-events-none opacity-50')}
                   >
-                    View <ExternalLink />
+                    View <Launch />
                   </a>
                 </Button>
               )}
@@ -112,7 +112,7 @@ export function ResumeCard({ seeker }: { seeker: SeekerProfile }) {
               className="flex w-full cursor-pointer flex-col items-center gap-2 border border-dashed px-4 py-8 text-center transition-colors outline-none hover:border-foreground/50 hover:bg-accent/40 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-wait"
             >
               <span className="inline-flex size-10 items-center justify-center border bg-background text-muted-foreground">
-                {isPending ? <Loader2 className="size-5 animate-spin" /> : <Upload className="size-5" />}
+                {isPending ? <CircleDash className="size-5 animate-spin" /> : <Upload className="size-5" />}
               </span>
               <span className="text-sm font-medium">
                 {isPending ? 'Uploading…' : 'Upload your resume'}

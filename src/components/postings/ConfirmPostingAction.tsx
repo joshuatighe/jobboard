@@ -1,4 +1,4 @@
-import { Loader2 } from 'lucide-react'
+import { CircleDash } from '@carbon/icons-react'
 
 import {
   AlertDialog,
@@ -69,7 +69,7 @@ export function ConfirmPostingAction({
         <AlertDialogFooter>
           <AlertDialogCancel disabled={isPending}>Cancel</AlertDialogCancel>
           <Button variant="destructive" onClick={() => void confirm()} disabled={isPending}>
-            {isPending && <Loader2 className="animate-spin" />}
+            {isPending && <CircleDash className="animate-spin" />}
             {action === 'delete' ? 'Delete draft' : 'Close posting'}
           </Button>
         </AlertDialogFooter>

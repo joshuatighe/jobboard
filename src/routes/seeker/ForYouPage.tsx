@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowRight, Inbox, PartyPopper, Search, SlidersHorizontal, Sparkles, TriangleAlert } from 'lucide-react'
+import { ArrowRight, PartyPopper, Recommend, Search, SettingsAdjust, Task, WarningAlt } from '@carbon/icons-react'
 import { Link } from 'react-router'
 
 import { JobCard } from '@/components/jobs/JobCard'
@@ -33,7 +33,7 @@ export function ForYouPage() {
       actions={
         <Button asChild variant="outline">
           <Link to={PREFERENCES_HREF}>
-            <SlidersHorizontal /> Preferences
+            <SettingsAdjust /> Preferences
           </Link>
         </Button>
       }
@@ -62,7 +62,7 @@ export function ForYouPage() {
         {header}
         <EmptyState
           tone="error"
-          icon={TriangleAlert}
+          icon={WarningAlt}
           title="We couldn't load your matches"
           description="Check your connection and try again."
           action={
@@ -81,7 +81,7 @@ export function ForYouPage() {
       <>
         {header}
         <EmptyState
-          icon={Sparkles}
+          icon={Recommend}
           title="Tell us what you're looking for"
           description="Add your experience level, locations, pay, job types or skills and we'll rank every open role by how well it fits."
           action={
@@ -116,7 +116,7 @@ export function ForYouPage() {
         {missing.length > 0 && (
           <div className="flex flex-col gap-2 border bg-muted/40 px-4 py-3 text-sm sm:flex-row sm:items-center sm:justify-between">
             <p className="text-muted-foreground">
-              <Sparkles className="mr-1.5 inline size-4 -translate-y-px text-foreground" />
+              <Recommend className="mr-1.5 inline size-4 -translate-y-px text-foreground" />
               Add your {listSignals(missing)} to sharpen these matches.
             </p>
             <Link
@@ -141,7 +141,7 @@ export function ForYouPage() {
               appliedCount > 0 && (
                 <Button asChild variant="outline">
                   <Link to="/applications">
-                    <Inbox /> Track applications
+                    <Task /> Track applications
                   </Link>
                 </Button>
               )

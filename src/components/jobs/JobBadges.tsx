@@ -1,4 +1,4 @@
-import { Globe } from 'lucide-react'
+import { Earth } from '@carbon/icons-react'
 
 import { Badge } from '@/components/ui/badge'
 import { labelFor } from '@/lib/constants'
@@ -16,7 +16,7 @@ export function JobBadges({
       <Badge variant="outline">{labelFor.employmentType(job.employment_type)}</Badge>
       {job.is_remote && (
         <Badge variant="secondary">
-          <Globe /> Remote
+          <Earth /> Remote
         </Badge>
       )}
     </>

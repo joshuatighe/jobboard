@@ -1,5 +1,5 @@
 import { useRef, type ComponentProps } from 'react'
-import { Loader2, Upload } from 'lucide-react'
+import { CircleDash, Upload } from '@carbon/icons-react'
 
 import { Button } from '@/components/ui/button'
 import { useResumeUpload } from '@/hooks/useResumeUpload'
@@ -38,7 +38,7 @@ export function ResumeUploadButton({
         disabled={isPending || disabled}
         onClick={() => inputRef.current?.click()}
       >
-        {isPending ? <Loader2 className="animate-spin" /> : <Upload />}
+        {isPending ? <CircleDash className="animate-spin" /> : <Upload />}
         {isPending ? 'Uploading…' : children}
       </Button>
     </>

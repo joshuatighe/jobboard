@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { TriangleAlert } from 'lucide-react'
+import { WarningAlt } from '@carbon/icons-react'
 import { useLocation } from 'react-router'
 
 import { EmptyState } from '@/components/layout/EmptyState'
@@ -54,7 +54,7 @@ export function ProfilePage() {
         {header}
         <EmptyState
           tone="error"
-          icon={TriangleAlert}
+          icon={WarningAlt}
           title="We couldn't load your profile"
           description="Check your connection and try again."
           action={<Button onClick={() => void seeker.refetch()}>Try again</Button>}

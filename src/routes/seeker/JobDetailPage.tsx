@@ -1,4 +1,4 @@
-import { ArrowLeft, ExternalLink, MapPin, SearchX, TriangleAlert } from 'lucide-react'
+import { ArrowLeft, Launch, Location, Search, WarningAlt } from '@carbon/icons-react'
 import { Link, useLocation, useParams } from 'react-router'
 
 import { ApplyCard } from '@/components/jobs/ApplyCard'
@@ -31,7 +31,7 @@ export function JobDetailPage() {
     return (
       <EmptyState
         tone="error"
-        icon={TriangleAlert}
+        icon={WarningAlt}
         title="We couldn't load this job"
         description="Check your connection and try again."
         action={<Button onClick={() => void job.refetch()}>Try again</Button>}
@@ -42,7 +42,7 @@ export function JobDetailPage() {
   if (!job.data) {
     return (
       <EmptyState
-        icon={SearchX}
+        icon={Search}
         title="This job isn't available"
         description="It may have been filled or taken down. There are plenty more where it came from."
         action={
@@ -78,7 +78,7 @@ export function JobDetailPage() {
             <span className="font-medium text-foreground">{company.name}</span>
             <span aria-hidden>·</span>
             <span className="inline-flex items-center gap-1">
-              <MapPin className="size-4" /> {posting.location}
+              <Location className="size-4" /> {posting.location}
             </span>
             <span aria-hidden>·</span>
             <PostedAt date={posting.created_at} />
@@ -105,7 +105,7 @@ export function JobDetailPage() {
                   rel="noreferrer"
                   className="mt-3 inline-flex items-center gap-1 text-sm font-medium underline decoration-border underline-offset-4 hover:decoration-foreground"
                 >
-                  {displayUrl(company.website)} <ExternalLink className="size-3.5" />
+                  {displayUrl(company.website)} <Launch className="size-3.5" />
                 </a>
               )}
             </section>

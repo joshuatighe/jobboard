@@ -1,4 +1,4 @@
-import { ArrowRight, Check } from 'lucide-react'
+import { ArrowRight, Checkmark } from '@carbon/icons-react'
 
 import { Card } from '@/components/ui/card'
 import type { ProfileStep } from '@/lib/profile'
@@ -40,7 +40,7 @@ export function ProfileStrength({ steps }: { steps: ProfileStep[] }) {
             {step.done ? (
               <span className="flex items-center gap-2.5 px-2 py-1.5 text-sm text-muted-foreground line-through decoration-muted-foreground/40">
                 <span className="inline-flex size-4 items-center justify-center bg-success/15 text-success">
-                  <Check className="size-3" strokeWidth={3} />
+                  <Checkmark className="size-3" />
                 </span>
                 {step.label}
               </span>

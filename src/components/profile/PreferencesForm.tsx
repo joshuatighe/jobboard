@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Check } from 'lucide-react'
+import { Checkmark } from '@carbon/icons-react'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -207,7 +207,7 @@ export function PreferencesForm({ seeker }: { seeker: SeekerProfile }) {
                           : 'text-muted-foreground hover:text-foreground',
                       )}
                     >
-                      {checked && <Check className="size-3.5" />}
+                      {checked && <Checkmark className="size-3.5" />}
                       {type.label}
                     </button>
                   )

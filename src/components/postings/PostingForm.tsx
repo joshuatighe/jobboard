@@ -1,6 +1,16 @@
 import { useCallback, useRef, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ExternalLink, Loader2, Rocket, RotateCcw, Save, Trash2, Undo2, Users, XCircle } from 'lucide-react'
+import {
+  CircleDash,
+  CloseOutline,
+  Launch,
+  Reset,
+  Rocket,
+  Save,
+  TrashCan,
+  Undo,
+  UserMultiple,
+} from '@carbon/icons-react'
 import { Controller, useForm, useWatch } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router'
 import { toast } from 'sonner'
@@ -392,22 +402,22 @@ export function PostingForm({ companyId, posting }: { companyId: string; posting
               {isDraft ? (
                 <>
                   <Button type="button" disabled={busy} onClick={() => void save('open')()}>
-                    {spinning('open') ? <Loader2 className="animate-spin" /> : <Rocket />}
+                    {spinning('open') ? <CircleDash className="animate-spin" /> : <Rocket />}
                     Publish
                   </Button>
                   <Button type="button" variant="outline" disabled={busy} onClick={() => void save('draft')()}>
-                    {spinning('draft') ? <Loader2 className="animate-spin" /> : <Save />} Save draft
+                    {spinning('draft') ? <CircleDash className="animate-spin" /> : <Save />} Save draft
                   </Button>
                 </>
               ) : (
                 <>
                   <Button type="submit" disabled={!isDirty || busy}>
-                    {spinning('save') ? <Loader2 className="animate-spin" /> : <Save />}
+                    {spinning('save') ? <CircleDash className="animate-spin" /> : <Save />}
                     Save changes
                   </Button>
                   {actions.includes('reopen') && (
                     <Button type="button" variant="outline" disabled={busy} onClick={() => void save('open')()}>
-                      {spinning('open') ? <Loader2 className="animate-spin" /> : <RotateCcw />}
+                      {spinning('open') ? <CircleDash className="animate-spin" /> : <Reset />}
                       {isDirty ? 'Save and reopen' : 'Reopen'}
                     </Button>
                   )}
@@ -424,7 +434,7 @@ export function PostingForm({ companyId, posting }: { companyId: string; posting
                   {posting.status !== 'draft' && (
                     <Button asChild variant="ghost" size="sm" className="justify-start">
                       <Link to={`/postings/${posting.id}`}>
-                        <Users /> View applicants
+                        <UserMultiple /> View applicants
                         <span className="ml-auto text-xs text-muted-foreground tabular-nums">{applicantCount}</span>
                       </Link>
                     </Button>
@@ -432,7 +442,7 @@ export function PostingForm({ companyId, posting }: { companyId: string; posting
                   {posting.status === 'open' && (
                     <Button asChild variant="ghost" size="sm" className="justify-start">
                       <Link to={`/jobs/${posting.id}`}>
-                        <ExternalLink /> View live posting
+                        <Launch /> View live posting
                       </Link>
                     </Button>
                   )}
@@ -445,7 +455,7 @@ export function PostingForm({ companyId, posting }: { companyId: string; posting
                       disabled={busy}
                       onClick={() => void perform(posting, 'unpublish')}
                     >
-                      <Undo2 /> Move back to drafts
+                      <Undo /> Move back to drafts
                     </Button>
                   )}
                   {actions.includes('close') && (
@@ -457,7 +467,7 @@ export function PostingForm({ companyId, posting }: { companyId: string; posting
                       disabled={busy}
                       onClick={() => confirm('close')}
                     >
-                      <XCircle /> Close posting…
+                      <CloseOutline /> Close posting…
                     </Button>
                   )}
                   {actions.includes('delete') && (
@@ -469,7 +479,7 @@ export function PostingForm({ companyId, posting }: { companyId: string; posting
                       disabled={busy}
                       onClick={() => confirm('delete')}
                     >
-                      <Trash2 /> Delete draft…
+                      <TrashCan /> Delete draft…
                     </Button>
                   )}
                 </div>

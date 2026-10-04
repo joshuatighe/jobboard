@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2 } from 'lucide-react'
+import { CircleDash } from '@carbon/icons-react'
 import { useForm } from 'react-hook-form'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router'
 import { z } from 'zod'
@@ -90,7 +90,7 @@ export function SignInPage() {
             </p>
           )}
           <Button type="submit" disabled={isSubmitting} className="mt-2 w-full">
-            {isSubmitting && <Loader2 className="animate-spin" />}
+            {isSubmitting && <CircleDash className="animate-spin" />}
             Sign in
           </Button>
         </form>

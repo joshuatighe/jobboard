@@ -1,4 +1,4 @@
-import { FileQuestion } from 'lucide-react'
+import { DocumentUnknown } from '@carbon/icons-react'
 
 import { CompanyMark } from '@/components/jobs/CompanyMark'
 import type { MyApplication } from '@/lib/api/applications'
@@ -15,7 +15,7 @@ export function JobMark({ job, className }: { job: MyApplication['job']; classNa
         className,
       )}
     >
-      <FileQuestion className="size-4" />
+      <DocumentUnknown className="size-4" />
     </span>
   )
 }

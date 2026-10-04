@@ -1,4 +1,4 @@
-import { TriangleAlert } from 'lucide-react'
+import { WarningAlt } from '@carbon/icons-react'
 
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/hooks/useAuth'
@@ -10,7 +10,7 @@ export function ProfileError() {
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-4 px-6 text-center">
       <div className="inline-flex size-12 items-center justify-center border border-destructive/40 text-destructive">
-        <TriangleAlert className="size-6" />
+        <WarningAlt className="size-6" />
       </div>
       <div className="space-y-1">
         <h1 className="text-2xl">We couldn't load your account</h1>
