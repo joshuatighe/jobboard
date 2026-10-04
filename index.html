@@ -7,7 +7,7 @@
     <meta name="description" content="JobBoard: jobs ranked by how well they fit you, and a hiring pipeline that keeps candidates in the loop." />
     <meta name="theme-color" content="#7c3aed" />
     <script>
-      // Apply the saved theme before first paint to avoid a flash. Mirrors ThemeProvider.
+      // Apply the saved theme before first paint to avoid a flash. Uses next-themes' storageKey.
       try {
         const t = localStorage.getItem('jobboard-theme')
         const dark = t === 'dark' || (t !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)

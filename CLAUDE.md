@@ -66,7 +66,7 @@ Each requirement has an ID. Reference the ID in commits and PRs where relevant (
 | Forms | **react-hook-form** + **zod** |
 | Backend | **Supabase**: Postgres, Auth, Storage, Row Level Security |
 | Toasts | **sonner** (shadcn's toast) |
-| Theme | Small custom `ThemeProvider` (`.dark` class on `<html>`; light / dark / system). No `next-themes` |
+| Theme | **next-themes** (`.dark` class on `<html>`; light / dark / system). The pre-paint script lives in `index.html`; see the `scriptProps` note in `AppProviders` |
 | Lint / test | **oxlint** (Vite template default) · **Vitest** |
 | DB tooling | **Supabase CLI** as a devDependency, run via `pnpm supabase ...` |
 | Hosting | **Vercel** (static SPA; `vercel.json` rewrites all routes to `index.html`) |
@@ -88,9 +88,9 @@ src/
   components/
     ui/                      # shadcn components (edit freely, but keep the API)
     layout/                  # app shell, marketing/auth layouts, RequireRole guard, page header
-    providers/               # AppProviders, AuthProvider, ThemeProvider
+    providers/               # AppProviders (theme, query, auth, toasts), AuthProvider
     marketing/, jobs/, ...   # feature components
-  hooks/                     # useAuth, useTheme
+  hooks/                     # useAuth
   lib/
     supabase.ts              # the single Supabase client + isSupabaseConfigured
     api/                     # typed data access (auth.ts, jobs.ts, applications.ts, ...)
