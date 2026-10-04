@@ -1,12 +1,13 @@
 import { keepPreviousData, useInfiniteQuery, useQuery } from '@tanstack/react-query'
 
-import { fetchJob, JOBS_PAGE_SIZE, searchJobs } from '@/lib/api/jobs'
+import { fetchJob, fetchOpenJobs, JOBS_PAGE_SIZE, searchJobs } from '@/lib/api/jobs'
 import type { JobFilters } from '@/lib/job-filters'
 
 export const jobKeys = {
   all: ['jobs'] as const,
   search: (filters: JobFilters) => ['jobs', 'search', filters] as const,
   detail: (jobId: string) => ['jobs', 'detail', jobId] as const,
+  open: ['jobs', 'open'] as const,
 }
 
 export function useJobSearch(filters: JobFilters) {
@@ -27,4 +28,9 @@ export function useJob(jobId: string | undefined) {
     queryFn: () => fetchJob(jobId!),
     enabled: Boolean(jobId),
   })
+}
+
+/** R6: all open jobs, ranked by the For-you page. */
+export function useOpenJobs() {
+  return useQuery({ queryKey: jobKeys.open, queryFn: fetchOpenJobs })
 }

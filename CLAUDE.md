@@ -96,6 +96,7 @@ src/
     api/                     # typed data access (auth.ts, jobs.ts, applications.ts, ...)
     queries/                 # TanStack Query hooks wrapping lib/api (useJobs, useApply, ...)
     matching.ts (+ .test.ts) # personalized-feed scoring (pure, unit-tested)
+    feed.ts (+ .test.ts)     # For-you feed: which preferences count, match tiers, hiding applied jobs
     applications.ts (+ .test.ts) # tracker grouping, timeline and pipeline-progress helpers (pure)
     constants.ts             # enum labels, status → badge tone, pipeline order
     format.ts                # pay ranges, relative dates, initials
@@ -273,12 +274,22 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - The "resume sent" on an application is the snapshot path. It's labelled "Your current resume" when it matches the
   profile's resume, otherwise "An earlier version" (shown by its object name, since only the current file's original
   name is stored).
+- **For-you feed (R6)** ranks every open job client-side with `matching.ts` (one query, capped at 500 rows, which
+  is plenty at seed scale). Jobs the seeker already applied to are **hidden**, with a count and a link to the tracker
+  under the list, since the tracker is where those live. The list shows 10 at a time ("Show more matches").
+- A profile counts as **too sparse to rank** when level, locations, minimum pay, job types and skills are all empty.
+  "Remote OK" alone doesn't count, because it defaults to on. The feed then shows a "Tell us what you're looking for"
+  prompt (to `/profile#preferences`) instead of a ranking. With some but not all of them filled, it ranks and shows a
+  one-line nudge naming what's missing (linking to `#about` when only skills are missing, since skills live there).
+- Each match shows its score as "N% match" (80+ strong, brand tint; 50+ good; below that partial) and one chip per
+  criterion it meets. Unmet criteria aren't listed: the chips explain the score rather than critique the job.
+- `/profile#section` links scroll to the section once the profile has loaded (it renders a skeleton first).
 - Profile sections (About, Experience, Preferences, Resume) save independently, each with its own save button and
   toast, rather than one big form. A "Profile strength" checklist links to whatever is still missing.
 
 ## Status
 
-**Scaffold done** (app shell, auth, routing, theme, landing page, schema, RLS, seed). Search, job detail, apply, the seeker profile and the application tracker are built; the remaining feature pages are placeholders.
+**Scaffold done** (app shell, auth, routing, theme, landing page, schema, RLS, seed). The seeker side is built (search, job detail, apply, profile, application tracker, For-you feed); the recruiter pages are placeholders.
 
 - [x] Vite + React + TS (strict) + Tailwind v4 + shadcn-style components, light/dark theme
 - [x] Landing page, sign in / sign up with role picker, role-based route guards, app shell
@@ -293,7 +304,7 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - [x] R2/R3 profile, experience, preferences, resume upload / replace / view
 - [x] R8 application tracker: status tabs, summary, timeline, resume sent, withdraw. Migration
       `20261004200000_applicants_see_closed_jobs.sql` verified locally; **not yet applied to hosted**
-- [ ] R6 For-you feed
+- [x] R6 For-you feed: ranked open jobs with match score and "why this matches" chips, sparse-profile prompt
 - [ ] R10/R11 recruiter dashboard + posting editor · R12/R13 applicants pipeline
 
 ## Environment notes (Claude cloud sessions)

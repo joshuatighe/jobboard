@@ -46,6 +46,21 @@ export async function searchJobs(filters: JobFilters, page: number) {
 
 export type JobWithCompany = Awaited<ReturnType<typeof searchJobs>>['jobs'][number]
 
+/** Enough for seed scale. Past this, ranking should move into a Postgres function (see CLAUDE.md). */
+export const FEED_JOB_LIMIT = 500
+
+/** R6: every open job, for the For-you feed to rank client-side. Newest first breaks score ties. */
+export async function fetchOpenJobs() {
+  const { data, error } = await supabase
+    .from('jobs')
+    .select(JOB_WITH_COMPANY)
+    .eq('status', 'open')
+    .order('created_at', { ascending: false })
+    .limit(FEED_JOB_LIMIT)
+  if (error) throw error
+  return data
+}
+
 /** R7: one job with its company. Null when it doesn't exist or RLS hides it. */
 export async function fetchJob(jobId: string) {
   // A malformed id in the URL is just a job that doesn't exist; don't send it to Postgres.
