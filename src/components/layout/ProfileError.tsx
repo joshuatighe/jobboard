@@ -9,11 +9,11 @@ export function ProfileError() {
 
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-4 px-6 text-center">
-      <div className="inline-flex size-12 items-center justify-center rounded-xl bg-destructive/10 text-destructive">
+      <div className="inline-flex size-12 items-center justify-center rounded-md border border-destructive/40 text-destructive">
         <TriangleAlert className="size-6" />
       </div>
       <div className="space-y-1">
-        <h1 className="text-lg font-semibold">We couldn't load your account</h1>
+        <h1 className="text-2xl">We couldn't load your account</h1>
         <p className="text-sm text-muted-foreground">Check your connection and try again.</p>
       </div>
       <div className="flex gap-2">

@@ -28,7 +28,7 @@ export function ResumeOnFile({ seekerId }: { seekerId: string }) {
   if (!path) {
     return (
       <div className="flex flex-col gap-3 rounded-lg border border-dashed px-3 py-3 sm:flex-row sm:items-center">
-        <div className="inline-flex size-9 shrink-0 items-center justify-center rounded-md bg-brand-soft text-brand">
+        <div className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border bg-background text-muted-foreground">
           <Upload className="size-4" />
         </div>
         <div className="min-w-0 flex-1 text-sm">
@@ -37,7 +37,7 @@ export function ResumeOnFile({ seekerId }: { seekerId: string }) {
             PDF up to 5 MB. It's saved to your profile for next time.
           </p>
         </div>
-        <ResumeUploadButton userId={seekerId} size="sm" variant="brand">
+        <ResumeUploadButton userId={seekerId} size="sm">
           Upload PDF
         </ResumeUploadButton>
       </div>
@@ -45,7 +45,7 @@ export function ResumeOnFile({ seekerId }: { seekerId: string }) {
   }
 
   return (
-    <div className="flex items-center gap-3 rounded-lg border bg-muted/40 px-3 py-2.5">
+    <div className="flex items-center gap-3 rounded-lg border px-3 py-2.5">
       <div className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border bg-background text-muted-foreground">
         <FileText className="size-4" />
       </div>

@@ -118,7 +118,7 @@ export function ApplyDialog({
           </FormField>
 
           {formError && (
-            <p role="alert" className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
+            <p role="alert" className="rounded-md border border-destructive/30 bg-destructive/8 px-3 py-2 text-sm text-destructive">
               {formError}
             </p>
           )}
@@ -131,7 +131,6 @@ export function ApplyDialog({
           <Button
             type="submit"
             form="apply-form"
-            variant="brand"
             disabled={isSubmitting || seeker.isPending || missingResume}
           >
             {isSubmitting && <Loader2 className="animate-spin" />}

@@ -55,7 +55,7 @@ export function DashboardPage() {
         company.data ? `Every ${company.data.name} job, and who's applied.` : 'Your company’s jobs and who’s applied.'
       }
       actions={
-        <Button asChild variant="brand">
+        <Button asChild>
           <Link to="/postings/new">
             <Plus /> Post a job
           </Link>
@@ -71,20 +71,16 @@ export function DashboardPage() {
       <>
         {header}
         <div aria-busy="true" aria-label="Loading postings" className="space-y-6">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <Skeleton className="h-[104px] rounded-xl" />
+          <Skeleton className="h-10 w-full sm:w-80" />
+          <div className="divide-y border-b">
             {[0, 1, 2, 3].map((i) => (
-              <Skeleton key={i} className="h-[74px] rounded-xl" />
-            ))}
-          </div>
-          <Skeleton className="h-9 w-full rounded-lg sm:w-80" />
-          <div className="divide-y rounded-xl border bg-card shadow-xs">
-            {[0, 1, 2, 3].map((i) => (
-              <div key={i} className="flex items-start gap-6 p-4">
+              <div key={i} className="flex items-start gap-6 py-4">
                 <div className="flex-1 space-y-2">
-                  <Skeleton className="h-5 w-1/2" />
+                  <Skeleton className="h-6 w-1/2" />
                   <Skeleton className="h-4 w-3/4" />
                 </div>
-                <Skeleton className="hidden h-5 w-14 rounded-full md:block" />
+                <Skeleton className="hidden h-4 w-14 md:block" />
                 <Skeleton className="hidden h-9 w-28 md:block" />
               </div>
             ))}
@@ -129,7 +125,7 @@ export function DashboardPage() {
           title="Post your first job"
           description="Describe the role, set the pay and publish it. Applicants show up here as they apply."
           action={
-            <Button asChild variant="brand">
+            <Button asChild>
               <Link to="/postings/new">
                 <FilePlus2 /> Post a job
               </Link>
@@ -176,25 +172,25 @@ export function DashboardPage() {
           interviewing={applicants.interviewing}
         />
 
-        <Tabs value={tab} onValueChange={changeTab} className="gap-4">
-          <TabsList className="w-full sm:w-fit" aria-label="Filter postings by status">
+        <Tabs value={tab} onValueChange={changeTab} className="gap-0">
+          <TabsList className="w-full gap-6 sm:w-fit" aria-label="Filter postings by status">
             {POSTING_TABS.map((value) => (
-              <TabsTrigger key={value} value={value} className="sm:px-3">
+              <TabsTrigger key={value} value={value}>
                 {TAB_LABELS[value]}
-                <span className="text-xs text-muted-foreground tabular-nums">{counts[value]}</span>
+                <span className="meta text-muted-foreground">{counts[value]}</span>
               </TabsTrigger>
             ))}
           </TabsList>
 
           <TabsContent value={tab}>
             {visible.length === 0 && tab !== 'all' ? (
-              <EmptyState icon={BriefcaseBusiness} {...EMPTY_TAB[tab]} className="py-12" />
+              <EmptyState icon={BriefcaseBusiness} {...EMPTY_TAB[tab]} className="border-b py-12" />
             ) : (
               <>
                 <div className="hidden md:block">
                   <PostingsTable postings={visible} onAction={handleAction} />
                 </div>
-                <ul className="grid gap-3 md:hidden">
+                <ul className="divide-y border-b md:hidden">
                   {visible.map((posting) => (
                     <li key={posting.id}>
                       <PostingCard posting={posting} onAction={(action) => handleAction(posting, action)} />

@@ -4,6 +4,7 @@ import { JobCard } from '@/components/jobs/JobCard'
 import { JobCardSkeleton } from '@/components/jobs/JobCardSkeleton'
 import { EmptyState } from '@/components/layout/EmptyState'
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import { activeFilterCount, type JobFilters } from '@/lib/job-filters'
 import { useJobSearch } from '@/lib/queries/jobs'
 
@@ -18,10 +19,13 @@ export function JobResults({ filters, onClearAll }: { filters: JobFilters; onCle
 
   if (search.isPending) {
     return (
-      <div className="mt-6 grid gap-3" aria-busy="true" aria-label="Loading jobs">
-        {Array.from({ length: SKELETONS }, (_, i) => (
-          <JobCardSkeleton key={i} />
-        ))}
+      <div className="mt-6" aria-busy="true" aria-label="Loading jobs">
+        <Skeleton className="mb-3 h-4 w-24" />
+        <div className="divide-y border-y">
+          {Array.from({ length: SKELETONS }, (_, i) => (
+            <JobCardSkeleton key={i} />
+          ))}
+        </div>
       </div>
     )
   }
@@ -34,7 +38,7 @@ export function JobResults({ filters, onClearAll }: { filters: JobFilters; onCle
         title="We couldn't load jobs"
         description="Check your connection and try again."
         action={<Button onClick={() => void search.refetch()}>Try again</Button>}
-        className="mt-6"
+        className="mt-6 border-y"
       />
     )
   }
@@ -56,23 +60,22 @@ export function JobResults({ filters, onClearAll }: { filters: JobFilters; onCle
             </Button>
           )
         }
-        className="mt-6"
+        className="mt-6 border-y"
       />
     )
   }
 
   return (
     <div className="mt-6">
-      <div className="mb-3 flex items-center gap-2 text-sm text-muted-foreground" aria-live="polite">
+      <div className="mb-3 flex items-center gap-2 meta text-muted-foreground" aria-live="polite">
         <span>
-          <span className="font-medium text-foreground tabular-nums">{total}</span>{' '}
-          {total === 1 ? 'open role' : 'open roles'}
+          <span className="text-foreground">{total}</span> {total === 1 ? 'open role' : 'open roles'}
         </span>
         {search.isFetching && !search.isFetchingNextPage && (
           <Loader2 className="size-3.5 animate-spin" aria-label="Updating results" />
         )}
       </div>
-      <div className="grid gap-3">
+      <div className="divide-y border-y">
         {jobs.map((job) => (
           <JobCard key={job.id} job={job} />
         ))}

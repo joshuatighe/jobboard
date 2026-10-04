@@ -22,22 +22,19 @@ export function EmptyState({
   return (
     <div
       role={tone === 'error' ? 'alert' : undefined}
-      className={cn(
-        'flex flex-col items-center justify-center rounded-xl border border-dashed px-6 py-16 text-center',
-        className,
-      )}
+      className={cn('flex flex-col items-center justify-center px-6 py-16 text-center', className)}
     >
       <div
         className={cn(
-          'mb-4 inline-flex size-11 items-center justify-center rounded-xl',
-          tone === 'error' ? 'bg-destructive/10 text-destructive' : 'bg-muted text-muted-foreground',
+          'mb-5 inline-flex size-11 items-center justify-center rounded-md border',
+          tone === 'error' ? 'border-destructive/40 text-destructive' : 'text-muted-foreground',
         )}
       >
-        <Icon className="size-5" />
+        <Icon className="size-5" strokeWidth={1.75} />
       </div>
-      <h2 className="font-semibold">{title}</h2>
-      {description && <p className="mt-1 max-w-sm text-sm text-muted-foreground">{description}</p>}
-      {action && <div className="mt-5 flex gap-2">{action}</div>}
+      <h2 className="text-2xl">{title}</h2>
+      {description && <p className="mt-2 max-w-sm text-[15px] text-muted-foreground">{description}</p>}
+      {action && <div className="mt-6 flex flex-wrap justify-center gap-2">{action}</div>}
     </div>
   )
 }

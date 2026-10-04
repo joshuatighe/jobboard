@@ -2,14 +2,12 @@ import * as React from 'react'
 
 import { cn } from '@/lib/utils'
 
+/** A hairline panel on the paper. No shadow: panels sit on the page, they don't float above it. */
 function Card({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="card"
-      className={cn(
-        'flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground shadow-sm',
-        className,
-      )}
+      className={cn('flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground', className)}
       {...props}
     />
   )
@@ -32,7 +30,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="card-title"
-      className={cn('leading-none font-semibold', className)}
+      className={cn('font-serif text-xl leading-none font-medium tracking-tight', className)}
       {...props}
     />
   )

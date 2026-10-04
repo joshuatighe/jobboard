@@ -28,19 +28,19 @@ export function CandidateCard({
     <article
       aria-busy={pending}
       className={cn(
-        'relative rounded-lg border bg-card p-3 shadow-xs transition-[border-color,box-shadow,opacity] duration-150 hover:border-foreground/15 hover:shadow-sm has-[button[data-card-open]:focus-visible]:ring-[3px] has-[button[data-card-open]:focus-visible]:ring-ring/50',
+        'relative rounded-lg border bg-card p-3 transition-[border-color,opacity] duration-150 hover:border-foreground/40 has-[button[data-card-open]:focus-visible]:ring-2 has-[button[data-card-open]:focus-visible]:ring-ring has-[button[data-card-open]:focus-visible]:ring-inset',
         pending && 'opacity-60',
       )}
     >
       <div className="flex items-start gap-2.5">
         <CandidateAvatar name={name} className="size-8" />
         <div className="min-w-0 flex-1">
-          <h3 className="truncate text-sm font-semibold">
+          <h3 className="truncate text-[17px] leading-tight">
             <button
               type="button"
               data-card-open
               onClick={onOpen}
-              className="cursor-pointer text-left outline-none after:absolute after:inset-0 after:rounded-lg hover:text-brand"
+              className="cursor-pointer text-left decoration-border underline-offset-4 outline-none after:absolute after:inset-0 after:rounded-lg hover:underline hover:decoration-foreground"
             >
               {name}
             </button>
@@ -48,7 +48,7 @@ export function CandidateCard({
           {seeker?.headline && <p className="line-clamp-2 text-xs text-muted-foreground">{seeker.headline}</p>}
         </div>
       </div>
-      <div className="mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
+      <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
         {seeker?.location && (
           <span className="inline-flex min-w-0 items-center gap-1">
             <MapPin className="size-3 shrink-0" />

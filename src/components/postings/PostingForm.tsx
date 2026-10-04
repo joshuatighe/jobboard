@@ -391,7 +391,7 @@ export function PostingForm({ companyId, posting }: { companyId: string; posting
             <CardContent className="grid gap-2 px-5">
               {isDraft ? (
                 <>
-                  <Button type="button" variant="brand" disabled={busy} onClick={() => void save('open')()}>
+                  <Button type="button" disabled={busy} onClick={() => void save('open')()}>
                     {spinning('open') ? <Loader2 className="animate-spin" /> : <Rocket />}
                     Publish
                   </Button>

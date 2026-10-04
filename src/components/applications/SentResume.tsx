@@ -34,7 +34,7 @@ export function SentResume({
   const name = resumeDisplayName(path, isCurrent ? profile.data?.resume_filename : null)
 
   return (
-    <div className="flex items-center gap-3 rounded-lg border bg-muted/40 px-3 py-2.5">
+    <div className="flex items-center gap-3 rounded-lg border px-3 py-2.5">
       <div className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border bg-background text-muted-foreground">
         <FileText className="size-4" />
       </div>

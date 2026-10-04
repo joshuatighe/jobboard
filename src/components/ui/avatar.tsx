@@ -23,6 +23,7 @@ function AvatarImage({ className, ...props }: React.ComponentProps<typeof Avatar
   )
 }
 
+/** Initials set as a serif monogram on a hairline disc. */
 function AvatarFallback({
   className,
   ...props
@@ -31,7 +32,7 @@ function AvatarFallback({
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
       className={cn(
-        'flex size-full items-center justify-center rounded-full bg-muted text-xs font-medium',
+        'flex size-full items-center justify-center rounded-full border bg-card font-serif text-[0.95em] font-medium tracking-tight text-foreground',
         className,
       )}
       {...props}

@@ -13,8 +13,8 @@ export function ProfileStrength({ steps }: { steps: ProfileStep[] }) {
   return (
     <Card className="gap-4 p-5">
       <div className="flex items-baseline justify-between gap-2">
-        <h2 className="text-sm font-semibold">Profile strength</h2>
-        <span className="text-sm font-medium tabular-nums text-muted-foreground">{percent}%</span>
+        <h2 className="text-xl">Profile strength</h2>
+        <span className="font-serif text-xl tabular-nums">{percent}%</span>
       </div>
       <div
         role="progressbar"
@@ -22,10 +22,10 @@ export function ProfileStrength({ steps }: { steps: ProfileStep[] }) {
         aria-valuenow={percent}
         aria-valuemin={0}
         aria-valuemax={100}
-        className="h-1.5 overflow-hidden rounded-full bg-muted"
+        className="h-1.5 overflow-hidden rounded-full bg-border"
       >
         <div
-          className={cn('h-full rounded-full transition-[width] duration-200', complete ? 'bg-success' : 'bg-brand')}
+          className={cn('h-full rounded-full transition-[width] duration-200', complete ? 'bg-success' : 'bg-foreground')}
           style={{ width: `${percent}%` }}
         />
       </div>
@@ -47,7 +47,7 @@ export function ProfileStrength({ steps }: { steps: ProfileStep[] }) {
             ) : (
               <a
                 href={step.href}
-                className="group flex items-center gap-2.5 rounded-md px-2 py-1.5 text-sm transition-colors outline-none hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                className="group flex items-center gap-2.5 rounded-md px-2 py-1.5 text-sm transition-colors outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <span className="size-4 rounded-full border border-dashed border-muted-foreground/50" />
                 {step.label}

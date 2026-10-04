@@ -90,16 +90,16 @@ export function JobSearchPage() {
   return (
     <>
       <PageHeader
-        title="Find your next role"
-        description="Search open jobs and filter by pay, location and experience level."
+        title="Open roles"
+        description="Search by keyword and filter by pay, location and experience level."
       />
 
       {!isSupabaseConfigured ? (
         <SetupNotice />
       ) : (
-        <div className="grid gap-8 lg:grid-cols-[15rem_1fr]">
+        <div className="grid gap-10 lg:grid-cols-[14rem_1fr]">
           <aside className="hidden lg:block" aria-label="Filters">
-            <div className="sticky top-24">
+            <div className="sticky top-22">
               <JobFiltersPanel filters={panelFilters} onChange={onChange} onClear={clearFilters} />
             </div>
           </aside>
@@ -114,7 +114,7 @@ export function JobSearchPage() {
                   value={text.q}
                   onChange={(event) => changeText({ q: event.target.value })}
                   placeholder="Search by title, skill or keyword"
-                  className="h-11 rounded-lg bg-card pr-10 pl-10 text-base shadow-xs md:text-sm [&::-webkit-search-cancel-button]:hidden"
+                  className="h-11 pr-10 pl-10 text-base md:text-[15px] [&::-webkit-search-cancel-button]:hidden"
                 />
                 {text.q && (
                   <Button
@@ -131,11 +131,11 @@ export function JobSearchPage() {
 
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button variant="outline" className="h-11 rounded-lg bg-card lg:hidden">
+                  <Button variant="outline" className="h-11 lg:hidden">
                     <SlidersHorizontal />
                     <span className="sr-only sm:not-sr-only">Filters</span>
                     {filterCount > 0 && (
-                      <Badge variant="brand" className="tabular-nums">
+                      <Badge variant="highlight">
                         {filterCount}
                       </Badge>
                     )}
@@ -146,7 +146,7 @@ export function JobSearchPage() {
                     <SheetTitle>Filters</SheetTitle>
                     <SheetDescription>Results update as you go.</SheetDescription>
                   </SheetHeader>
-                  <div className="px-4 pb-6">
+                  <div className="px-5 pb-6">
                     <JobFiltersPanel
                       idPrefix="sheet-filters"
                       filters={panelFilters}

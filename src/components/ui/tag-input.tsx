@@ -56,9 +56,9 @@ function TagInput({
       aria-invalid={ariaInvalid}
       onClick={() => inputRef.current?.focus()}
       className={cn(
-        'flex min-h-9 w-full cursor-text flex-wrap items-center gap-1.5 rounded-md border border-input bg-transparent px-2 py-1.5 shadow-xs transition-[color,box-shadow] dark:bg-input/30',
-        'focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50',
-        'aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
+        'flex min-h-9 w-full cursor-text flex-wrap items-center gap-1.5 rounded-lg border border-input bg-background px-2 py-1.5 transition-[border-color,box-shadow] duration-150 dark:bg-input/15',
+        'focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/20',
+        'aria-invalid:border-destructive aria-invalid:ring-destructive/20',
         className,
       )}
     >
@@ -66,7 +66,7 @@ function TagInput({
         {value.map((tag, index) => (
           <li
             key={tag}
-            className="inline-flex h-6 max-w-full items-center gap-1 rounded-md border bg-secondary pr-0.5 pl-2 text-xs font-medium text-secondary-foreground"
+            className="inline-flex h-6 max-w-full items-center gap-1 rounded-sm border border-transparent bg-secondary pr-0.5 pl-2 text-xs font-medium text-secondary-foreground"
           >
             <span className="truncate">{tag}</span>
             <button
@@ -76,7 +76,7 @@ function TagInput({
                 event.stopPropagation()
                 remove(index)
               }}
-              className="inline-flex size-5 cursor-pointer items-center justify-center rounded-sm text-muted-foreground transition-colors outline-none hover:bg-background hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50"
+              className="inline-flex size-5 cursor-pointer items-center justify-center rounded-sm text-muted-foreground transition-colors outline-none hover:bg-background hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/30"
             >
               <X className="size-3" />
             </button>

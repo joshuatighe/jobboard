@@ -35,7 +35,7 @@ export function UserMenu() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon-sm" className="rounded-full" aria-label="Account menu">
           <Avatar className="size-7">
-            <AvatarFallback className="bg-brand-soft text-brand">{initials(name)}</AvatarFallback>
+            <AvatarFallback>{initials(name)}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>

@@ -14,7 +14,7 @@ const DOT_TONE: Record<Tone, string> = {
   warning: 'bg-warning',
   secondary: 'bg-muted-foreground',
   info: 'bg-info',
-  brand: 'bg-brand',
+  highlight: 'bg-highlight ring-1 ring-foreground/60',
   success: 'bg-success',
   destructive: 'bg-destructive',
   outline: 'bg-muted-foreground/50',
@@ -65,7 +65,7 @@ export function ApplicationTimeline({
             <span
               aria-hidden
               className={cn(
-                'relative mt-1.5 size-[11px] shrink-0 rounded-full ring-4 ring-background',
+                'relative mt-1.5 size-[11px] shrink-0 rounded-full outline-4 outline-background',
                 latest ? DOT_TONE[tone] : 'bg-border',
               )}
             />
@@ -79,7 +79,7 @@ export function ApplicationTimeline({
                 </p>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <time dateTime={event.created_at} className="text-xs whitespace-nowrap text-muted-foreground">
+                    <time dateTime={event.created_at} className="meta whitespace-nowrap text-muted-foreground">
                       {formatRelative(event.created_at)}
                     </time>
                   </TooltipTrigger>

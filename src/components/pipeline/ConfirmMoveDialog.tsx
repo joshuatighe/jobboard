@@ -49,7 +49,7 @@ export function ConfirmMoveDialog({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel disabled={pending}>Cancel</AlertDialogCancel>
-          <Button variant={target === 'offer' ? 'brand' : 'destructive'} onClick={onConfirm} disabled={pending}>
+          <Button variant={target === 'offer' ? 'default' : 'destructive'} onClick={onConfirm} disabled={pending}>
             {pending && <Loader2 className="animate-spin" />}
             {target === 'offer' ? 'Mark as offer' : 'Reject'}
           </Button>

@@ -34,7 +34,7 @@ export function ProfilePage() {
   const header = (
     <PageHeader
       title="Profile"
-      description="Your experience, skills, resume and job preferences."
+      description="What recruiters read when you apply, and what the For-you feed ranks on."
     />
   )
 

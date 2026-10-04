@@ -55,7 +55,7 @@ export function SignInPage() {
       footer={
         <>
           New to JobBoard?{' '}
-          <Link to="/sign-up" className="font-medium text-foreground hover:underline">
+          <Link to="/sign-up" className="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground">
             Create an account
           </Link>
         </>
@@ -85,7 +85,7 @@ export function SignInPage() {
             />
           </FormField>
           {formError && (
-            <p role="alert" className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
+            <p role="alert" className="rounded-md border border-destructive/30 bg-destructive/8 px-3 py-2 text-sm text-destructive">
               {formError}
             </p>
           )}

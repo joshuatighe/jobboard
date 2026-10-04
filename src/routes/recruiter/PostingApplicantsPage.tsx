@@ -34,9 +34,9 @@ function BackLink() {
   return (
     <Link
       to="/dashboard"
-      className="mb-6 inline-flex items-center gap-1.5 rounded-md text-sm text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
+      className="mb-6 inline-flex items-center gap-1.5 rounded-sm meta text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
-      <ArrowLeft className="size-4" /> All postings
+      <ArrowLeft className="size-3.5" /> All postings
     </Link>
   )
 }
@@ -45,7 +45,7 @@ function BoardSkeleton() {
   return (
     <div aria-busy="true" aria-label="Loading applicants" className="space-y-6">
       <div className="space-y-2">
-        <Skeleton className="h-8 w-72" />
+        <Skeleton className="h-10 w-72" />
         <Skeleton className="h-4 w-96 max-w-full" />
       </div>
       <Skeleton className="h-9 w-full rounded-lg lg:hidden" />
@@ -172,7 +172,7 @@ export function PostingApplicantsPage() {
 
   const renderStage = (stage: Stage) =>
     groups[stage].length === 0 ? (
-      <p className="rounded-lg border border-dashed px-3 py-6 text-center text-xs text-muted-foreground">
+      <p className="rounded-md border border-dashed px-3 py-6 text-center text-xs text-muted-foreground">
         {EMPTY_STAGE[stage]}
       </p>
     ) : (
@@ -193,10 +193,10 @@ export function PostingApplicantsPage() {
   return (
     <>
       <BackLink />
-      <header className="flex flex-col gap-4 pb-8 sm:flex-row sm:items-end sm:justify-between">
-        <div className="min-w-0 space-y-1.5">
-          <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-2xl font-semibold sm:text-3xl">{job.title}</h1>
+      <header className="mb-8 flex flex-col gap-4 border-b pb-6 sm:flex-row sm:items-end sm:justify-between">
+        <div className="min-w-0 space-y-2">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <h1 className="text-title sm:text-4xl">{job.title}</h1>
             <PostingStatusBadge status={job.status} />
           </div>
           <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
@@ -219,7 +219,7 @@ export function PostingApplicantsPage() {
                 {groups.applied.length > 0 && (
                   <>
                     {' · '}
-                    <span className="font-medium text-brand">{groups.applied.length} new</span>
+                    <span className="highlight font-medium">{groups.applied.length} new</span>
                   </>
                 )}
                 {job.status === 'closed' && ' · Closed to new applicants'}
@@ -249,7 +249,7 @@ export function PostingApplicantsPage() {
           title="This posting is a draft"
           description="Seekers can't see or apply to drafts. Publish it to start collecting applicants."
           action={
-            <Button asChild variant="brand">
+            <Button asChild>
               <Link to={`/postings/${job.id}/edit`}>Finish and publish</Link>
             </Button>
           }
@@ -277,11 +277,11 @@ export function PostingApplicantsPage() {
           <div className="space-y-4 lg:hidden">
             <Tabs value={mobileStage} onValueChange={changeStage}>
               <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-                <TabsList aria-label="Pipeline stage" className="w-max min-w-full sm:min-w-0">
+                <TabsList aria-label="Pipeline stage" className="w-max min-w-full gap-6 sm:min-w-0">
                   {STAGES.map((stage) => (
-                    <TabsTrigger key={stage} value={stage} className="px-2.5">
+                    <TabsTrigger key={stage} value={stage}>
                       {STAGE_LABELS[stage]}
-                      <span className="text-xs text-muted-foreground tabular-nums">{groups[stage].length}</span>
+                      <span className="meta text-muted-foreground">{groups[stage].length}</span>
                     </TabsTrigger>
                   ))}
                 </TabsList>
@@ -291,19 +291,19 @@ export function PostingApplicantsPage() {
           </div>
 
           {/* Desktop: the whole board. */}
-          <div className="hidden gap-3 lg:grid lg:grid-cols-5">
+          <div className="hidden border-t lg:grid lg:grid-cols-5 lg:divide-x">
             {STAGES.map((stage) => (
               <section
                 key={stage}
                 aria-labelledby={`stage-${stage}`}
-                className="min-w-0 space-y-2 rounded-xl bg-muted/40 p-2"
+                className="min-w-0 space-y-3 py-4 pr-3 pl-3 first:pl-0 last:pr-0"
               >
-                <h2 id={`stage-${stage}`} className="flex items-center justify-between px-1 pt-0.5 text-sm font-medium">
+                <h2 id={`stage-${stage}`} className="flex items-center justify-between meta">
                   <span className="flex items-center gap-1.5">
                     {stage === 'applied' && <Inbox className="size-3.5 text-muted-foreground" />}
                     {STAGE_LABELS[stage]}
                   </span>
-                  <span className="text-xs text-muted-foreground tabular-nums">{groups[stage].length}</span>
+                  <span className="text-muted-foreground">{groups[stage].length}</span>
                 </h2>
                 {renderStage(stage)}
               </section>

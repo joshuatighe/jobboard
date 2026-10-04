@@ -15,11 +15,11 @@ export function ComingSoon({
   requirements: string[]
 }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-xl border border-dashed px-6 py-20 text-center">
-      <div className="mb-4 inline-flex size-12 items-center justify-center rounded-xl bg-brand-soft text-brand">
+    <div className="flex flex-col items-center justify-center px-6 py-20 text-center">
+      <div className="mb-4 inline-flex size-12 items-center justify-center rounded-md border text-muted-foreground">
         <Icon className="size-6" />
       </div>
-      <h2 className="text-lg font-semibold">{title}</h2>
+      <h2 className="text-2xl">{title}</h2>
       <p className="mt-1 max-w-sm text-sm text-muted-foreground">{description}</p>
       <div className="mt-4 flex gap-1.5">
         {requirements.map((r) => (

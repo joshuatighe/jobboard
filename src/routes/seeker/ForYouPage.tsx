@@ -29,7 +29,7 @@ export function ForYouPage() {
   const header = (
     <PageHeader
       title="For you"
-      description="Open roles ranked by how well they match your profile."
+      description="Every open role, scored against your profile and preferences. The reasons are printed under each one."
       actions={
         <Button asChild variant="outline">
           <Link to={PREFERENCES_HREF}>
@@ -47,7 +47,7 @@ export function ForYouPage() {
     return (
       <>
         {header}
-        <div className="grid gap-3" aria-busy="true" aria-label="Loading your matches">
+        <div className="divide-y border-b" aria-busy="true" aria-label="Loading your matches">
           {[0, 1, 2, 3].map((i) => (
             <JobCardSkeleton key={i} />
           ))}
@@ -86,7 +86,7 @@ export function ForYouPage() {
           description="Add your experience level, locations, pay, job types or skills and we'll rank every open role by how well it fits."
           action={
             <>
-              <Button asChild variant="brand">
+              <Button asChild>
                 <Link to={PREFERENCES_HREF}>
                   Set preferences <ArrowRight />
                 </Link>
@@ -114,14 +114,14 @@ export function ForYouPage() {
       {header}
       <div className="space-y-4">
         {missing.length > 0 && (
-          <div className="flex flex-col gap-2 rounded-xl border border-dashed px-4 py-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-2 rounded-lg border bg-muted/40 px-4 py-3 text-sm sm:flex-row sm:items-center sm:justify-between">
             <p className="text-muted-foreground">
-              <Sparkles className="mr-1.5 inline size-4 -translate-y-px text-brand" />
+              <Sparkles className="mr-1.5 inline size-4 -translate-y-px text-foreground" />
               Add your {listSignals(missing)} to sharpen these matches.
             </p>
             <Link
               to={nudgeHref}
-              className="inline-flex shrink-0 items-center gap-1 rounded-sm font-medium outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/50"
+              className="inline-flex shrink-0 items-center gap-1 rounded-sm font-medium underline decoration-border underline-offset-4 outline-none hover:decoration-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Update profile <ArrowRight className="size-4" />
             </Link>
@@ -149,7 +149,7 @@ export function ForYouPage() {
           />
         ) : (
           <>
-            <ul className="grid gap-3">
+            <ul className="divide-y border-b">
               {matches.slice(0, shown).map(({ match, ...job }) => (
                 <li key={job.id}>
                   <JobCard job={job} match={match} />
@@ -170,7 +170,7 @@ export function ForYouPage() {
           <p className="pt-2 text-center text-sm text-muted-foreground">
             {appliedCount} {appliedCount === 1 ? 'role' : 'roles'} you've applied to{' '}
             {appliedCount === 1 ? 'is' : 'are'} hidden.{' '}
-            <Link to="/applications" className="font-medium text-foreground hover:underline">
+            <Link to="/applications" className="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground">
               Track your applications
             </Link>
           </p>

@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 export function CandidateAvatar({ name, className }: { name: string; className?: string }) {
   return (
     <Avatar className={cn('size-9', className)}>
-      <AvatarFallback className="bg-brand-soft text-xs font-semibold text-brand">{initials(name)}</AvatarFallback>
+      <AvatarFallback>{initials(name)}</AvatarFallback>
     </Avatar>
   )
 }
