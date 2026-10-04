@@ -146,6 +146,11 @@ RLS summary:
 - Seekers read and write only their own profile, experiences and applications.
 - Recruiters read applications (and the applicant's profile, experiences and resume) only for their company's jobs,
   and may update `status` only.
+- Column grants back RLS up where a row is writable but some columns must not be (migration
+  `20261004190000_restrict_client_writes.sql`): users update only `full_name` / `avatar_url` on `profiles` (never
+  `role`), and seekers insert applications with only `job_id`, `seeker_id` and `cover_note` (status, resume snapshot
+  and timestamps come from the database). `seeker_profiles.resume_path` must sit in the seeker's own folder (check
+  constraint). When adding a table or column clients can write, decide which columns they may set.
 - Storage bucket `resumes` is private. The path is `{user_id}/{filename}.pdf`. Access is via signed URLs, granted
   to the owner and to recruiters with an application from that user.
 
