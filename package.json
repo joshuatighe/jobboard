@@ -12,7 +12,11 @@
     "typecheck": "tsc -b --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "db:start": "supabase start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor,mailpit,realtime",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
     "db:types": "supabase gen types typescript --project-id \"$SUPABASE_PROJECT_REF\" --schema public > src/types/database.ts",
+    "db:types:local": "supabase gen types typescript --local --schema public > src/types/database.ts",
     "db:seed": "tsx --env-file-if-exists=.env.local scripts/seed.ts"
   },
   "dependencies": {

@@ -71,6 +71,16 @@ pnpm db:seed              # demo companies, jobs, users, and applications
 
 > **Tip:** for instant demo signups, turn off **Authentication → Sign In / Providers → Email → Confirm email** in Supabase.
 
+### Or run Supabase locally
+
+With Docker running, skip the hosted project entirely:
+
+```bash
+pnpm db:start                         # Postgres, Auth, REST and Storage in Docker; applies migrations
+pnpm supabase status -o env           # copy API_URL / ANON_KEY into .env.local as VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY
+SUPABASE_SERVICE_ROLE_KEY=<SERVICE_ROLE_KEY> pnpm db:seed
+```
+
 ### 4. Run
 
 ```bash
@@ -104,7 +114,10 @@ After seeding, sign in as either side of the marketplace:
 | `pnpm build` | Typecheck and build for production |
 | `pnpm lint` | Lint the codebase |
 | `pnpm test` | Run unit tests |
-| `pnpm db:types` | Regenerate TypeScript types from the database |
+| `pnpm db:start` / `db:stop` | Start or stop local Supabase (Docker) |
+| `pnpm db:reset` | Re-apply migrations to the local database |
+| `pnpm db:types` | Regenerate TypeScript types from the hosted database |
+| `pnpm db:types:local` | Regenerate TypeScript types from the local database |
 | `pnpm db:seed` | Seed demo data |
 
 ## Deploy

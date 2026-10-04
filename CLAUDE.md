@@ -184,7 +184,10 @@ pnpm build               # typecheck + production build (must pass before pushin
 pnpm lint                # oxlint
 pnpm typecheck           # tsc --noEmit
 pnpm test                # Vitest (unit tests for lib/, e.g. matching.ts)
-pnpm db:types            # regenerate src/types/database.ts from Supabase
+pnpm db:start            # local Supabase in Docker (Postgres, Auth, REST, Storage); applies migrations
+pnpm db:reset            # wipe local DB and re-apply migrations (then re-run db:seed)
+pnpm db:types:local      # regenerate src/types/database.ts from the local DB
+pnpm db:types            # regenerate src/types/database.ts from the hosted project
 pnpm db:seed             # run scripts/seed.ts (needs SUPABASE_SERVICE_ROLE_KEY)
 pnpm supabase db push    # apply migrations to the linked project
 pnpm add <pkg>           # add a dependency (-D for dev). Never npm/yarn
@@ -236,8 +239,9 @@ Interview answers were brief, so we made these calls. Add to this list when you 
       with Supabase `auth`/`storage` stubs.
 - [x] `lib/matching.ts` with unit tests
 - [x] Seed script and data
-- [ ] Apply migration and seed the real Supabase project, then regenerate `types/database.ts` (it's currently
-      hand-written in generated format)
+- [x] Verified end to end on local Supabase (Docker): migration applies, types generated, seed is idempotent, RLS
+      checked through the API as each demo user, sign-in/out + role redirects checked in a browser
+- [ ] Apply migration and seed the hosted Supabase project
 - [ ] R4/R5 job search + filters · R7 job detail + apply
 - [ ] R2/R3 profile, experience, resume upload
 - [ ] R6 For-you feed · R8 application tracker
@@ -245,12 +249,18 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 
 ## Environment notes (Claude cloud sessions)
 
-- `ui.shadcn.com` is blocked by the default network policy, so `shadcn add` fails. Components in
-  `src/components/ui` were written by hand in shadcn's new-york style over the `radix-ui` package. Add new ones the
-  same way, or add the domain to the environment's allowed hosts.
-- Supabase hosts (`*.supabase.co`, `*.supabase.com`) must be allowed in the environment's network settings.
-  `supabase db push` needs a direct Postgres connection, which the HTTPS proxy may block. If it does, apply the
-  migration through the Management API (`POST https://api.supabase.com/v1/projects/{ref}/database/query` with
-  `SUPABASE_ACCESS_TOKEN`).
-- Docker isn't running, so `supabase start` and local type generation don't work. Postgres 16 binaries are
-  installed (`/usr/lib/postgresql/16/bin`) for testing SQL.
+- **Local Supabase works.** Docker isn't running at session start: run `dockerd > /tmp/dockerd.log 2>&1` in the
+  background, then `pnpm db:start` (first run pulls images, a few minutes). Point the app at it with a gitignored
+  `.env.local` built from `pnpm supabase status -o env` (`API_URL`, `ANON_KEY`), and seed with
+  `SUPABASE_SERVICE_ROLE_KEY=<SERVICE_ROLE_KEY>`. Prefer testing schema/RLS changes locally before touching the
+  hosted project.
+- Image pulls from AWS ECR Public and GHCR need `d2glxqk2uabbnd.cloudfront.net` and
+  `pkg-containers.githubusercontent.com` allowed. Without them the CLI falls back to Docker Hub, which works but
+  rate-limits anonymous pulls (429s are retried).
+- Hosted Supabase: `*.supabase.co` / `*.supabase.com` must be allowed. `supabase db push` needs a direct Postgres
+  connection, which the HTTPS proxy may block. If it does, apply migrations through the Management API
+  (`POST https://api.supabase.com/v1/projects/{ref}/database/query` with `SUPABASE_ACCESS_TOKEN`).
+- `ui.shadcn.com` is allowed, so `pnpm dlx shadcn@latest add <component>` works. Existing components in
+  `src/components/ui` were hand-written in the new-york style before that, so review generated diffs if
+  re-adding one.
+- Postgres 16 binaries are also installed (`/usr/lib/postgresql/16/bin`) for quick SQL experiments.
