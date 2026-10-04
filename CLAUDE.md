@@ -180,6 +180,7 @@ Target the look of Linear, Vercel, Ramp and Ashby: restrained, crisp, expensive-
 ```bash
 pnpm install
 pnpm dev                 # Vite dev server
+pnpm dev:local           # dev server against local Supabase (cloud sessions; uses SUPABASE_LOCAL_*)
 pnpm build               # typecheck + production build (must pass before pushing)
 pnpm lint                # oxlint
 pnpm typecheck           # tsc --noEmit
@@ -189,6 +190,7 @@ pnpm db:reset            # wipe local DB and re-apply migrations (then re-run db
 pnpm db:types:local      # regenerate src/types/database.ts from the local DB
 pnpm db:types            # regenerate src/types/database.ts from the hosted project
 pnpm db:seed             # run scripts/seed.ts (needs SUPABASE_SERVICE_ROLE_KEY)
+pnpm db:seed:local       # seed local Supabase (uses SUPABASE_LOCAL_*)
 pnpm supabase db push    # apply migrations to the linked project
 pnpm add <pkg>           # add a dependency (-D for dev). Never npm/yarn
 ```
@@ -249,11 +251,13 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 
 ## Environment notes (Claude cloud sessions)
 
-- **Local Supabase works.** Docker isn't running at session start: run `dockerd > /tmp/dockerd.log 2>&1` in the
-  background, then `pnpm db:start` (first run pulls images, a few minutes). Point the app at it with a gitignored
-  `.env.local` built from `pnpm supabase status -o env` (`API_URL`, `ANON_KEY`), and seed with
-  `SUPABASE_SERVICE_ROLE_KEY=<SERVICE_ROLE_KEY>`. Prefer testing schema/RLS changes locally before touching the
-  hosted project.
+- **Local Supabase starts automatically.** `.claude/hooks/session-start.sh` runs `pnpm install`, starts Docker and
+  `pnpm db:start`, seeds demo data, and exports `SUPABASE_LOCAL_URL`, `SUPABASE_LOCAL_ANON_KEY` and
+  `SUPABASE_LOCAL_SERVICE_ROLE_KEY`. Logs: `/tmp/dockerd.log`, `/tmp/supabase-start.log`, `/tmp/supabase-seed.log`.
+  If it failed, the hook prints a warning and the session continues; start it by hand with `dockerd` + `pnpm db:start`.
+- **Local vs hosted.** The environment's `VITE_SUPABASE_*` variables point at the hosted project and override
+  `.env.local` (Vite gives real environment variables priority). Use `pnpm dev:local` / `pnpm db:seed:local` to target
+  the local stack, and plain `pnpm dev` / `pnpm db:seed` for hosted. Test schema and RLS changes locally first.
 - Image pulls from AWS ECR Public and GHCR need `d2glxqk2uabbnd.cloudfront.net` and
   `pkg-containers.githubusercontent.com` allowed. Without them the CLI falls back to Docker Hub, which works but
   rate-limits anonymous pulls (429s are retried).
