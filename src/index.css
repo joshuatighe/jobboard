@@ -158,6 +158,21 @@
   box-decoration-break: clone;
 }
 
+/*
+ * Centre capitals (monogram initials) in a box. Flex centring centres the line box, and Newsreader's
+ * ascent is taller than its descent, so capitals sat about 1.5px high. `text-box` trims the line box
+ * to cap height and baseline, so the letters themselves are centred. It only trims block containers,
+ * so it goes on a span inside the flex box, not on the box. Browsers without it (Firefox)
+ * get an approximate em nudge instead.
+ */
+@utility caps-center {
+  display: block;
+  text-box: trim-both cap alphabetic;
+  @supports not (text-box: trim-both cap alphabetic) {
+    padding-top: 0.2em;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

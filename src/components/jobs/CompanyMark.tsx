@@ -11,7 +11,7 @@ export function CompanyMark({ name, className }: { name: string; className?: str
         className,
       )}
     >
-      {initials(name)}
+      <span className="caps-center">{initials(name)}</span>
     </span>
   )
 }

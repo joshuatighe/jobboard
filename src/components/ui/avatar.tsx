@@ -26,6 +26,7 @@ function AvatarImage({ className, ...props }: React.ComponentProps<typeof Avatar
 /** Initials set as a serif monogram on a hairline square. */
 function AvatarFallback({
   className,
+  children,
   ...props
 }: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
   return (
@@ -36,7 +37,9 @@ function AvatarFallback({
         className,
       )}
       {...props}
-    />
+    >
+      <span className="caps-center">{children}</span>
+    </AvatarPrimitive.Fallback>
   )
 }
 

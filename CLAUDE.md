@@ -214,8 +214,9 @@ The system lives in `src/index.css` (tokens, type sizes, the `page-x`, `meta` an
   genuinely a unit: forms, the apply panel, candidate cards on the board. Shadows exist only on things that float
   (menus, dialogs, sheets). **No rounded corners anywhere**: every radius token is 0, no component carries a
   `rounded-*` class, and avatars, status dots, progress bars and the switch are square. Company marks and avatars
-  are serif monograms on a hairline square. Stat strips are one bordered
-  grid with serif numerals, not four cards.
+  are serif monograms on a hairline square, centred on their capitals with the `caps-center` utility on an inner
+  span (CSS `text-box` trim; plain flex centring leaves Newsreader capitals about 1.5px high). Stat strips are one
+  bordered grid with serif numerals, not four cards.
 - **Navigation.** The masthead is a 56px bar with a hairline. The current section is underlined with a 2px ink
   bar, in the app nav and in every tab list (`Tabs` is underline-style, no grey pill group).
 - **Motion.** 150ms colour and border transitions; dialogs and sheets use tw-animate's fade/slide at 200ms.
