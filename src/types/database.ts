@@ -181,6 +181,9 @@ isOneToOne: true
 "can_view_seeker":
 { Args: { "target_seeker": string }; Returns: boolean
                            },
+"has_applied_to_job":
+{ Args: { "target_job": string }; Returns: boolean
+                           },
 "is_company_recruiter":
 { Args: { "target_company": string }; Returns: boolean
                            },

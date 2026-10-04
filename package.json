@@ -17,7 +17,7 @@
     "db:stop": "supabase stop",
     "db:reset": "supabase db reset",
     "db:types": "supabase gen types typescript --project-id \"$SUPABASE_PROJECT_REF\" --schema public > src/types/database.ts",
-    "db:types:local": "supabase gen types typescript --local --schema public > src/types/database.ts",
+    "db:types:local": "env -u SUPABASE_DB_PASSWORD supabase gen types typescript --local --schema public > src/types/database.ts",
     "db:seed": "tsx --env-file-if-exists=.env.local scripts/seed.ts",
     "db:seed:local": "VITE_SUPABASE_URL=$SUPABASE_LOCAL_URL SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_LOCAL_SERVICE_ROLE_KEY tsx scripts/seed.ts"
   },

@@ -96,6 +96,7 @@ src/
     api/                     # typed data access (auth.ts, jobs.ts, applications.ts, ...)
     queries/                 # TanStack Query hooks wrapping lib/api (useJobs, useApply, ...)
     matching.ts (+ .test.ts) # personalized-feed scoring (pure, unit-tested)
+    applications.ts (+ .test.ts) # tracker grouping, timeline and pipeline-progress helpers (pure)
     constants.ts             # enum labels, status → badge tone, pipeline order
     format.ts                # pay ranges, relative dates, initials
     types.ts                 # row/enum aliases (Job, Application, ExperienceLevel, ...)
@@ -253,12 +254,26 @@ Interview answers were brief, so we made these calls. Add to this list when you 
   the `%PDF-` header; the bucket enforces type and the 5 MB limit server-side.
 - Experience dates are month-granular (stored as the 1st of the month), picked with month + year selects rather than
   `<input type="month">`, which Safari and Firefox don't render as a picker. A null `end_date` means current role.
+- **Application tracker (R8)** groups statuses into tabs, **Active** (applied, in review, interviewing), **Offers** and
+  **Closed** (not selected, withdrawn), plus **All**. The tab lives in the URL (`?tab=`). Rows sort by last activity
+  (the newest `application_events` row, not `updated_at`), and a 4-step bar shows how far each one got; a closed
+  application's bar is greyed at the furthest stage it reached. Details (timeline, resume sent, cover note) open in a
+  side sheet, so the list stays scannable on mobile.
+- Seekers can **withdraw any application that isn't already final, including an offer** (that's how they decline
+  one). It's confirmed first and is final: the unique `(job_id, seeker_id)` means they can't reapply to that job.
+- **Applicants keep seeing closed jobs they applied to** (migration `20261004120000`, policy "Applicants see closed
+  jobs they applied to"). Otherwise the tracker lost the title and company of every role that closed after they
+  applied, often the ones with an offer. Drafts stay hidden. If a job still can't be read (deleted, or the migration
+  isn't applied yet), the tracker shows "Role no longer listed" with the full timeline instead of failing.
+- The "resume sent" on an application is the snapshot path. It's labelled "Your current resume" when it matches the
+  profile's resume, otherwise "An earlier version" (shown by its object name, since only the current file's original
+  name is stored).
 - Profile sections (About, Experience, Preferences, Resume) save independently, each with its own save button and
   toast, rather than one big form. A "Profile strength" checklist links to whatever is still missing.
 
 ## Status
 
-**Scaffold done** (app shell, auth, routing, theme, landing page, schema, RLS, seed). Search, job detail, apply and the seeker profile are built; the remaining feature pages are placeholders.
+**Scaffold done** (app shell, auth, routing, theme, landing page, schema, RLS, seed). Search, job detail, apply, the seeker profile and the application tracker are built; the remaining feature pages are placeholders.
 
 - [x] Vite + React + TS (strict) + Tailwind v4 + shadcn-style components, light/dark theme
 - [x] Landing page, sign in / sign up with role picker, role-based route guards, app shell
@@ -271,7 +286,9 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - [x] Migration applied and seed run on the hosted Supabase project (through the Management API; see below)
 - [x] R4/R5 job search + filters · R7 job detail + apply
 - [x] R2/R3 profile, experience, preferences, resume upload / replace / view
-- [ ] R6 For-you feed · R8 application tracker
+- [x] R8 application tracker: status tabs, summary, timeline, resume sent, withdraw. Migration
+      `20261004120000_applicants_see_closed_jobs.sql` verified locally; **not yet applied to hosted**
+- [ ] R6 For-you feed
 - [ ] R10/R11 recruiter dashboard + posting editor · R12/R13 applicants pipeline
 
 ## Environment notes (Claude cloud sessions)
@@ -300,4 +317,6 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - `ui.shadcn.com` is allowed, so `pnpm dlx shadcn@latest add <component>` works. Existing components in
   `src/components/ui` were hand-written in the new-york style before that, so review generated diffs if
   re-adding one.
+- The environment's `SUPABASE_DB_PASSWORD` is the hosted one. `db:types:local` unsets it (`env -u`); without that the
+  CLI writes a connection error into `src/types/database.ts`.
 - Postgres 16 binaries are also installed (`/usr/lib/postgresql/16/bin`) for quick SQL experiments.
