@@ -8,7 +8,16 @@ import { resumeDisplayName } from '@/lib/resume'
  * The resume snapshotted on an application (R3, R7). It may be an older version than the one on
  * the profile now, which is exactly the point: this is what the recruiter sees.
  */
-export function SentResume({ path, seekerId }: { path: string | null; seekerId: string }) {
+export function SentResume({
+  path,
+  seekerId,
+  audience = 'seeker',
+}: {
+  path: string | null
+  seekerId: string
+  /** The candidate reads "your resume"; a recruiter reads "their resume". */
+  audience?: 'seeker' | 'recruiter'
+}) {
   const profile = useSeekerProfile(seekerId)
   const url = useResumeUrl(path)
 
@@ -32,7 +41,13 @@ export function SentResume({ path, seekerId }: { path: string | null; seekerId: 
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium">{name}</p>
         <p className="text-xs text-muted-foreground">
-          {isCurrent ? 'Your current resume' : 'An earlier version of your resume'}
+          {audience === 'recruiter'
+            ? isCurrent
+              ? 'The resume on their profile'
+              : "Sent with this application. They've uploaded a newer one since."
+            : isCurrent
+              ? 'Your current resume'
+              : 'An earlier version of your resume'}
         </p>
       </div>
       {url.data ? (
