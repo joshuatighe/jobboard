@@ -233,7 +233,16 @@ Interview answers were brief, so we made these calls. Add to this list when you 
   extra applicants, each with a profile, experience and generated PDF resume, and 16 applications with backdated
   status timelines. The demo recruiter works at Lumen AI.
 - Recruiter signup creates the company if no company with that name (case-insensitive) exists, otherwise joins it.
-- Job search and job detail pages are public. Applying requires a seeker account.
+- Job search and job detail pages are public. Applying requires a seeker account. Signed-in users see them inside
+  the app shell; visitors see the marketing header.
+- Search filters live in the URL (`?q=&pay=&location=&remote=1&level=`), so searches are shareable and survive
+  back/forward. Keyword search requires every word and prefix-matches the last one, so results update while typing.
+- The pay filter is a minimum annual amount. A job matches when its `pay_max` meets it; hourly roles are annualized at
+  2,080 hours.
+- Location + remote: "Remote only" on its own shows remote roles; with a location typed it becomes "Include remote
+  roles" (that location **or** remote), since remote roles can be done from anywhere.
+- Seekers can apply without a resume on file (the apply dialog warns and links to the profile). Blocking would make
+  applying impossible for new accounts until resume upload (R3) ships.
 
 ## Status
 
@@ -247,8 +256,8 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - [x] Seed script and data
 - [x] Verified end to end on local Supabase (Docker): migration applies, types generated, seed is idempotent, RLS
       checked through the API as each demo user, sign-in/out + role redirects checked in a browser
-- [ ] Apply migration and seed the hosted Supabase project
-- [ ] R4/R5 job search + filters · R7 job detail + apply
+- [x] Migration applied and seed run on the hosted Supabase project (through the Management API; see below)
+- [x] R4/R5 job search + filters · R7 job detail + apply
 - [ ] R2/R3 profile, experience, resume upload
 - [ ] R6 For-you feed · R8 application tracker
 - [ ] R10/R11 recruiter dashboard + posting editor · R12/R13 applicants pipeline
@@ -268,6 +277,14 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - Hosted Supabase: `*.supabase.co` / `*.supabase.com` must be allowed. `supabase db push` needs a direct Postgres
   connection, which the HTTPS proxy may block. If it does, apply migrations through the Management API
   (`POST https://api.supabase.com/v1/projects/{ref}/database/query` with `SUPABASE_ACCESS_TOKEN`).
+- `SUPABASE_PROJECT_REF` must be the bare project ref (e.g. `kctgfbswpvusjlxjsyug`), not a dashboard URL, and
+  `VITE_SUPABASE_URL` must be the bare project URL (`https://<ref>.supabase.co`, no `/rest/v1/`). Otherwise
+  `db:types`, `db:seed` and the app's client all fail.
+- When applying a migration through the Management API, also insert its row into
+  `supabase_migrations.schema_migrations` (`version`, `name`, `statements`) so `supabase migration list` / `db push`
+  treat it as applied.
+- `pnpm dlx shadcn add` can rewrite the `cn` import to a stray npm package called `cn`. Point it back at
+  `@/lib/utils` and don't commit the dependency.
 - `ui.shadcn.com` is allowed, so `pnpm dlx shadcn@latest add <component>` works. Existing components in
   `src/components/ui` were hand-written in the new-york style before that, so review generated diffs if
   re-adding one.
