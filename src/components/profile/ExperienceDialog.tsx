@@ -178,7 +178,7 @@ export function ExperienceDialog({
             </FormField>
             <FormField id="exp-end" label="End date" error={current ? undefined : errors.end?.message}>
               {current ? (
-                <p className="flex h-9 items-center rounded-md border border-dashed px-3 text-sm text-muted-foreground">
+                <p className="flex h-9 items-center border border-dashed px-3 text-sm text-muted-foreground">
                   Present
                 </p>
               ) : (

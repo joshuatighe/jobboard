@@ -74,7 +74,7 @@ export function ExperienceSection({ userId }: { userId: string }) {
         <div className="grid gap-5" aria-busy="true" aria-label="Loading experience">
           {[0, 1].map((i) => (
             <div key={i} className="flex gap-3">
-              <Skeleton className="size-10 rounded-lg" />
+              <Skeleton className="size-10" />
               <div className="flex-1 space-y-2">
                 <Skeleton className="h-4 w-1/2" />
                 <Skeleton className="h-3 w-1/3" />

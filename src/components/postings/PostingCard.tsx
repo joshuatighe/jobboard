@@ -18,7 +18,7 @@ export function PostingCard({
 }) {
   const counts = countApplicants(posting.applications)
   return (
-    <article className="relative py-5 has-[a[data-row-link]:focus-visible]:rounded-md has-[a[data-row-link]:focus-visible]:ring-2 has-[a[data-row-link]:focus-visible]:ring-ring has-[a[data-row-link]:focus-visible]:ring-inset">
+    <article className="relative py-5 has-[a[data-row-link]:focus-visible]:ring-2 has-[a[data-row-link]:focus-visible]:ring-ring has-[a[data-row-link]:focus-visible]:ring-inset">
       <div className="flex items-start gap-3">
         <div className="min-w-0 flex-1">
           <div className="mb-2">

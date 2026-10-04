@@ -23,7 +23,7 @@ export function ApplicationRow({
   const title = job?.title ?? 'Role no longer listed'
 
   return (
-    <li className="group relative grid grid-cols-[auto_1fr] gap-x-4 py-5 has-[button:focus-visible]:rounded-md has-[button:focus-visible]:ring-2 has-[button:focus-visible]:ring-ring has-[button:focus-visible]:ring-inset sm:gap-x-5">
+    <li className="group relative grid grid-cols-[auto_1fr] gap-x-4 py-5 has-[button:focus-visible]:ring-2 has-[button:focus-visible]:ring-ring has-[button:focus-visible]:ring-inset sm:gap-x-5">
       <JobMark job={job} />
       <div className="min-w-0">
         <div className="flex items-start justify-between gap-3">
@@ -33,7 +33,7 @@ export function ApplicationRow({
                 // Above the row's stretched button, so it opens the job instead of the details.
                 <Link
                   to={`/jobs/${job.id}`}
-                  className="relative z-10 rounded-sm decoration-border underline-offset-[5px] outline-none hover:underline hover:decoration-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="relative z-10 decoration-border underline-offset-[5px] outline-none hover:underline hover:decoration-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   {title}
                 </Link>
@@ -81,7 +81,7 @@ export function ApplicationRow({
             type="button"
             onClick={onOpen}
             aria-label={`Details for ${title}`}
-            className="absolute inset-0 rounded-md text-sm font-medium text-muted-foreground outline-none group-hover:text-foreground sm:static sm:ml-auto sm:inline-flex sm:items-center sm:gap-1 sm:after:absolute sm:after:inset-0"
+            className="absolute inset-0 text-sm font-medium text-muted-foreground outline-none group-hover:text-foreground sm:static sm:ml-auto sm:inline-flex sm:items-center sm:gap-1 sm:after:absolute sm:after:inset-0"
           >
             <span className="hidden items-center gap-1 sm:inline-flex">
               Details <ChevronRight className="size-3.5" />

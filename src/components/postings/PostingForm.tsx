@@ -231,7 +231,7 @@ export function PostingForm({ companyId, posting }: { companyId: string; posting
                 control={control}
                 name="isRemote"
                 render={({ field }) => (
-                  <div className="flex items-center justify-between gap-4 rounded-lg border px-3 py-2.5">
+                  <div className="flex items-center justify-between gap-4 border px-3 py-2.5">
                     <div className="grid gap-0.5">
                       <Label htmlFor="posting-remote">Remote-friendly</Label>
                       <p id="posting-remote-hint" className="text-xs text-muted-foreground">

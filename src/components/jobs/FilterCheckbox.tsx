@@ -19,11 +19,11 @@ export function FilterCheckbox({
       role="checkbox"
       aria-checked={checked}
       onClick={() => onCheckedChange(!checked)}
-      className="group flex w-full items-center gap-2.5 rounded-md px-2 py-1.5 text-left text-sm text-muted-foreground transition-colors outline-none hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background aria-checked:text-foreground"
+      className="group flex w-full items-center gap-2.5 px-2 py-1.5 text-left text-sm text-muted-foreground transition-colors outline-none hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background aria-checked:text-foreground"
     >
       <span
         className={cn(
-          'inline-flex size-4 shrink-0 items-center justify-center rounded-sm border border-input bg-background transition-colors',
+          'inline-flex size-4 shrink-0 items-center justify-center border border-input bg-background transition-colors',
           checked && 'border-foreground bg-foreground text-background',
         )}
       >

@@ -46,14 +46,14 @@ export function ResumeCard({ seeker }: { seeker: SeekerProfile }) {
       <div
         {...dropHandlers}
         className={cn(
-          'rounded-lg transition-colors duration-150',
+          'transition-colors duration-150',
           dragging && 'bg-highlight/30 ring-2 ring-foreground',
         )}
       >
         {hasResume ? (
           <div className="grid gap-3">
-            <div className="flex items-center gap-3 rounded-lg border p-3">
-              <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border bg-background text-muted-foreground">
+            <div className="flex items-center gap-3 border p-3">
+              <div className="inline-flex size-10 shrink-0 items-center justify-center border bg-background text-muted-foreground">
                 {isPending ? <Loader2 className="size-4 animate-spin" /> : <FileText className="size-4" />}
               </div>
               <div className="min-w-0 flex-1">
@@ -109,9 +109,9 @@ export function ResumeCard({ seeker }: { seeker: SeekerProfile }) {
               type="button"
               disabled={isPending}
               onClick={() => inputRef.current?.click()}
-              className="flex w-full cursor-pointer flex-col items-center gap-2 rounded-lg border border-dashed px-4 py-8 text-center transition-colors outline-none hover:border-foreground/50 hover:bg-accent/40 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-wait"
+              className="flex w-full cursor-pointer flex-col items-center gap-2 border border-dashed px-4 py-8 text-center transition-colors outline-none hover:border-foreground/50 hover:bg-accent/40 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-wait"
             >
-              <span className="inline-flex size-10 items-center justify-center rounded-md border bg-background text-muted-foreground">
+              <span className="inline-flex size-10 items-center justify-center border bg-background text-muted-foreground">
                 {isPending ? <Loader2 className="size-5 animate-spin" /> : <Upload className="size-5" />}
               </span>
               <span className="text-sm font-medium">

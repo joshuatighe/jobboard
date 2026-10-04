@@ -28,7 +28,7 @@ export function CandidateCard({
     <article
       aria-busy={pending}
       className={cn(
-        'relative rounded-lg border bg-card p-3 transition-[border-color,opacity] duration-150 hover:border-foreground/40 has-[button[data-card-open]:focus-visible]:ring-2 has-[button[data-card-open]:focus-visible]:ring-ring has-[button[data-card-open]:focus-visible]:ring-inset',
+        'relative border bg-card p-3 transition-[border-color,opacity] duration-150 hover:border-foreground/40 has-[button[data-card-open]:focus-visible]:ring-2 has-[button[data-card-open]:focus-visible]:ring-ring has-[button[data-card-open]:focus-visible]:ring-inset',
         pending && 'opacity-60',
       )}
     >
@@ -40,7 +40,7 @@ export function CandidateCard({
               type="button"
               data-card-open
               onClick={onOpen}
-              className="cursor-pointer text-left decoration-border underline-offset-4 outline-none after:absolute after:inset-0 after:rounded-lg hover:underline hover:decoration-foreground"
+              className="cursor-pointer text-left decoration-border underline-offset-4 outline-none after:absolute after:inset-0 hover:underline hover:decoration-foreground"
             >
               {name}
             </button>

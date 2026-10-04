@@ -105,7 +105,7 @@ export function SignUpPage() {
                 aria-checked={role === value}
                 onClick={() => setValue('role', value)}
                 className={cn(
-                  'flex cursor-pointer flex-col items-start gap-3 rounded-lg border p-4 text-left transition-colors outline-none hover:bg-accent/60 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+                  'flex cursor-pointer flex-col items-start gap-3 border p-4 text-left transition-colors outline-none hover:bg-accent/60 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
                   role === value && 'border-foreground bg-card ring-1 ring-foreground hover:bg-card',
                 )}
               >
@@ -158,7 +158,7 @@ export function SignUpPage() {
             />
           </FormField>
           {formError && (
-            <p role="alert" className="rounded-md border border-destructive/30 bg-destructive/8 px-3 py-2 text-sm text-destructive">
+            <p role="alert" className="border border-destructive/30 bg-destructive/8 px-3 py-2 text-sm text-destructive">
               {formError}
             </p>
           )}

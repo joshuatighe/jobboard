@@ -6,7 +6,7 @@ import { formatPay } from '@/lib/format'
 /** The pay, set like a price, and the one call to action that fits whoever is looking (R7). */
 export function ApplyCard({ job }: { job: JobWithCompany }) {
   return (
-    <div className="rounded-xl border p-5">
+    <div className="border p-5">
       <p className="meta text-muted-foreground">Pay</p>
       <p className="mt-2 font-serif text-3xl leading-none tracking-tight tabular-nums">{formatPay(job)}</p>
       <p className="mt-2 text-sm text-muted-foreground">

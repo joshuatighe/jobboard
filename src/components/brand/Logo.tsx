@@ -7,7 +7,7 @@ export function LogoMark({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        'inline-flex size-7 items-center justify-center rounded-sm bg-highlight font-serif text-[19px] leading-none font-semibold text-highlight-foreground',
+        'inline-flex size-7 items-center justify-center bg-highlight font-serif text-[19px] leading-none font-semibold text-highlight-foreground',
         className,
       )}
       aria-hidden
@@ -24,7 +24,7 @@ export function Logo({ to = '/', className }: { to?: string; className?: string 
       to={to}
       aria-label="JobBoard home"
       className={cn(
-        'inline-flex items-baseline rounded-sm font-serif text-[22px] leading-none font-medium tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+        'inline-flex items-baseline font-serif text-[22px] leading-none font-medium tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
         className,
       )}
     >

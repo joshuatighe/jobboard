@@ -25,7 +25,7 @@ export function ApplicationProgress({
         <span
           key={step}
           className={cn(
-            'h-1.5 flex-1 rounded-full bg-border transition-colors duration-200',
+            'h-1.5 flex-1 bg-border transition-colors duration-200',
             index <= reached &&
               (ended ? 'bg-muted-foreground/35' : status === 'offer' ? 'bg-success' : 'bg-foreground'),
           )}

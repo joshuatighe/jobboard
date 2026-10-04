@@ -23,7 +23,7 @@ export function SentResume({
 
   if (!path) {
     return (
-      <div className="flex items-center gap-3 rounded-lg border border-dashed px-3 py-2.5 text-sm text-muted-foreground">
+      <div className="flex items-center gap-3 border border-dashed px-3 py-2.5 text-sm text-muted-foreground">
         <FileX className="size-4 shrink-0" />
         No resume was attached to this application.
       </div>
@@ -34,8 +34,8 @@ export function SentResume({
   const name = resumeDisplayName(path, isCurrent ? profile.data?.resume_filename : null)
 
   return (
-    <div className="flex items-center gap-3 rounded-lg border px-3 py-2.5">
-      <div className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border bg-background text-muted-foreground">
+    <div className="flex items-center gap-3 border px-3 py-2.5">
+      <div className="inline-flex size-9 shrink-0 items-center justify-center border bg-background text-muted-foreground">
         <FileText className="size-4" />
       </div>
       <div className="min-w-0 flex-1">

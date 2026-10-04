@@ -19,7 +19,7 @@ export function ExperienceItem({
 
   return (
     <li className="group flex gap-3 py-5 first:pt-0 last:pb-0">
-      <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border text-muted-foreground">
+      <div className="inline-flex size-10 shrink-0 items-center justify-center border text-muted-foreground">
         <Building2 className="size-4" />
       </div>
       <div className="min-w-0 flex-1">

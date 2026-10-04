@@ -16,7 +16,7 @@ export function ComingSoon({
 }) {
   return (
     <div className="flex flex-col items-center justify-center px-6 py-20 text-center">
-      <div className="mb-4 inline-flex size-12 items-center justify-center rounded-md border text-muted-foreground">
+      <div className="mb-4 inline-flex size-12 items-center justify-center border text-muted-foreground">
         <Icon className="size-6" />
       </div>
       <h2 className="text-2xl">{title}</h2>

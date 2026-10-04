@@ -21,7 +21,7 @@ export function ApplyAction({ job }: { job: JobWithCompany }) {
   const [open, setOpen] = useState(false)
 
   if (status === 'loading' || (seekerId && application.isPending)) {
-    return <Skeleton className="h-11 w-full rounded-lg" />
+    return <Skeleton className="h-11 w-full" />
   }
 
   if (!profile) {
@@ -44,7 +44,7 @@ export function ApplyAction({ job }: { job: JobWithCompany }) {
 
   if (profile.role === 'recruiter') {
     return (
-      <p className="flex gap-2 rounded-lg border bg-muted/40 px-3 py-2.5 text-sm text-muted-foreground">
+      <p className="flex gap-2 border bg-muted/40 px-3 py-2.5 text-sm text-muted-foreground">
         <Lock className="mt-0.5 size-4 shrink-0" />
         You're signed in as a recruiter. Applying needs a job seeker account.
       </p>
@@ -55,7 +55,7 @@ export function ApplyAction({ job }: { job: JobWithCompany }) {
     const { status: appStatus, created_at } = application.data
     return (
       <div className="grid gap-3">
-        <div className="rounded-lg border p-3">
+        <div className="border p-3">
           <div className="flex items-center justify-between gap-2">
             <span className="inline-flex items-center gap-1.5 text-sm font-medium">
               <CircleCheck className="size-4 text-success" /> Applied
@@ -89,7 +89,7 @@ export function ApplyAction({ job }: { job: JobWithCompany }) {
 
   if (job.status !== 'open') {
     return (
-      <p className="rounded-lg border bg-muted/40 px-3 py-2.5 text-sm text-muted-foreground">
+      <p className="border bg-muted/40 px-3 py-2.5 text-sm text-muted-foreground">
         This role is no longer accepting applications.
       </p>
     )

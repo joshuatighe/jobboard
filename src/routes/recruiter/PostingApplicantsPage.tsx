@@ -34,7 +34,7 @@ function BackLink() {
   return (
     <Link
       to="/dashboard"
-      className="mb-6 inline-flex items-center gap-1.5 rounded-sm meta text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      className="mb-6 inline-flex items-center gap-1.5 meta text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       <ArrowLeft className="size-3.5" /> All postings
     </Link>
@@ -48,13 +48,13 @@ function BoardSkeleton() {
         <Skeleton className="h-10 w-72" />
         <Skeleton className="h-4 w-96 max-w-full" />
       </div>
-      <Skeleton className="h-9 w-full rounded-lg lg:hidden" />
+      <Skeleton className="h-9 w-full lg:hidden" />
       <div className="grid gap-3 lg:grid-cols-5">
         {STAGES.map((stage, i) => (
           <div key={stage} className={i > 0 ? 'hidden space-y-2 lg:block' : 'space-y-2'}>
             <Skeleton className="h-5 w-24" />
-            <Skeleton className="h-28 rounded-lg" />
-            <Skeleton className="h-28 rounded-lg" />
+            <Skeleton className="h-28" />
+            <Skeleton className="h-28" />
           </div>
         ))}
       </div>
@@ -172,7 +172,7 @@ export function PostingApplicantsPage() {
 
   const renderStage = (stage: Stage) =>
     groups[stage].length === 0 ? (
-      <p className="rounded-md border border-dashed px-3 py-6 text-center text-xs text-muted-foreground">
+      <p className="border border-dashed px-3 py-6 text-center text-xs text-muted-foreground">
         {EMPTY_STAGE[stage]}
       </p>
     ) : (

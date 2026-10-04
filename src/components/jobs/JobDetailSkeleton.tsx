@@ -21,7 +21,7 @@ export function JobDetailSkeleton() {
             <Skeleton key={i} className="h-4" style={{ width: `${90 - (i % 3) * 15}%` }} />
           ))}
         </div>
-        <Skeleton className="h-44 rounded-xl" />
+        <Skeleton className="h-44" />
       </div>
     </div>
   )

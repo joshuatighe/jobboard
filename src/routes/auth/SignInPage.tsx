@@ -85,7 +85,7 @@ export function SignInPage() {
             />
           </FormField>
           {formError && (
-            <p role="alert" className="rounded-md border border-destructive/30 bg-destructive/8 px-3 py-2 text-sm text-destructive">
+            <p role="alert" className="border border-destructive/30 bg-destructive/8 px-3 py-2 text-sm text-destructive">
               {formError}
             </p>
           )}

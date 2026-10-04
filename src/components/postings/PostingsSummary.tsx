@@ -20,7 +20,7 @@ export function PostingsSummary({
   ]
 
   return (
-    <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-4">
+    <dl className="grid grid-cols-2 gap-px overflow-hidden border bg-border sm:grid-cols-4">
       {stats.map(({ label, value, highlight }) => (
         <div key={label} className="bg-background px-4 py-4 sm:px-5">
           <dt className="meta text-muted-foreground">{label}</dt>

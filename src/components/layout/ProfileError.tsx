@@ -9,7 +9,7 @@ export function ProfileError() {
 
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-4 px-6 text-center">
-      <div className="inline-flex size-12 items-center justify-center rounded-md border border-destructive/40 text-destructive">
+      <div className="inline-flex size-12 items-center justify-center border border-destructive/40 text-destructive">
         <TriangleAlert className="size-6" />
       </div>
       <div className="space-y-1">

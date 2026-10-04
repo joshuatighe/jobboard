@@ -65,7 +65,7 @@ export function ApplicationTimeline({
             <span
               aria-hidden
               className={cn(
-                'relative mt-1.5 size-[11px] shrink-0 rounded-full outline-4 outline-background',
+                'relative mt-1.5 size-[11px] shrink-0 outline-4 outline-background',
                 latest ? DOT_TONE[tone] : 'bg-border',
               )}
             />

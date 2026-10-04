@@ -7,7 +7,7 @@ function Avatar({ className, ...props }: React.ComponentProps<typeof AvatarPrimi
   return (
     <AvatarPrimitive.Root
       data-slot="avatar"
-      className={cn('relative flex size-8 shrink-0 overflow-hidden rounded-full', className)}
+      className={cn('relative flex size-8 shrink-0 overflow-hidden', className)}
       {...props}
     />
   )
@@ -23,7 +23,7 @@ function AvatarImage({ className, ...props }: React.ComponentProps<typeof Avatar
   )
 }
 
-/** Initials set as a serif monogram on a hairline disc. */
+/** Initials set as a serif monogram on a hairline square. */
 function AvatarFallback({
   className,
   ...props
@@ -32,7 +32,7 @@ function AvatarFallback({
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
       className={cn(
-        'flex size-full items-center justify-center rounded-full border bg-card font-serif text-[0.95em] font-medium tracking-tight text-foreground',
+        'flex size-full items-center justify-center border bg-card font-serif text-[0.95em] font-medium tracking-tight text-foreground',
         className,
       )}
       {...props}

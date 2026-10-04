@@ -212,8 +212,9 @@ The system lives in `src/index.css` (tokens, type sizes, the `page-x`, `meta` an
 - **Surfaces.** Hairline rules instead of cards wherever something is a list: job results, the For-you feed, the
   tracker, postings. A hairline panel (`Card`, `rounded-xl border`, no shadow) is reserved for things that are
   genuinely a unit: forms, the apply panel, candidate cards on the board. Shadows exist only on things that float
-  (menus, dialogs, sheets). Radii: controls 6px, panels 8px, tags 2px. Nothing is a pill except avatars and status
-  dots. Company marks and avatars are serif monograms on a hairline square or disc. Stat strips are one bordered
+  (menus, dialogs, sheets). **No rounded corners anywhere**: every radius token is 0, no component carries a
+  `rounded-*` class, and avatars, status dots, progress bars and the switch are square. Company marks and avatars
+  are serif monograms on a hairline square. Stat strips are one bordered
   grid with serif numerals, not four cards.
 - **Navigation.** The masthead is a 56px bar with a hairline. The current section is underlined with a 2px ink
   bar, in the app nav and in every tab list (`Tabs` is underline-style, no grey pill group).
@@ -367,6 +368,11 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - A draft posting's applicants page explains that drafts can't receive applicants and links to the editor. A job id
   that doesn't exist or belongs to another company shows "Posting not found" (applicants aren't queried at all).
 
+- **Hard corners (Oct 2026).** Every corner is square: the radius tokens in `src/index.css` are all `0`, the
+  `rounded-*` classes were removed from every component (avatars, dots, bars and the switch included), the
+  highlighter and toasts have no radius, and the favicon is a plain square. A print page has no rounded corners,
+  and the ruled, typeset look reads sharper without them. If a radius is ever wanted again, change the tokens;
+  don't add classes.
 - **Visual identity (Oct 2026): "Classifieds, reissued".** The first version was the default SaaS template
   (gradient headline, purple glow and grid, fake browser chrome, logo strip, icon-in-tinted-square feature grids,
   dark CTA box, Inter and one violet accent on `rounded-xl` cards). Four concepts were sketched and three thrown out:

@@ -114,14 +114,14 @@ export function ForYouPage() {
       {header}
       <div className="space-y-4">
         {missing.length > 0 && (
-          <div className="flex flex-col gap-2 rounded-lg border bg-muted/40 px-4 py-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-2 border bg-muted/40 px-4 py-3 text-sm sm:flex-row sm:items-center sm:justify-between">
             <p className="text-muted-foreground">
               <Sparkles className="mr-1.5 inline size-4 -translate-y-px text-foreground" />
               Add your {listSignals(missing)} to sharpen these matches.
             </p>
             <Link
               to={nudgeHref}
-              className="inline-flex shrink-0 items-center gap-1 rounded-sm font-medium underline decoration-border underline-offset-4 outline-none hover:decoration-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="inline-flex shrink-0 items-center gap-1 font-medium underline decoration-border underline-offset-4 outline-none hover:decoration-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Update profile <ArrowRight className="size-4" />
             </Link>

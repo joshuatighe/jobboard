@@ -106,7 +106,7 @@ export function PreferencesForm({ seeker }: { seeker: SeekerProfile }) {
           control={control}
           name="remote"
           render={({ field }) => (
-            <div className="flex items-center justify-between gap-4 rounded-lg border px-3 py-2.5">
+            <div className="flex items-center justify-between gap-4 border px-3 py-2.5">
               <div className="grid gap-0.5">
                 <Label htmlFor="pref-remote">Open to remote roles</Label>
                 <p id="pref-remote-hint" className="text-xs text-muted-foreground">
@@ -201,7 +201,7 @@ export function PreferencesForm({ seeker }: { seeker: SeekerProfile }) {
                         )
                       }
                       className={cn(
-                        'inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-md border px-3 text-sm transition-colors duration-150 outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+                        'inline-flex h-8 cursor-pointer items-center gap-1.5 border px-3 text-sm transition-colors duration-150 outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
                         checked
                           ? 'border-foreground bg-foreground text-background hover:bg-foreground/90'
                           : 'text-muted-foreground hover:text-foreground',

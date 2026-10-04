@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 
 /** Small monospace labels, set like the category tags in a classifieds column. Never pills. */
 const badgeVariants = cva(
-  'inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-sm border px-1.5 py-px font-mono text-[11px] leading-4 font-medium tracking-[0.06em] whitespace-nowrap uppercase tabular-nums transition-[color,box-shadow] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background [&>svg]:pointer-events-none [&>svg]:size-3',
+  'inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border px-1.5 py-px font-mono text-[11px] leading-4 font-medium tracking-[0.06em] whitespace-nowrap uppercase tabular-nums transition-[color,box-shadow] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background [&>svg]:pointer-events-none [&>svg]:size-3',
   {
     variants: {
       variant: {

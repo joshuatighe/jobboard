@@ -26,7 +26,7 @@ export function EmptyState({
     >
       <div
         className={cn(
-          'mb-5 inline-flex size-11 items-center justify-center rounded-md border',
+          'mb-5 inline-flex size-11 items-center justify-center border',
           tone === 'error' ? 'border-destructive/40 text-destructive' : 'text-muted-foreground',
         )}
       >

@@ -22,10 +22,10 @@ export function ProfileStrength({ steps }: { steps: ProfileStep[] }) {
         aria-valuenow={percent}
         aria-valuemin={0}
         aria-valuemax={100}
-        className="h-1.5 overflow-hidden rounded-full bg-border"
+        className="h-1.5 overflow-hidden bg-border"
       >
         <div
-          className={cn('h-full rounded-full transition-[width] duration-200', complete ? 'bg-success' : 'bg-foreground')}
+          className={cn('h-full transition-[width] duration-200', complete ? 'bg-success' : 'bg-foreground')}
           style={{ width: `${percent}%` }}
         />
       </div>
@@ -39,7 +39,7 @@ export function ProfileStrength({ steps }: { steps: ProfileStep[] }) {
           <li key={step.key}>
             {step.done ? (
               <span className="flex items-center gap-2.5 px-2 py-1.5 text-sm text-muted-foreground line-through decoration-muted-foreground/40">
-                <span className="inline-flex size-4 items-center justify-center rounded-full bg-success/15 text-success">
+                <span className="inline-flex size-4 items-center justify-center bg-success/15 text-success">
                   <Check className="size-3" strokeWidth={3} />
                 </span>
                 {step.label}
@@ -47,9 +47,9 @@ export function ProfileStrength({ steps }: { steps: ProfileStep[] }) {
             ) : (
               <a
                 href={step.href}
-                className="group flex items-center gap-2.5 rounded-md px-2 py-1.5 text-sm transition-colors outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="group flex items-center gap-2.5 px-2 py-1.5 text-sm transition-colors outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
-                <span className="size-4 rounded-full border border-dashed border-muted-foreground/50" />
+                <span className="size-4 border border-dashed border-muted-foreground/50" />
                 {step.label}
                 <ArrowRight className="ml-auto size-3.5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
               </a>
