@@ -14,7 +14,7 @@ const DOT_TONE: Record<Tone, string> = {
   warning: 'bg-warning',
   secondary: 'bg-muted-foreground',
   info: 'bg-info',
-  highlight: 'bg-highlight ring-1 ring-foreground/60',
+  highlight: 'bg-highlight ring-1 ring-foreground/70',
   success: 'bg-success',
   destructive: 'bg-destructive',
   outline: 'bg-muted-foreground/50',
@@ -60,13 +60,13 @@ export function ApplicationTimeline({
         return (
           <li key={event.id} className="relative flex gap-3 pb-5 last:pb-0">
             {!latest && (
-              <span aria-hidden className="absolute top-4 bottom-0 left-[5px] w-px bg-border" />
+              <span aria-hidden className="absolute top-4 bottom-0 left-[3.5px] w-px bg-border" />
             )}
             <span
               aria-hidden
               className={cn(
-                'relative mt-1.5 size-[11px] shrink-0 outline-4 outline-background',
-                latest ? DOT_TONE[tone] : 'bg-border',
+                'relative mt-[7px] size-2 shrink-0 outline-4 outline-background',
+                latest ? DOT_TONE[tone] : 'bg-muted-foreground/50',
               )}
             />
             <div className="min-w-0 flex-1">
