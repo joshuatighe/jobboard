@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight } from '@carbon/icons-react'
 import { Link } from 'react-router'
 
 import { ApplicationProgress } from '@/components/applications/ApplicationProgress'

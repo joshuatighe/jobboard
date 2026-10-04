@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight } from '@carbon/icons-react'
 import { Link } from 'react-router'
 
 import { ProductPreview } from '@/components/marketing/ProductPreview'

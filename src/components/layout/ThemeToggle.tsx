@@ -1,4 +1,4 @@
-import { Monitor, Moon, Sun } from 'lucide-react'
+import { Moon, Screen, Sun } from '@carbon/icons-react'
 import { useTheme } from 'next-themes'
 
 import { Button } from '@/components/ui/button'
@@ -28,7 +28,7 @@ export function ThemeToggle() {
           <Moon /> Dark
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('system')}>
-          <Monitor /> System
+          <Screen /> System
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

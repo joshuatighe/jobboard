@@ -1,4 +1,4 @@
-import { MapPin } from 'lucide-react'
+import { Location } from '@carbon/icons-react'
 
 import { FilterCheckbox } from '@/components/jobs/FilterCheckbox'
 import { Button } from '@/components/ui/button'
@@ -70,7 +70,7 @@ export function JobFiltersPanel({
           Location
         </Label>
         <div className="relative">
-          <MapPin className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Location className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             id={`${idPrefix}-location`}
             value={filters.location}

@@ -1,4 +1,4 @@
-import { DatabaseZap } from 'lucide-react'
+import { DataError } from '@carbon/icons-react'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
@@ -8,7 +8,7 @@ export function SetupNotice() {
     <Card className="mx-auto w-full max-w-md">
       <CardHeader>
         <div className="mb-2 inline-flex size-10 items-center justify-center border text-muted-foreground">
-          <DatabaseZap className="size-5" />
+          <DataError className="size-5" />
         </div>
         <CardTitle>Connect Supabase to continue</CardTitle>
         <CardDescription>

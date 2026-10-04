@@ -1,4 +1,4 @@
-import { MapPin } from 'lucide-react'
+import { Location } from '@carbon/icons-react'
 
 import { JobBadges } from '@/components/jobs/JobBadges'
 import type { Posting } from '@/lib/api/postings'
@@ -9,7 +9,7 @@ export function PostingMeta({ posting }: { posting: Posting }) {
   return (
     <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm text-muted-foreground">
       <span className="inline-flex items-center gap-1">
-        <MapPin className="size-3.5" />
+        <Location className="size-3.5" />
         {posting.location}
       </span>
       <span className="font-medium text-foreground tabular-nums">{formatPay(posting)}</span>

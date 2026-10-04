@@ -1,4 +1,4 @@
-import { Loader2 } from 'lucide-react'
+import { CircleDash } from '@carbon/icons-react'
 
 import { Button } from '@/components/ui/button'
 
@@ -25,7 +25,7 @@ export function FormFooter({
         </Button>
       )}
       <Button type="submit" disabled={!isDirty || isSubmitting}>
-        {isSubmitting && <Loader2 className="animate-spin" />}
+        {isSubmitting && <CircleDash className="animate-spin" />}
         Save changes
       </Button>
     </div>

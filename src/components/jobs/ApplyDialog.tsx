@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2 } from 'lucide-react'
+import { CircleDash } from '@carbon/icons-react'
 import { useForm, useWatch } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import { toast } from 'sonner'
@@ -133,7 +133,7 @@ export function ApplyDialog({
             form="apply-form"
             disabled={isSubmitting || seeker.isPending || missingResume}
           >
-            {isSubmitting && <Loader2 className="animate-spin" />}
+            {isSubmitting && <CircleDash className="animate-spin" />}
             Send application
           </Button>
         </DialogFooter>

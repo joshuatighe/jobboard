@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2 } from 'lucide-react'
+import { CircleDash } from '@carbon/icons-react'
 import { Controller, useForm, useWatch } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -221,7 +221,7 @@ export function ExperienceDialog({
             Cancel
           </Button>
           <Button type="submit" form="experience-form" disabled={isSubmitting}>
-            {isSubmitting && <Loader2 className="animate-spin" />}
+            {isSubmitting && <CircleDash className="animate-spin" />}
             {editing ? 'Save changes' : 'Add experience'}
           </Button>
         </DialogFooter>

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import type { LucideIcon } from 'lucide-react'
+import type { CarbonIconType } from '@carbon/icons-react'
 
 import { cn } from '@/lib/utils'
 
@@ -12,7 +12,7 @@ export function EmptyState({
   tone = 'default',
   className,
 }: {
-  icon: LucideIcon
+  icon: CarbonIconType
   title: string
   description?: ReactNode
   action?: ReactNode
@@ -30,7 +30,7 @@ export function EmptyState({
           tone === 'error' ? 'border-destructive/40 text-destructive' : 'text-muted-foreground',
         )}
       >
-        <Icon className="size-5" strokeWidth={1.75} />
+        <Icon className="size-5" />
       </div>
       <h2 className="text-2xl">{title}</h2>
       {description && <p className="mt-2 max-w-sm text-[15px] text-muted-foreground">{description}</p>}

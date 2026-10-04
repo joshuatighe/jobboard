@@ -1,4 +1,4 @@
-import { ArrowLeft, SearchX, TriangleAlert } from 'lucide-react'
+import { ArrowLeft, Search, WarningAlt } from '@carbon/icons-react'
 import { Link, useParams } from 'react-router'
 
 import { EmptyState } from '@/components/layout/EmptyState'
@@ -57,7 +57,7 @@ export function PostingEditorPage() {
     body = (
       <EmptyState
         tone="error"
-        icon={TriangleAlert}
+        icon={WarningAlt}
         title={companyId || failed ? "We couldn't load this posting" : "Your account isn't linked to a company"}
         description={companyId || failed ? 'Check your connection and try again.' : 'Recruiter accounts belong to a company.'}
         action={
@@ -70,7 +70,7 @@ export function PostingEditorPage() {
   } else if (!isNew && !posting.data) {
     body = (
       <EmptyState
-        icon={SearchX}
+        icon={Search}
         title="Posting not found"
         description="It may have been deleted, or it belongs to another company."
         action={

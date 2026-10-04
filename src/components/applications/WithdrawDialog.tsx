@@ -1,4 +1,4 @@
-import { Loader2 } from 'lucide-react'
+import { CircleDash } from '@carbon/icons-react'
 import { toast } from 'sonner'
 
 import {
@@ -58,7 +58,7 @@ export function WithdrawDialog({
         <AlertDialogFooter>
           <AlertDialogCancel disabled={withdraw.isPending}>Keep application</AlertDialogCancel>
           <Button variant="destructive" onClick={confirm} disabled={withdraw.isPending}>
-            {withdraw.isPending && <Loader2 className="animate-spin" />}
+            {withdraw.isPending && <CircleDash className="animate-spin" />}
             Withdraw
           </Button>
         </AlertDialogFooter>

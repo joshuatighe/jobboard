@@ -1,14 +1,5 @@
 import { useState } from 'react'
-import {
-  Inbox,
-  LayoutDashboard,
-  Menu,
-  Plus,
-  Search,
-  Sparkles,
-  UserRound,
-  type LucideIcon,
-} from 'lucide-react'
+import { Add, type CarbonIconType, Dashboard, Menu, Recommend, Search, Task, User } from '@carbon/icons-react'
 import { Link, NavLink, Outlet } from 'react-router'
 
 import { Logo } from '@/components/brand/Logo'
@@ -21,15 +12,15 @@ import { homeFor } from '@/lib/routes'
 import type { UserRole } from '@/lib/types'
 import { cn } from '@/lib/utils'
 
-type NavItem = { to: string; label: string; icon: LucideIcon }
+type NavItem = { to: string; label: string; icon: CarbonIconType }
 
 const NAV: Record<UserRole, NavItem[]> = {
   seeker: [
-    { to: '/for-you', label: 'For you', icon: Sparkles },
+    { to: '/for-you', label: 'For you', icon: Recommend },
     { to: '/jobs', label: 'Search', icon: Search },
-    { to: '/applications', label: 'Applications', icon: Inbox },
+    { to: '/applications', label: 'Applications', icon: Task },
   ],
-  recruiter: [{ to: '/dashboard', label: 'Postings', icon: LayoutDashboard }],
+  recruiter: [{ to: '/dashboard', label: 'Postings', icon: Dashboard }],
 }
 
 /** Desktop: section links on the masthead, the current one underlined in ink. */
@@ -64,7 +55,7 @@ function MenuNav({ items, onNavigate }: { items: NavItem[]; onNavigate: () => vo
         )
       }
     >
-      <Icon className="size-5" strokeWidth={1.75} />
+      <Icon className="size-5" />
       {label}
     </NavLink>
   ))
@@ -77,8 +68,8 @@ export function AppShell() {
   const items = NAV[role]
   const menuItems =
     role === 'recruiter'
-      ? [...items, { to: '/postings/new', label: 'Post a job', icon: Plus }]
-      : [...items, { to: '/profile', label: 'Profile', icon: UserRound }]
+      ? [...items, { to: '/postings/new', label: 'Post a job', icon: Add }]
+      : [...items, { to: '/profile', label: 'Profile', icon: User }]
 
   return (
     <div className="min-h-svh">
@@ -92,7 +83,7 @@ export function AppShell() {
             {role === 'recruiter' && (
               <Button asChild size="sm" className="hidden sm:inline-flex">
                 <Link to="/postings/new">
-                  <Plus /> Post a job
+                  <Add /> Post a job
                 </Link>
               </Button>
             )}

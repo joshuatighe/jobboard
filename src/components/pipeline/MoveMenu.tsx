@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, ChevronDown, MoreHorizontal, XCircle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ChevronDown, CloseOutline, OverflowMenuHorizontal } from '@carbon/icons-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -43,7 +43,7 @@ export function MoveMenu({
             aria-label={`Move ${name}`}
             className="relative z-10"
           >
-            <MoreHorizontal />
+            <OverflowMenuHorizontal />
           </Button>
         ) : (
           <Button variant="outline" disabled={disabled}>
@@ -68,7 +68,7 @@ export function MoveMenu({
           <>
             <DropdownMenuSeparator />
             <DropdownMenuItem variant="destructive" onSelect={() => onMove('rejected')}>
-              <XCircle /> Reject…
+              <CloseOutline /> Reject…
             </DropdownMenuItem>
           </>
         )}

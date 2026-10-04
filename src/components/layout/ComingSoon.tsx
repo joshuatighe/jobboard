@@ -1,4 +1,4 @@
-import type { LucideIcon } from 'lucide-react'
+import type { CarbonIconType } from '@carbon/icons-react'
 
 import { Badge } from '@/components/ui/badge'
 
@@ -9,7 +9,7 @@ export function ComingSoon({
   description,
   requirements,
 }: {
-  icon: LucideIcon
+  icon: CarbonIconType
   title: string
   description: string
   requirements: string[]

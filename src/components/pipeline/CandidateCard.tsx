@@ -1,4 +1,4 @@
-import { MapPin } from 'lucide-react'
+import { Location } from '@carbon/icons-react'
 
 import { ApplicationStatusBadge } from '@/components/applications/ApplicationStatusBadge'
 import { PostedAt } from '@/components/jobs/PostedAt'
@@ -51,7 +51,7 @@ export function CandidateCard({
       <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
         {seeker?.location && (
           <span className="inline-flex min-w-0 items-center gap-1">
-            <MapPin className="size-3 shrink-0" />
+            <Location className="size-3 shrink-0" />
             <span className="truncate">{seeker.location}</span>
           </span>
         )}

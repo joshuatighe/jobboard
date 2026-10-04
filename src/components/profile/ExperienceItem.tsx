@@ -1,4 +1,4 @@
-import { Building2, Pencil, Trash2 } from 'lucide-react'
+import { Building, Edit, TrashCan } from '@carbon/icons-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -20,7 +20,7 @@ export function ExperienceItem({
   return (
     <li className="group flex gap-3 py-5 first:pt-0 last:pb-0">
       <div className="inline-flex size-10 shrink-0 items-center justify-center border text-muted-foreground">
-        <Building2 className="size-4" />
+        <Building className="size-4" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-start justify-between gap-2">
@@ -37,7 +37,7 @@ export function ExperienceItem({
           {onEdit && onDelete && (
           <div className="-mt-1 -mr-2 flex shrink-0 sm:opacity-0 sm:transition-opacity sm:group-focus-within:opacity-100 sm:group-hover:opacity-100">
             <Button variant="ghost" size="icon-sm" aria-label={`Edit ${title} at ${company}`} onClick={onEdit}>
-              <Pencil />
+              <Edit />
             </Button>
             <Button
               variant="ghost"
@@ -46,7 +46,7 @@ export function ExperienceItem({
               onClick={onDelete}
               className="hover:text-destructive"
             >
-              <Trash2 />
+              <TrashCan />
             </Button>
           </div>
           )}

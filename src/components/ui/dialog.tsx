@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { XIcon } from 'lucide-react'
+import { Close } from '@carbon/icons-react'
 import { Dialog as DialogPrimitive } from 'radix-ui'
 
 import { Button } from '@/components/ui/button'
@@ -70,7 +70,7 @@ function DialogContent({
             data-slot="dialog-close"
             className="absolute top-4 right-4 inline-flex size-8 cursor-pointer items-center justify-center text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
           >
-            <XIcon />
+            <Close />
             <span className="sr-only">Close</span>
           </DialogPrimitive.Close>
         )}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BriefcaseBusiness, FilePlus2, Plus, TriangleAlert } from 'lucide-react'
+import { Add, DocumentAdd, Portfolio, WarningAlt } from '@carbon/icons-react'
 import { Link, useSearchParams } from 'react-router'
 
 import { EmptyState } from '@/components/layout/EmptyState'
@@ -57,7 +57,7 @@ export function DashboardPage() {
       actions={
         <Button asChild>
           <Link to="/postings/new">
-            <Plus /> Post a job
+            <Add /> Post a job
           </Link>
         </Button>
       }
@@ -97,7 +97,7 @@ export function DashboardPage() {
         {header}
         <EmptyState
           tone="error"
-          icon={TriangleAlert}
+          icon={WarningAlt}
           title={noCompany ? "Your account isn't linked to a company" : "We couldn't load your postings"}
           description={
             noCompany
@@ -121,13 +121,13 @@ export function DashboardPage() {
       <>
         {header}
         <EmptyState
-          icon={BriefcaseBusiness}
+          icon={Portfolio}
           title="Post your first job"
           description="Describe the role, set the pay and publish it. Applicants show up here as they apply."
           action={
             <Button asChild>
               <Link to="/postings/new">
-                <FilePlus2 /> Post a job
+                <DocumentAdd /> Post a job
               </Link>
             </Button>
           }
@@ -184,7 +184,7 @@ export function DashboardPage() {
 
           <TabsContent value={tab}>
             {visible.length === 0 && tab !== 'all' ? (
-              <EmptyState icon={BriefcaseBusiness} {...EMPTY_TAB[tab]} className="border-b py-12" />
+              <EmptyState icon={Portfolio} {...EMPTY_TAB[tab]} className="border-b py-12" />
             ) : (
               <>
                 <div className="hidden md:block">

@@ -1,4 +1,4 @@
-import { Loader2 } from 'lucide-react'
+import { CircleDash } from '@carbon/icons-react'
 
 import {
   AlertDialog,
@@ -50,7 +50,7 @@ export function ConfirmMoveDialog({
         <AlertDialogFooter>
           <AlertDialogCancel disabled={pending}>Cancel</AlertDialogCancel>
           <Button variant={target === 'offer' ? 'default' : 'destructive'} onClick={onConfirm} disabled={pending}>
-            {pending && <Loader2 className="animate-spin" />}
+            {pending && <CircleDash className="animate-spin" />}
             {target === 'offer' ? 'Mark as offer' : 'Reject'}
           </Button>
         </AlertDialogFooter>

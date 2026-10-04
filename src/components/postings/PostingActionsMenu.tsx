@@ -1,15 +1,15 @@
 import {
-  ExternalLink,
-  MoreHorizontal,
-  RotateCcw,
+  type CarbonIconType,
+  CloseOutline,
+  Edit,
+  Launch,
+  OverflowMenuHorizontal,
+  Reset,
   Rocket,
-  SquarePen,
-  Trash2,
-  Undo2,
-  Users,
-  XCircle,
-  type LucideIcon,
-} from 'lucide-react'
+  TrashCan,
+  Undo,
+  UserMultiple,
+} from '@carbon/icons-react'
 import { Link } from 'react-router'
 
 import { Button } from '@/components/ui/button'
@@ -23,12 +23,12 @@ import {
 import type { Posting } from '@/lib/api/postings'
 import { postingActions, type PostingAction } from '@/lib/postings'
 
-const ACTIONS: Record<PostingAction, { label: string; icon: LucideIcon; destructive?: boolean }> = {
+const ACTIONS: Record<PostingAction, { label: string; icon: CarbonIconType; destructive?: boolean }> = {
   publish: { label: 'Publish', icon: Rocket },
-  reopen: { label: 'Reopen', icon: RotateCcw },
-  unpublish: { label: 'Move back to drafts', icon: Undo2 },
-  close: { label: 'Close posting…', icon: XCircle, destructive: true },
-  delete: { label: 'Delete draft…', icon: Trash2, destructive: true },
+  reopen: { label: 'Reopen', icon: Reset },
+  unpublish: { label: 'Move back to drafts', icon: Undo },
+  close: { label: 'Close posting…', icon: CloseOutline, destructive: true },
+  delete: { label: 'Delete draft…', icon: TrashCan, destructive: true },
 }
 
 /** R11: everything you can do with one posting, from the dashboard. */
@@ -55,26 +55,26 @@ export function PostingActionsMenu({
           aria-label={`Actions for ${posting.title}`}
           className="relative z-10"
         >
-          <MoreHorizontal />
+          <OverflowMenuHorizontal />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-52">
         {posting.status !== 'draft' && (
           <DropdownMenuItem asChild>
             <Link to={`/postings/${posting.id}`}>
-              <Users /> View applicants
+              <UserMultiple /> View applicants
             </Link>
           </DropdownMenuItem>
         )}
         <DropdownMenuItem asChild>
           <Link to={`/postings/${posting.id}/edit`}>
-            <SquarePen /> Edit posting
+            <Edit /> Edit posting
           </Link>
         </DropdownMenuItem>
         {posting.status === 'open' && (
           <DropdownMenuItem asChild>
             <Link to={`/jobs/${posting.id}`}>
-              <ExternalLink /> View live posting
+              <Launch /> View live posting
             </Link>
           </DropdownMenuItem>
         )}

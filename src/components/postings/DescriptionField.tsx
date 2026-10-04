@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Eye, FileText, PencilLine } from 'lucide-react'
+import { Document, Edit, View } from '@carbon/icons-react'
 
 import { JobDescription } from '@/components/jobs/JobDescription'
 import { Button } from '@/components/ui/button'
@@ -31,15 +31,15 @@ export function DescriptionField({
       <div className="flex flex-wrap items-center justify-between gap-2">
         <TabsList aria-label="Description editor">
           <TabsTrigger value="write">
-            <PencilLine /> Write
+            <Edit /> Write
           </TabsTrigger>
           <TabsTrigger value="preview">
-            <Eye /> Preview
+            <View /> Preview
           </TabsTrigger>
         </TabsList>
         {!value.trim() && tab === 'write' && (
           <Button type="button" variant="ghost" size="sm" onClick={() => onChange(DESCRIPTION_TEMPLATE)}>
-            <FileText /> Start from an outline
+            <Document /> Start from an outline
           </Button>
         )}
       </div>

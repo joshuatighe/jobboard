@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BriefcaseBusiness, Loader2, Plus, TriangleAlert } from 'lucide-react'
+import { Add, CircleDash, Portfolio, WarningAlt } from '@carbon/icons-react'
 import { toast } from 'sonner'
 
 import { EmptyState } from '@/components/layout/EmptyState'
@@ -65,7 +65,7 @@ export function ExperienceSection({ userId }: { userId: string }) {
       action={
         items.length > 0 && (
           <Button variant="outline" size="sm" onClick={() => openDialog({ mode: 'add' })}>
-            <Plus /> Add
+            <Add /> Add
           </Button>
         )
       }
@@ -86,7 +86,7 @@ export function ExperienceSection({ userId }: { userId: string }) {
       ) : experiences.isError ? (
         <EmptyState
           tone="error"
-          icon={TriangleAlert}
+          icon={WarningAlt}
           title="We couldn't load your experience"
           description="Check your connection and try again."
           action={
@@ -98,12 +98,12 @@ export function ExperienceSection({ userId }: { userId: string }) {
         />
       ) : items.length === 0 ? (
         <EmptyState
-          icon={BriefcaseBusiness}
+          icon={Portfolio}
           title="No experience yet"
           description="Add the roles you've held. Recruiters look here first, and it helps us match you."
           action={
             <Button onClick={() => openDialog({ mode: 'add' })}>
-              <Plus /> Add experience
+              <Add /> Add experience
             </Button>
           }
           className="py-10"
@@ -152,7 +152,7 @@ export function ExperienceSection({ userId }: { userId: string }) {
           <AlertDialogFooter>
             <AlertDialogCancel disabled={remove.isPending}>Cancel</AlertDialogCancel>
             <Button variant="destructive" onClick={confirmDelete} disabled={remove.isPending}>
-              {remove.isPending && <Loader2 className="animate-spin" />}
+              {remove.isPending && <CircleDash className="animate-spin" />}
               Remove
             </Button>
           </AlertDialogFooter>

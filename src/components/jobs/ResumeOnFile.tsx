@@ -1,4 +1,4 @@
-import { ExternalLink, FileText, Upload } from 'lucide-react'
+import { Document, Launch, Upload } from '@carbon/icons-react'
 
 import { ResumeUploadButton } from '@/components/profile/ResumeUploadButton'
 import { Button } from '@/components/ui/button'
@@ -47,7 +47,7 @@ export function ResumeOnFile({ seekerId }: { seekerId: string }) {
   return (
     <div className="flex items-center gap-3 border px-3 py-2.5">
       <div className="inline-flex size-9 shrink-0 items-center justify-center border bg-background text-muted-foreground">
-        <FileText className="size-4" />
+        <Document className="size-4" />
       </div>
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium">
@@ -58,7 +58,7 @@ export function ResumeOnFile({ seekerId }: { seekerId: string }) {
       {url.data && (
         <Button asChild variant="ghost" size="sm">
           <a href={url.data} target="_blank" rel="noreferrer">
-            View <ExternalLink />
+            View <Launch />
           </a>
         </Button>
       )}

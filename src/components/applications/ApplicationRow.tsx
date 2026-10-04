@@ -1,4 +1,4 @@
-import { ChevronRight, MapPin } from 'lucide-react'
+import { ChevronRight, Location } from '@carbon/icons-react'
 import { Link } from 'react-router'
 
 import { ApplicationProgress } from '@/components/applications/ApplicationProgress'
@@ -47,7 +47,7 @@ export function ApplicationRow({
                   <span className="font-medium text-foreground">{job.company.name}</span>
                   <span aria-hidden>·</span>
                   <span className="inline-flex items-center gap-1">
-                    <MapPin className="size-3.5" />
+                    <Location className="size-3.5" />
                     {job.location}
                   </span>
                   {job.status !== 'open' && (

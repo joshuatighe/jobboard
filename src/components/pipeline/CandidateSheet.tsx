@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { ArrowLeft, ArrowRight, Loader2, MapPin, XCircle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CircleDash, CloseOutline, Location } from '@carbon/icons-react'
 
 import { ApplicationProgress } from '@/components/applications/ApplicationProgress'
 import { ApplicationStatusBadge } from '@/components/applications/ApplicationStatusBadge'
@@ -91,7 +91,7 @@ export function CandidateSheet({
             <ApplicationStatusBadge status={applicant.status} />
             {seeker?.location && (
               <span className="inline-flex items-center gap-1">
-                <MapPin className="size-3.5" /> {seeker.location}
+                <Location className="size-3.5" /> {seeker.location}
               </span>
             )}
             <PostedAt date={applicant.created_at} prefix="Applied" />
@@ -111,13 +111,13 @@ export function CandidateSheet({
             <div className="flex flex-wrap gap-2 pt-3">
               {next && (
                 <Button disabled={pending} onClick={() => onMove(next)}>
-                  {pending ? <Loader2 className="animate-spin" /> : <ArrowRight />}
+                  {pending ? <CircleDash className="animate-spin" /> : <ArrowRight />}
                   {moveLabel(next)}
                 </Button>
               )}
               {applicant.status === 'rejected' && back && (
                 <Button variant="outline" disabled={pending} onClick={() => onMove(back)}>
-                  {pending ? <Loader2 className="animate-spin" /> : <ArrowLeft />}
+                  {pending ? <CircleDash className="animate-spin" /> : <ArrowLeft />}
                   Reconsider ({APPLICATION_STATUSES[back].label})
                 </Button>
               )}
@@ -129,7 +129,7 @@ export function CandidateSheet({
                   disabled={pending}
                   onClick={() => onMove('rejected')}
                 >
-                  <XCircle /> Reject
+                  <CloseOutline /> Reject
                 </Button>
               )}
             </div>

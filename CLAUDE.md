@@ -61,7 +61,7 @@ Each requirement has an ID. Reference the ID in commits and PRs where relevant (
 | Styling | **Tailwind CSS v4** via `@tailwindcss/vite` |
 | Fonts | `@fontsource-variable/newsreader` (serif, opsz axis), `@fontsource-variable/instrument-sans` (UI), `@fontsource-variable/geist-mono` (metadata). Latin subsets only, no italics |
 | Components | **shadcn/ui** (Radix primitives; component source lives in `src/components/ui`) |
-| Icons | **lucide-react**, the only icon set |
+| Icons | **@carbon/icons-react** (IBM Carbon), the only icon set |
 | Routing | **React Router** |
 | Server state | **TanStack Query** wraps every Supabase call |
 | Forms | **react-hook-form** + **zod** |
@@ -227,7 +227,9 @@ The system lives in `src/index.css` (tokens, type sizes, the `page-x`, `meta` an
   (listings with 20px vertical padding).
 - **Copy.** Plain, specific sentences about what the product does. No slogans, no eyebrow labels over every
   heading, no emoji. Mono labels and numbered lists ("01", "02") carry the editorial feel instead.
-- Icons come only from `lucide-react`, 16px inline, 20px in the mobile menu, stroke 1.75 in empty states.
+- Icons come only from `@carbon/icons-react`: square terminals and mitred corners, drawn on a 16px grid. 16px inline,
+  20px in the mobile menu and empty states. They are filled shapes, so there is no `strokeWidth`; size them with
+  `size-*` classes. The type for an icon prop is `CarbonIconType`. Spinners are `CircleDash` with `animate-spin`.
 
 ## Commands
 
@@ -373,6 +375,13 @@ Interview answers were brief, so we made these calls. Add to this list when you 
   highlighter and toasts have no radius, and the favicon is a plain square. A print page has no rounded corners,
   and the ruled, typeset look reads sharper without them. If a radius is ever wanted again, change the tokens;
   don't add classes.
+- **Sharp icons (Oct 2026).** After the hard-corners change, Lucide's round caps, round joins and rounded
+  rectangles were the last soft shapes on the page. Lucide has no sharp variant (forcing `strokeLinecap="square"`
+  still leaves its rounded `rect`s), so icons moved to IBM Carbon (`@carbon/icons-react`), which is drawn with
+  square ends and mitred corners and suits the ruled, typeset look. Phosphor, Tabler and Iconoir were passed over
+  (rounded strokes); Material Symbols Sharp reads as Google; pixel sets are a gimmick. Notable mappings: the For-you
+  feed is `Recommend`, the tracker is `Task`, postings are `Dashboard`, briefcases are `Portfolio`, warnings are
+  `WarningAlt`, "not found" is `Search` or `DocumentUnknown`, external links are `Launch`.
 - **Visual identity (Oct 2026): "Classifieds, reissued".** The first version was the default SaaS template
   (gradient headline, purple glow and grid, fake browser chrome, logo strip, icon-in-tinted-square feature grids,
   dark CTA box, Inter and one violet accent on `rounded-xl` cards). Four concepts were sketched and three thrown out:
@@ -433,6 +442,8 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - When applying a migration through the Management API, also insert its row into
   `supabase_migrations.schema_migrations` (`version`, `name`, `statements`) so `supabase migration list` / `db push`
   treat it as applied.
+- `components.json` still says `"iconLibrary": "lucide"` (shadcn has no Carbon option). Components added with
+  `pnpm dlx shadcn add` import from `lucide-react`: swap those imports for Carbon and don't commit the dependency.
 - `pnpm dlx shadcn add` can rewrite the `cn` import to a stray npm package called `cn`. Point it back at
   `@/lib/utils` and don't commit the dependency.
 - `ui.shadcn.com` is allowed, so `pnpm dlx shadcn@latest add <component>` works. Existing components in

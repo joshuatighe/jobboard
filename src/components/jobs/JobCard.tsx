@@ -1,4 +1,4 @@
-import { MapPin } from 'lucide-react'
+import { Location } from '@carbon/icons-react'
 import { Link, useLocation } from 'react-router'
 
 import { CompanyMark } from '@/components/jobs/CompanyMark'
@@ -40,7 +40,7 @@ export function JobCard({ job, match }: { job: JobWithCompany; match?: MatchResu
           <span className="font-medium text-foreground">{job.company.name}</span>
           <span aria-hidden>·</span>
           <span className="inline-flex items-center gap-1">
-            <MapPin className="size-3.5" />
+            <Location className="size-3.5" />
             {job.location}
           </span>
           <span aria-hidden>·</span>

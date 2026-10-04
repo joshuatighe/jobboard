@@ -1,4 +1,4 @@
-import { Loader2, SearchX, TriangleAlert } from 'lucide-react'
+import { CircleDash, Search, WarningAlt } from '@carbon/icons-react'
 
 import { JobCard } from '@/components/jobs/JobCard'
 import { JobCardSkeleton } from '@/components/jobs/JobCardSkeleton'
@@ -34,7 +34,7 @@ export function JobResults({ filters, onClearAll }: { filters: JobFilters; onCle
     return (
       <EmptyState
         tone="error"
-        icon={TriangleAlert}
+        icon={WarningAlt}
         title="We couldn't load jobs"
         description="Check your connection and try again."
         action={<Button onClick={() => void search.refetch()}>Try again</Button>}
@@ -46,7 +46,7 @@ export function JobResults({ filters, onClearAll }: { filters: JobFilters; onCle
   if (total === 0) {
     return (
       <EmptyState
-        icon={SearchX}
+        icon={Search}
         title={filtered ? 'No jobs match your search' : 'No open jobs yet'}
         description={
           filtered
@@ -72,7 +72,7 @@ export function JobResults({ filters, onClearAll }: { filters: JobFilters; onCle
           <span className="text-foreground">{total}</span> {total === 1 ? 'open role' : 'open roles'}
         </span>
         {search.isFetching && !search.isFetchingNextPage && (
-          <Loader2 className="size-3.5 animate-spin" aria-label="Updating results" />
+          <CircleDash className="size-3.5 animate-spin" aria-label="Updating results" />
         )}
       </div>
       <div className="divide-y border-y">
@@ -87,7 +87,7 @@ export function JobResults({ filters, onClearAll }: { filters: JobFilters; onCle
             onClick={() => void search.fetchNextPage()}
             disabled={search.isFetchingNextPage}
           >
-            {search.isFetchingNextPage && <Loader2 className="animate-spin" />}
+            {search.isFetchingNextPage && <CircleDash className="animate-spin" />}
             Show more roles
           </Button>
         </div>

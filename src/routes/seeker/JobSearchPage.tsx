@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Search, SlidersHorizontal, X } from 'lucide-react'
+import { Close, Search, SettingsAdjust } from '@carbon/icons-react'
 import { useSearchParams } from 'react-router'
 
 import { JobFiltersPanel } from '@/components/jobs/JobFiltersPanel'
@@ -124,7 +124,7 @@ export function JobSearchPage() {
                     onClick={() => changeText({ q: '' })}
                     className="absolute top-1/2 right-1.5 -translate-y-1/2 text-muted-foreground"
                   >
-                    <X />
+                    <Close />
                   </Button>
                 )}
               </div>
@@ -132,7 +132,7 @@ export function JobSearchPage() {
               <Sheet>
                 <SheetTrigger asChild>
                   <Button variant="outline" className="h-11 lg:hidden">
-                    <SlidersHorizontal />
+                    <SettingsAdjust />
                     <span className="sr-only sm:not-sr-only">Filters</span>
                     {filterCount > 0 && (
                       <Badge variant="highlight">

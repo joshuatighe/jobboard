@@ -1,4 +1,4 @@
-import { ExternalLink, FileText, FileX } from 'lucide-react'
+import { Document, DocumentSubtract, Launch } from '@carbon/icons-react'
 
 import { Button } from '@/components/ui/button'
 import { useResumeUrl, useSeekerProfile } from '@/lib/queries/seekers'
@@ -24,7 +24,7 @@ export function SentResume({
   if (!path) {
     return (
       <div className="flex items-center gap-3 border border-dashed px-3 py-2.5 text-sm text-muted-foreground">
-        <FileX className="size-4 shrink-0" />
+        <DocumentSubtract className="size-4 shrink-0" />
         No resume was attached to this application.
       </div>
     )
@@ -36,7 +36,7 @@ export function SentResume({
   return (
     <div className="flex items-center gap-3 border px-3 py-2.5">
       <div className="inline-flex size-9 shrink-0 items-center justify-center border bg-background text-muted-foreground">
-        <FileText className="size-4" />
+        <Document className="size-4" />
       </div>
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium">{name}</p>
@@ -53,7 +53,7 @@ export function SentResume({
       {url.data ? (
         <Button asChild variant="ghost" size="sm">
           <a href={url.data} target="_blank" rel="noreferrer">
-            View <ExternalLink />
+            View <Launch />
           </a>
         </Button>
       ) : url.isError ? (
