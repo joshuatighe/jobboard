@@ -30,3 +30,36 @@ export async function applyToJob({ jobId, seekerId, coverNote }: ApplyInput) {
   }
   return data
 }
+
+const MY_APPLICATION = `*,
+  job:jobs (id, title, status, location, is_remote, pay_min, pay_max, pay_period, company:companies (id, name)),
+  events:application_events (id, from_status, to_status, changed_by, created_at)` as const
+
+/**
+ * R8: every application the seeker has sent, with its job and status timeline. A job the seeker
+ * can no longer read (deleted, or hidden by RLS) comes back as `job: null`.
+ */
+export async function fetchMyApplications(seekerId: string) {
+  const { data, error } = await supabase
+    .from('applications')
+    .select(MY_APPLICATION)
+    .eq('seeker_id', seekerId)
+    .order('created_at', { ascending: false })
+  if (error) throw error
+  // The generated types assume a non-null job because of the foreign key, but RLS can hide it.
+  return data as (Omit<(typeof data)[number], 'job'> & { job: (typeof data)[number]['job'] | null })[]
+}
+
+export type MyApplication = Awaited<ReturnType<typeof fetchMyApplications>>[number]
+
+/** R8: seekers can withdraw an active application. The database rejects any other change. */
+export async function withdrawApplication(applicationId: string) {
+  const { data, error } = await supabase
+    .from('applications')
+    .update({ status: 'withdrawn' })
+    .eq('id', applicationId)
+    .select(MY_APPLICATION)
+    .single()
+  if (error) throw new Error(error.message)
+  return data as MyApplication
+}
