@@ -266,7 +266,7 @@ Interview answers were brief, so we made these calls. Add to this list when you 
   side sheet, so the list stays scannable on mobile.
 - Seekers can **withdraw any application that isn't already final, including an offer** (that's how they decline
   one). It's confirmed first and is final: the unique `(job_id, seeker_id)` means they can't reapply to that job.
-- **Applicants keep seeing closed jobs they applied to** (migration `20261004120000`, policy "Applicants see closed
+- **Applicants keep seeing closed jobs they applied to** (migration `20261004200000`, policy "Applicants see closed
   jobs they applied to"). Otherwise the tracker lost the title and company of every role that closed after they
   applied, often the ones with an offer. Drafts stay hidden. If a job still can't be read (deleted, or the migration
   isn't applied yet), the tracker shows "Role no longer listed" with the full timeline instead of failing.
@@ -292,7 +292,7 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - [x] R4/R5 job search + filters · R7 job detail + apply
 - [x] R2/R3 profile, experience, preferences, resume upload / replace / view
 - [x] R8 application tracker: status tabs, summary, timeline, resume sent, withdraw. Migration
-      `20261004120000_applicants_see_closed_jobs.sql` verified locally; **not yet applied to hosted**
+      `20261004200000_applicants_see_closed_jobs.sql` verified locally; **not yet applied to hosted**
 - [ ] R6 For-you feed
 - [ ] R10/R11 recruiter dashboard + posting editor · R12/R13 applicants pipeline
 
