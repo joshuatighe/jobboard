@@ -97,6 +97,7 @@ src/
     queries/                 # TanStack Query hooks wrapping lib/api (useJobs, useApply, ...)
     matching.ts (+ .test.ts) # personalized-feed scoring (pure, unit-tested)
     postings.ts (+ .test.ts) # posting form schema, allowed status actions, dashboard counts/sorting (pure)
+    pipeline.ts (+ .test.ts) # applicants board: stages, grouping, allowed recruiter moves (pure)
     feed.ts (+ .test.ts)     # For-you feed: which preferences count, match tiers, hiding applied jobs
     applications.ts (+ .test.ts) # tracker grouping, timeline and pipeline-progress helpers (pure)
     constants.ts             # enum labels, status → badge tone, pipeline order
@@ -312,10 +313,25 @@ Interview answers were brief, so we made these calls. Add to this list when you 
   postings (the database needs pay, location and a description anyway). The description has a Write / Preview toggle
   that renders through `JobDescription`, plus a "Start from an outline" template in that format. Leaving the editor
   with unsaved changes asks first.
+- **Applicants pipeline (R12/R13)** at `/postings/:jobId`: a five-column board on desktop (New, In review,
+  Interviewing, Offer, and **Closed** for rejected + withdrawn), and one stage at a time in scrollable tabs below `lg`
+  (`?stage=` in the URL, defaulting to the first stage with someone in it). Within a column, whoever has waited
+  longest in that status comes first, so the queue is fair.
+- Recruiters can move a candidate **to any stage, forward or back, or reject them**, mirroring
+  `check_application_update` (nothing to or from `withdrawn`). The sheet's primary action is the next stage. A
+  rejected candidate gets "Reconsider", which returns them to the stage they were rejected from.
+- **Rejecting and marking as offer ask first**: the candidate sees both as a decision in their tracker right away.
+  Moves between New, In review and Interviewing are one click with a toast. Every move is reversible except a
+  withdrawal.
+- The candidate sheet shows the resume **snapshotted on the application** (labelled "The resume on their profile" when
+  it's still current), the cover note, bio and skills, work history (read-only `ExperienceItem`) and the status
+  timeline. `ApplicationTimeline` and `SentResume` take `audience="recruiter"` for recruiter wording.
+- A draft posting's applicants page explains that drafts can't receive applicants and links to the editor. A job id
+  that doesn't exist or belongs to another company shows "Posting not found" (applicants aren't queried at all).
 
 ## Status
 
-**Scaffold done** (app shell, auth, routing, theme, landing page, schema, RLS, seed). The seeker side is built (search, job detail, apply, profile, application tracker, For-you feed); the recruiter dashboard and posting editor are built; the applicants pipeline is a placeholder.
+**Scaffold done** (app shell, auth, routing, theme, landing page, schema, RLS, seed). The seeker side is built (search, job detail, apply, profile, application tracker, For-you feed); the recruiter side is built (postings dashboard, posting editor, applicants pipeline).
 
 - [x] Vite + React + TS (strict) + Tailwind v4 + shadcn-style components, light/dark theme
 - [x] Landing page, sign in / sign up with role picker, role-based route guards, app shell
@@ -334,7 +350,8 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - [x] R10/R11 recruiter dashboard + posting editor: status tabs, applicant counts, create / edit / publish / close /
       reopen / delete draft. Migration `20261004210000_restrict_job_writes.sql` verified locally (**not yet applied
       to hosted**)
-- [ ] R12/R13 applicants pipeline
+- [x] R12/R13 applicants pipeline: kanban board / mobile stage tabs, candidate sheet (profile, experience, snapshot
+      resume, cover note, timeline), status moves with confirmation for offer/reject. Verified R13 → R8 end to end
 
 ## Environment notes (Claude cloud sessions)
 

@@ -5,15 +5,15 @@ import { Button } from '@/components/ui/button'
 import { formatMonthYear, formatTenure } from '@/lib/profile'
 import type { Experience } from '@/lib/types'
 
-/** One work-history entry, with edit and delete actions. */
+/** One work-history entry. Edit and delete actions show when both handlers are given (the owner's profile). */
 export function ExperienceItem({
   experience,
   onEdit,
   onDelete,
 }: {
   experience: Experience
-  onEdit: () => void
-  onDelete: () => void
+  onEdit?: () => void
+  onDelete?: () => void
 }) {
   const { title, company, location, start_date, end_date, description } = experience
 
@@ -34,6 +34,7 @@ export function ExperienceItem({
               {location && <> · {location}</>}
             </p>
           </div>
+          {onEdit && onDelete && (
           <div className="-mt-1 -mr-2 flex shrink-0 sm:opacity-0 sm:transition-opacity sm:group-focus-within:opacity-100 sm:group-hover:opacity-100">
             <Button variant="ghost" size="icon-sm" aria-label={`Edit ${title} at ${company}`} onClick={onEdit}>
               <Pencil />
@@ -48,6 +49,7 @@ export function ExperienceItem({
               <Trash2 />
             </Button>
           </div>
+          )}
         </div>
         <p className="mt-0.5 text-xs text-muted-foreground">
           {formatMonthYear(start_date)} – {end_date ? formatMonthYear(end_date) : 'Present'} ·{' '}
