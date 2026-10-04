@@ -173,7 +173,7 @@ export function LandingPage() {
               A status change is the notification. There is no email to lose and no guessing on either side.
             </p>
           </div>
-          <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-12 grid gap-px overflow-hidden border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {STAGES.map((stage, i) => (
               <li key={stage.label} className={cn('bg-background p-5', stage.current && 'bg-highlight text-highlight-foreground')}>
                 <p className={cn('meta', stage.current ? 'text-highlight-foreground/70' : 'text-muted-foreground')}>

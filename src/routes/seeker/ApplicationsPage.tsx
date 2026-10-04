@@ -79,7 +79,7 @@ export function ApplicationsPage() {
       <>
         {header}
         <div aria-busy="true" aria-label="Loading applications" className="space-y-6">
-          <Skeleton className="h-[104px] rounded-xl" />
+          <Skeleton className="h-[104px]" />
           <Skeleton className="h-10 w-full sm:w-80" />
           <div className="divide-y border-y">
             {[0, 1, 2].map((i) => (

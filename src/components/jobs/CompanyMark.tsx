@@ -7,7 +7,7 @@ export function CompanyMark({ name, className }: { name: string; className?: str
     <span
       aria-hidden
       className={cn(
-        'inline-flex size-10 shrink-0 items-center justify-center rounded-md border bg-card font-serif text-base font-medium tracking-tight',
+        'inline-flex size-10 shrink-0 items-center justify-center border bg-card font-serif text-base font-medium tracking-tight',
         className,
       )}
     >

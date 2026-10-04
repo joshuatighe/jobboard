@@ -94,7 +94,7 @@ export function ApplicationSheet({
               <h3 id="note-heading" className="meta text-muted-foreground">
                 Cover note
               </h3>
-              <p className="rounded-lg border bg-muted/40 p-3 font-serif text-[15px] leading-relaxed whitespace-pre-line">
+              <p className="border bg-muted/40 p-3 font-serif text-[15px] leading-relaxed whitespace-pre-line">
                 {application.cover_note}
               </p>
             </section>

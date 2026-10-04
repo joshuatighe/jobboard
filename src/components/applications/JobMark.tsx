@@ -11,7 +11,7 @@ export function JobMark({ job, className }: { job: MyApplication['job']; classNa
     <span
       aria-hidden
       className={cn(
-        'inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-dashed text-muted-foreground',
+        'inline-flex size-10 shrink-0 items-center justify-center border border-dashed text-muted-foreground',
         className,
       )}
     >

@@ -11,7 +11,7 @@ export function ApplicationRowSkeleton() {
         </div>
         <Skeleton className="h-4 w-1/3" />
         <div className="flex gap-6 pt-2">
-          <Skeleton className="h-1.5 w-40 rounded-full" />
+          <Skeleton className="h-1.5 w-40" />
           <Skeleton className="h-3 w-32" />
         </div>
       </div>

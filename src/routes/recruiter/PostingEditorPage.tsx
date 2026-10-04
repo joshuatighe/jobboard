@@ -16,7 +16,7 @@ function BackLink() {
   return (
     <Link
       to="/dashboard"
-      className="mb-6 inline-flex items-center gap-1.5 rounded-sm meta text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      className="mb-6 inline-flex items-center gap-1.5 meta text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       <ArrowLeft className="size-3.5" /> All postings
     </Link>
@@ -27,11 +27,11 @@ function EditorSkeleton() {
   return (
     <div aria-busy="true" aria-label="Loading posting" className="grid items-start gap-6 lg:grid-cols-[1fr_18rem]">
       <div className="grid gap-6">
-        <Skeleton className="h-52 rounded-xl" />
-        <Skeleton className="h-72 rounded-xl" />
-        <Skeleton className="h-96 rounded-xl" />
+        <Skeleton className="h-52" />
+        <Skeleton className="h-72" />
+        <Skeleton className="h-96" />
       </div>
-      <Skeleton className="h-48 rounded-xl" />
+      <Skeleton className="h-48" />
     </div>
   )
 }

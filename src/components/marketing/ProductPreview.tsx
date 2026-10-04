@@ -40,7 +40,7 @@ const STEPS = [
 
 export function ProductPreview() {
   return (
-    <div className="border-y lg:border lg:rounded-xl" aria-label="Example of the For-you feed and the application tracker">
+    <div className="border-y lg:border" aria-label="Example of the For-you feed and the application tracker">
       <div className="flex items-baseline justify-between border-b px-5 py-3">
         <p className="meta">For you · Ranked by fit</p>
         <p className="meta text-muted-foreground">24 open</p>
@@ -88,7 +88,7 @@ export function ProductPreview() {
               <span
                 aria-hidden
                 className={cn(
-                  'block h-1.5 rounded-full',
+                  'block h-1.5',
                   step.done ? 'bg-foreground' : 'bg-border',
                   step.current && 'bg-highlight ring-1 ring-foreground/70',
                 )}

@@ -60,7 +60,7 @@ export function DescriptionField({
         </p>
       </TabsContent>
       <TabsContent value="preview">
-        <div className="min-h-72 rounded-lg border px-4 py-3">
+        <div className="min-h-72 border px-4 py-3">
           {value.trim() ? (
             <JobDescription text={value} />
           ) : (

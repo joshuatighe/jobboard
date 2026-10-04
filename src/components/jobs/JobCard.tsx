@@ -20,7 +20,7 @@ export function JobCard({ job, match }: { job: JobWithCompany; match?: MatchResu
   const extraSkills = job.skills.length - MAX_SKILLS
 
   return (
-    <article className="group relative grid grid-cols-[auto_1fr] gap-x-4 py-5 has-[a:focus-visible]:rounded-md has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-ring has-[a:focus-visible]:ring-inset sm:gap-x-5">
+    <article className="group relative grid grid-cols-[auto_1fr] gap-x-4 py-5 has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-ring has-[a:focus-visible]:ring-inset sm:gap-x-5">
       <CompanyMark name={job.company.name} />
       <div className="min-w-0">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">

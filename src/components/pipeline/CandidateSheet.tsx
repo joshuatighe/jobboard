@@ -147,7 +147,7 @@ export function CandidateSheet({
 
           <Section id="candidate-note" title="Cover note">
             {applicant.cover_note ? (
-              <p className="rounded-lg border bg-muted/40 p-3 font-serif text-[15px] leading-relaxed whitespace-pre-line">
+              <p className="border bg-muted/40 p-3 font-serif text-[15px] leading-relaxed whitespace-pre-line">
                 {applicant.cover_note}
               </p>
             ) : (
@@ -163,7 +163,7 @@ export function CandidateSheet({
               {seeker && seeker.skills.length > 0 && (
                 <ul className="flex flex-wrap gap-1.5" aria-label="Skills">
                   {seeker.skills.map((skill) => (
-                    <li key={skill} className="rounded-sm border px-2 py-0.5 text-xs">
+                    <li key={skill} className="border px-2 py-0.5 text-xs">
                       {skill}
                     </li>
                   ))}
