@@ -3,13 +3,16 @@ import { Link, useLocation } from 'react-router'
 
 import { CompanyMark } from '@/components/jobs/CompanyMark'
 import { JobBadges } from '@/components/jobs/JobBadges'
+import { MatchReasons } from '@/components/jobs/MatchReasons'
 import { PostedAt } from '@/components/jobs/PostedAt'
 import type { JobWithCompany } from '@/lib/api/jobs'
 import { formatPay } from '@/lib/format'
+import type { MatchResult } from '@/lib/matching'
 
 const MAX_SKILLS = 3
 
-export function JobCard({ job }: { job: JobWithCompany }) {
+/** A job in a list. With `match` (R6), it also shows the score and why the job matches. */
+export function JobCard({ job, match }: { job: JobWithCompany; match?: MatchResult }) {
   const { search } = useLocation()
   const extraSkills = job.skills.length - MAX_SKILLS
 
@@ -60,6 +63,12 @@ export function JobCard({ job }: { job: JobWithCompany }) {
               <PostedAt date={job.created_at} />
             </span>
           </div>
+
+          {match && (
+            <div className="mt-4 border-t pt-3">
+              <MatchReasons match={match} />
+            </div>
+          )}
         </div>
       </div>
     </article>

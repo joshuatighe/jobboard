@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { TriangleAlert } from 'lucide-react'
+import { useLocation } from 'react-router'
 
 import { EmptyState } from '@/components/layout/EmptyState'
 import { PageHeader } from '@/components/layout/PageHeader'
@@ -20,6 +22,14 @@ export function ProfilePage() {
   const { profile } = useAuth()
   const seeker = useSeekerProfile(profile?.id)
   const experiences = useExperiences(profile?.id)
+  const { hash } = useLocation()
+  const loaded = Boolean(seeker.data)
+
+  // Links like /profile#preferences (from the For-you feed) arrive before the sections exist,
+  // so scroll once they've rendered.
+  useEffect(() => {
+    if (loaded && hash) document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'start' })
+  }, [loaded, hash])
 
   const header = (
     <PageHeader
