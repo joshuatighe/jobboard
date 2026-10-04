@@ -39,3 +39,15 @@ export async function fetchProfile(userId: string): Promise<Profile | null> {
   if (error) throw error
   return data
 }
+
+/** R2: the name shown to recruiters and in the app header. */
+export async function updateFullName(userId: string, fullName: string): Promise<Profile> {
+  const { data, error } = await supabase
+    .from('profiles')
+    .update({ full_name: fullName })
+    .eq('id', userId)
+    .select()
+    .single()
+  if (error) throw error
+  return data
+}

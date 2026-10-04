@@ -241,12 +241,24 @@ Interview answers were brief, so we made these calls. Add to this list when you 
   2,080 hours.
 - Location + remote: "Remote only" on its own shows remote roles; with a location typed it becomes "Include remote
   roles" (that location **or** remote), since remote roles can be done from anywhere.
-- Seekers can apply without a resume on file (the apply dialog warns and links to the profile). Blocking would make
-  applying impossible for new accounts until resume upload (R3) ships.
+- **Applying requires a resume on file** (revised once R3 shipped; it used to warn and allow). R7 is "apply with the
+  resume on file", so an application without one isn't useful to recruiters. The apply dialog offers an inline PDF
+  upload, so nobody has to leave the job to apply. This is a UI rule, not a database constraint: it's product
+  validation, not authorization.
+- **Resumes are never overwritten.** Each upload goes to a new path, `{user_id}/{slugified-name}-{base36 timestamp}.pdf`,
+  and `seeker_profiles.resume_path` / `resume_filename` (the original name, for display) point at the current one.
+  Applications keep the path they snapshotted, so replacing a resume never changes what a recruiter sees on an
+  application already sent. After a replace, the previous file is deleted only if no application references it
+  (best effort, client-side; a leftover file only costs storage). Files are checked client-side for type, size and
+  the `%PDF-` header; the bucket enforces type and the 5 MB limit server-side.
+- Experience dates are month-granular (stored as the 1st of the month), picked with month + year selects rather than
+  `<input type="month">`, which Safari and Firefox don't render as a picker. A null `end_date` means current role.
+- Profile sections (About, Experience, Preferences, Resume) save independently, each with its own save button and
+  toast, rather than one big form. A "Profile strength" checklist links to whatever is still missing.
 
 ## Status
 
-**Scaffold done** (app shell, auth, routing, theme, landing page, schema, RLS, seed). Feature pages are placeholders.
+**Scaffold done** (app shell, auth, routing, theme, landing page, schema, RLS, seed). Search, job detail, apply and the seeker profile are built; the remaining feature pages are placeholders.
 
 - [x] Vite + React + TS (strict) + Tailwind v4 + shadcn-style components, light/dark theme
 - [x] Landing page, sign in / sign up with role picker, role-based route guards, app shell
@@ -258,7 +270,7 @@ Interview answers were brief, so we made these calls. Add to this list when you 
       checked through the API as each demo user, sign-in/out + role redirects checked in a browser
 - [x] Migration applied and seed run on the hosted Supabase project (through the Management API; see below)
 - [x] R4/R5 job search + filters · R7 job detail + apply
-- [ ] R2/R3 profile, experience, resume upload
+- [x] R2/R3 profile, experience, preferences, resume upload / replace / view
 - [ ] R6 For-you feed · R8 application tracker
 - [ ] R10/R11 recruiter dashboard + posting editor · R12/R13 applicants pipeline
 

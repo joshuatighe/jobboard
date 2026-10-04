@@ -20,6 +20,7 @@ import { FormField } from '@/components/ui/form-field'
 import { Textarea } from '@/components/ui/textarea'
 import type { JobWithCompany } from '@/lib/api/jobs'
 import { useApply } from '@/lib/queries/applications'
+import { useSeekerProfile } from '@/lib/queries/seekers'
 
 const COVER_NOTE_MAX = 2000
 
@@ -43,6 +44,10 @@ export function ApplyDialog({
 }) {
   const navigate = useNavigate()
   const apply = useApply()
+  const seeker = useSeekerProfile(seekerId)
+  // Applying needs a resume. If we couldn't check, let the attempt through; the DB snapshots
+  // whatever is on file.
+  const missingResume = seeker.isSuccess && !seeker.data?.resume_path
   const [formError, setFormError] = useState<string>()
 
   const {
@@ -56,6 +61,10 @@ export function ApplyDialog({
 
   async function onSubmit(values: Values) {
     setFormError(undefined)
+    if (missingResume) {
+      setFormError('Upload your resume before applying.')
+      return
+    }
     try {
       await apply.mutateAsync({ jobId: job.id, seekerId, coverNote: values.coverNote })
       onOpenChange(false)
@@ -119,7 +128,12 @@ export function ApplyDialog({
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Cancel
           </Button>
-          <Button type="submit" form="apply-form" variant="brand" disabled={isSubmitting}>
+          <Button
+            type="submit"
+            form="apply-form"
+            variant="brand"
+            disabled={isSubmitting || seeker.isPending || missingResume}
+          >
             {isSubmitting && <Loader2 className="animate-spin" />}
             Send application
           </Button>
