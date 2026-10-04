@@ -47,7 +47,7 @@ export function ProfileStrength({ steps }: { steps: ProfileStep[] }) {
             ) : (
               <a
                 href={step.href}
-                className="group flex items-center gap-2.5 px-2 py-1.5 text-sm transition-colors outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="group flex items-center gap-2.5 px-2 py-1.5 text-sm transition-colors outline-none hover:bg-accent focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <span className="size-4 border border-dashed border-muted-foreground/50" />
                 {step.label}

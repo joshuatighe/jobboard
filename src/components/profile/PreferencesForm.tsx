@@ -201,7 +201,7 @@ export function PreferencesForm({ seeker }: { seeker: SeekerProfile }) {
                         )
                       }
                       className={cn(
-                        'inline-flex h-8 cursor-pointer items-center gap-1.5 border px-3 text-sm transition-colors duration-150 outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+                        'inline-flex h-8 cursor-pointer items-center gap-1.5 border px-3 text-sm transition-colors duration-150 outline-none hover:bg-accent focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
                         checked
                           ? 'border-foreground bg-foreground text-background hover:bg-foreground/90'
                           : 'text-muted-foreground hover:text-foreground',

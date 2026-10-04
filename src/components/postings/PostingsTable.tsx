@@ -35,7 +35,7 @@ export function PostingsTable({
           return (
             <tr
               key={posting.id}
-              className="group relative align-top has-[a[data-row-link]:focus-visible]:ring-2 has-[a[data-row-link]:focus-visible]:ring-ring has-[a[data-row-link]:focus-visible]:ring-inset"
+              className="group relative align-top has-[a[data-row-link]:focus-visible]:ring-1 has-[a[data-row-link]:focus-visible]:ring-ring has-[a[data-row-link]:focus-visible]:ring-inset"
             >
               <td className="max-w-0 py-4 pr-4 lg:w-[46%]">
                 <Link

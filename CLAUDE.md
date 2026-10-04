@@ -221,8 +221,11 @@ The system lives in `src/index.css` (tokens, type sizes, the `page-x`, `meta` an
 - **Motion.** 150ms colour and border transitions; dialogs and sheets use tw-animate's fade/slide at 200ms.
   `prefers-reduced-motion` collapses every animation and transition and turns off smooth scrolling. Skeletons while
   loading, never spinners on full pages. Hover on a listing underlines the title; nothing lifts or glows.
-- **Focus.** A solid 2px ink ring with a 2px offset on buttons, links, tabs and checkboxes; inset on rows and
-  cards that stretch a link over themselves; inputs turn their border to ink and add a soft 3px ring.
+- **Focus.** A 1px ink hairline, never thicker. Buttons never grow when focused, so they stay level with their
+  neighbours: ghost and secondary buttons get an inset hairline at their edge, outline buttons turn their border
+  ink, and solid buttons get a paper hairline 4px inside the fill. Links, tabs, checkboxes and the switch get a 1px
+  ring with a 2px offset; rows and cards that stretch a link over themselves get it inset; inputs turn their border
+  to ink and add a soft 3px ring.
 - **Density.** Recruiter views are denser (ledger table, five-column board at `lg`); seeker views are roomier
   (listings with 20px vertical padding).
 - **Copy.** Plain, specific sentences about what the product does. No slogans, no eyebrow labels over every
@@ -382,6 +385,10 @@ Interview answers were brief, so we made these calls. Add to this list when you 
   (rounded strokes); Material Symbols Sharp reads as Google; pixel sets are a gimmick. Notable mappings: the For-you
   feed is `Recommend`, the tracker is `Task`, postings are `Dashboard`, briefcases are `Portfolio`, warnings are
   `WarningAlt`, "not found" is `Search` or `DocumentUnknown`, external links are `Launch`.
+- **Hairline focus (Oct 2026).** The original 2px ring with a 2px offset made a focused button 8px bigger than its
+  neighbour (the theme toggle stood taller than "Open app" after the menu returned focus to it) and looked heavy
+  against hairline rules. Focus is now 1px everywhere, and buttons draw it inside their own box. It stays a solid,
+  high-contrast ink (or paper on ink) line, so it is still clearly visible.
 - **Visual identity (Oct 2026): "Classifieds, reissued".** The first version was the default SaaS template
   (gradient headline, purple glow and grid, fake browser chrome, logo strip, icon-in-tinted-square feature grids,
   dark CTA box, Inter and one violet accent on `rounded-xl` cards). Four concepts were sketched and three thrown out:

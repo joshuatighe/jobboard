@@ -24,7 +24,7 @@ export function Logo({ to = '/', className }: { to?: string; className?: string 
       to={to}
       aria-label="JobBoard home"
       className={cn(
-        'inline-flex items-baseline font-serif text-[22px] leading-none font-medium tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+        'inline-flex items-baseline font-serif text-[22px] leading-none font-medium tracking-tight outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
         className,
       )}
     >

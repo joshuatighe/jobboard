@@ -28,7 +28,7 @@ export function CandidateCard({
     <article
       aria-busy={pending}
       className={cn(
-        'relative border bg-card p-3 transition-[border-color,opacity] duration-150 hover:border-foreground/40 has-[button[data-card-open]:focus-visible]:ring-2 has-[button[data-card-open]:focus-visible]:ring-ring has-[button[data-card-open]:focus-visible]:ring-inset',
+        'relative border bg-card p-3 transition-[border-color,opacity] duration-150 hover:border-foreground/40 has-[button[data-card-open]:focus-visible]:ring-1 has-[button[data-card-open]:focus-visible]:ring-ring has-[button[data-card-open]:focus-visible]:ring-inset',
         pending && 'opacity-60',
       )}
     >

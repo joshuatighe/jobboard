@@ -60,7 +60,7 @@ export function JobDetailPage() {
     <article>
       <Link
         to={`/jobs${backSearch}`}
-        className="inline-flex items-center gap-1.5 meta text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className="inline-flex items-center gap-1.5 meta text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         <ArrowLeft className="size-3.5" /> {backSearch ? 'Back to results' : 'All open roles'}
       </Link>

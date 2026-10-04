@@ -76,7 +76,7 @@ function TagInput({
                 event.stopPropagation()
                 remove(index)
               }}
-              className="inline-flex size-5 cursor-pointer items-center justify-center text-muted-foreground transition-colors outline-none hover:bg-background hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/30"
+              className="inline-flex size-5 cursor-pointer items-center justify-center text-muted-foreground transition-colors outline-none hover:bg-background hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-inset"
             >
               <Close className="size-3" />
             </button>
