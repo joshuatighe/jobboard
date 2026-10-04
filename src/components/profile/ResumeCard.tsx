@@ -109,7 +109,7 @@ export function ResumeCard({ seeker }: { seeker: SeekerProfile }) {
               type="button"
               disabled={isPending}
               onClick={() => inputRef.current?.click()}
-              className="flex w-full cursor-pointer flex-col items-center gap-2 border border-dashed px-4 py-8 text-center transition-colors outline-none hover:border-foreground/50 hover:bg-accent/40 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-wait"
+              className="flex w-full cursor-pointer flex-col items-center gap-2 border border-dashed px-4 py-8 text-center transition-colors outline-none hover:border-foreground/50 hover:bg-accent/40 focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-wait"
             >
               <span className="inline-flex size-10 items-center justify-center border bg-background text-muted-foreground">
                 {isPending ? <CircleDash className="size-5 animate-spin" /> : <Upload className="size-5" />}

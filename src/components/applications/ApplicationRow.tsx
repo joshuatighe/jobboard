@@ -23,7 +23,7 @@ export function ApplicationRow({
   const title = job?.title ?? 'Role no longer listed'
 
   return (
-    <li className="group relative grid grid-cols-[auto_1fr] gap-x-4 py-5 has-[button:focus-visible]:ring-2 has-[button:focus-visible]:ring-ring has-[button:focus-visible]:ring-inset sm:gap-x-5">
+    <li className="group relative grid grid-cols-[auto_1fr] gap-x-4 py-5 has-[button:focus-visible]:ring-1 has-[button:focus-visible]:ring-ring has-[button:focus-visible]:ring-inset sm:gap-x-5">
       <JobMark job={job} />
       <div className="min-w-0">
         <div className="flex items-start justify-between gap-3">
@@ -33,7 +33,7 @@ export function ApplicationRow({
                 // Above the row's stretched button, so it opens the job instead of the details.
                 <Link
                   to={`/jobs/${job.id}`}
-                  className="relative z-10 decoration-border underline-offset-[5px] outline-none hover:underline hover:decoration-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="relative z-10 decoration-border underline-offset-[5px] outline-none hover:underline hover:decoration-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   {title}
                 </Link>

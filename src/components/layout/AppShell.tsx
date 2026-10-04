@@ -31,7 +31,7 @@ function TopNav({ items }: { items: NavItem[] }) {
       to={to}
       className={({ isActive }) =>
         cn(
-          '-mb-px inline-flex h-14 items-center border-b-2 border-transparent text-sm font-medium text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+          '-mb-px inline-flex h-14 items-center border-b-2 border-transparent text-sm font-medium text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
           isActive && 'border-foreground text-foreground',
         )
       }
@@ -50,7 +50,7 @@ function MenuNav({ items, onNavigate }: { items: NavItem[]; onNavigate: () => vo
       onClick={onNavigate}
       className={({ isActive }) =>
         cn(
-          'flex items-center gap-3 border-b py-3 font-serif text-xl text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+          'flex items-center gap-3 border-b py-3 font-serif text-xl text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
           isActive && 'text-foreground',
         )
       }
