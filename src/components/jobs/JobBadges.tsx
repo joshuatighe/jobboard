@@ -12,10 +12,10 @@ export function JobBadges({
 }) {
   return (
     <>
-      <Badge variant="secondary">{labelFor.experienceLevel(job.experience_level)}</Badge>
-      <Badge variant="secondary">{labelFor.employmentType(job.employment_type)}</Badge>
+      <Badge variant="outline">{labelFor.experienceLevel(job.experience_level)}</Badge>
+      <Badge variant="outline">{labelFor.employmentType(job.employment_type)}</Badge>
       {job.is_remote && (
-        <Badge variant="brand">
+        <Badge variant="secondary">
           <Globe /> Remote
         </Badge>
       )}

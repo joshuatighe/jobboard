@@ -8,7 +8,7 @@ import { PostingStatusBadge } from '@/components/postings/PostingStatusBadge'
 import type { Posting } from '@/lib/api/postings'
 import { countApplicants, postingHref, type PostingAction } from '@/lib/postings'
 
-/** R11 on mobile: the table row as a card. */
+/** R11 on mobile: the table row as one listing. The parent list rules between rows. */
 export function PostingCard({
   posting,
   onAction,
@@ -18,14 +18,14 @@ export function PostingCard({
 }) {
   const counts = countApplicants(posting.applications)
   return (
-    <article className="relative rounded-xl border bg-card p-4 shadow-xs has-[a[data-row-link]:focus-visible]:ring-[3px] has-[a[data-row-link]:focus-visible]:ring-ring/50">
+    <article className="relative py-5 has-[a[data-row-link]:focus-visible]:rounded-md has-[a[data-row-link]:focus-visible]:ring-2 has-[a[data-row-link]:focus-visible]:ring-ring has-[a[data-row-link]:focus-visible]:ring-inset">
       <div className="flex items-start gap-3">
         <div className="min-w-0 flex-1">
-          <div className="mb-1">
+          <div className="mb-2">
             <PostingStatusBadge status={posting.status} />
           </div>
-          <h3 className="font-semibold tracking-tight">
-            <Link to={postingHref(posting)} data-row-link className="outline-none after:absolute after:inset-0 after:rounded-xl">
+          <h3 className="text-xl leading-tight">
+            <Link to={postingHref(posting)} data-row-link className="outline-none after:absolute after:inset-0">
               {posting.title}
             </Link>
           </h3>
@@ -33,13 +33,13 @@ export function PostingCard({
         <PostingActionsMenu posting={posting} applicantCount={counts.total} onAction={onAction} />
       </div>
       <PostingMeta posting={posting} />
-      <div className="mt-3 flex flex-wrap items-end justify-between gap-x-4 gap-y-2 border-t pt-3">
+      <div className="mt-4 flex flex-wrap items-end justify-between gap-x-4 gap-y-2">
         {posting.status === 'draft' ? (
           <p className="text-sm text-muted-foreground">Not published</p>
         ) : (
           <ApplicantCounts counts={counts} />
         )}
-        <PostingDates posting={posting} className="relative z-10 text-xs text-muted-foreground" />
+        <PostingDates posting={posting} className="relative z-10 meta text-muted-foreground" />
       </div>
     </article>
   )

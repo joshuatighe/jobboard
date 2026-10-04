@@ -81,12 +81,12 @@ export function SignUpPage() {
       description={
         checkEmail
           ? 'We sent you a confirmation link. Click it to finish signing up.'
-          : 'Free forever for job seekers. Set up takes a minute.'
+          : 'Free for job seekers. Pick a side; it takes a minute.'
       }
       footer={
         <>
           Already have an account?{' '}
-          <Link to="/sign-in" className="font-medium text-foreground hover:underline">
+          <Link to="/sign-in" className="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground">
             Sign in
           </Link>
         </>
@@ -105,13 +105,13 @@ export function SignUpPage() {
                 aria-checked={role === value}
                 onClick={() => setValue('role', value)}
                 className={cn(
-                  'flex cursor-pointer flex-col items-start gap-2 rounded-xl border p-4 text-left transition-all outline-none hover:bg-accent/50 focus-visible:ring-[3px] focus-visible:ring-ring/50',
-                  role === value && 'border-brand bg-brand-soft/50 ring-1 ring-brand hover:bg-brand-soft/50',
+                  'flex cursor-pointer flex-col items-start gap-3 rounded-lg border p-4 text-left transition-colors outline-none hover:bg-accent/60 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+                  role === value && 'border-foreground bg-card ring-1 ring-foreground hover:bg-card',
                 )}
               >
-                <Icon className={cn('size-5', role === value ? 'text-brand' : 'text-muted-foreground')} />
+                <Icon className={cn('size-5', role === value ? 'text-foreground' : 'text-muted-foreground')} strokeWidth={1.75} />
                 <div>
-                  <div className="text-sm font-medium">{label}</div>
+                  <div className="font-serif text-lg leading-tight">{label}</div>
                   <div className="text-xs text-muted-foreground">{description}</div>
                 </div>
               </button>
@@ -158,11 +158,11 @@ export function SignUpPage() {
             />
           </FormField>
           {formError && (
-            <p role="alert" className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
+            <p role="alert" className="rounded-md border border-destructive/30 bg-destructive/8 px-3 py-2 text-sm text-destructive">
               {formError}
             </p>
           )}
-          <Button type="submit" variant="brand" disabled={isSubmitting} className="mt-2 w-full">
+          <Button type="submit" disabled={isSubmitting} className="mt-2 w-full">
             {isSubmitting && <Loader2 className="animate-spin" />}
             Create account
           </Button>

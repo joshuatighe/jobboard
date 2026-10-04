@@ -22,7 +22,7 @@ import type { ApplicationStatus } from '@/lib/types'
 function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
     <section aria-labelledby={`${id}-heading`} className="space-y-3">
-      <h3 id={`${id}-heading`} className="text-sm font-semibold">
+      <h3 id={`${id}-heading`} className="meta text-muted-foreground">
         {title}
       </h3>
       {children}
@@ -83,11 +83,11 @@ export function CandidateSheet({
           <div className="flex items-center gap-3">
             <CandidateAvatar name={name} className="size-11" />
             <div className="min-w-0 space-y-0.5">
-              <SheetTitle className="text-lg leading-snug">{name}</SheetTitle>
+              <SheetTitle className="text-2xl leading-tight">{name}</SheetTitle>
               <SheetDescription className="line-clamp-2">{seeker?.headline || 'No headline'}</SheetDescription>
             </div>
           </div>
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 meta text-muted-foreground">
             <ApplicationStatusBadge status={applicant.status} />
             {seeker?.location && (
               <span className="inline-flex items-center gap-1">
@@ -100,7 +100,7 @@ export function CandidateSheet({
 
         <div className="space-y-2 border-b p-5">
           <ApplicationProgress status={applicant.status} events={applicant.events} />
-          <ol className="grid grid-cols-4 gap-1 text-[11px] text-muted-foreground">
+          <ol className="grid grid-cols-4 gap-1 text-xs text-muted-foreground">
             {PIPELINE.map((step) => (
               <li key={step} className="truncate">
                 {APPLICATION_STATUSES[step].label}
@@ -110,7 +110,7 @@ export function CandidateSheet({
           {canMove ? (
             <div className="flex flex-wrap gap-2 pt-3">
               {next && (
-                <Button variant="brand" disabled={pending} onClick={() => onMove(next)}>
+                <Button disabled={pending} onClick={() => onMove(next)}>
                   {pending ? <Loader2 className="animate-spin" /> : <ArrowRight />}
                   {moveLabel(next)}
                 </Button>
@@ -147,7 +147,7 @@ export function CandidateSheet({
 
           <Section id="candidate-note" title="Cover note">
             {applicant.cover_note ? (
-              <p className="rounded-lg border bg-muted/40 p-3 text-sm leading-relaxed whitespace-pre-line text-muted-foreground">
+              <p className="rounded-lg border bg-muted/40 p-3 font-serif text-[15px] leading-relaxed whitespace-pre-line">
                 {applicant.cover_note}
               </p>
             ) : (
@@ -163,7 +163,7 @@ export function CandidateSheet({
               {seeker && seeker.skills.length > 0 && (
                 <ul className="flex flex-wrap gap-1.5" aria-label="Skills">
                   {seeker.skills.map((skill) => (
-                    <li key={skill} className="rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground">
+                    <li key={skill} className="rounded-sm border px-2 py-0.5 text-xs">
                       {skill}
                     </li>
                   ))}

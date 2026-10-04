@@ -59,6 +59,7 @@ Each requirement has an ID. Reference the ID in commits and PRs where relevant (
 | Language | **TypeScript** (strict) |
 | UI | **React** |
 | Styling | **Tailwind CSS v4** via `@tailwindcss/vite` |
+| Fonts | `@fontsource-variable/newsreader` (serif, opsz axis), `@fontsource-variable/instrument-sans` (UI), `@fontsource-variable/geist-mono` (metadata). Latin subsets only, no italics |
 | Components | **shadcn/ui** (Radix primitives; component source lives in `src/components/ui`) |
 | Icons | **lucide-react**, the only icon set |
 | Routing | **React Router** |
@@ -179,16 +180,53 @@ open-jobs query. That is fine at seed-data scale. If it ever needs to scale, mov
 
 ## Design language
 
-Target the look of Linear, Vercel, Ramp and Ashby: restrained, crisp, expensive-feeling.
-- **Typography**: `Inter` (or `Geist`) for UI, tight tracking on headings, big confident hero type on the landing page.
-- **Color**: neutral zinc base, **one** brand accent (indigo/violet) used sparingly for primary actions and highlights.
-  Status colors are semantic and consistent everywhere (see the status badge).
-- **Surfaces**: subtle 1px borders, soft shadows, `rounded-xl` cards, generous whitespace, a faint grid or gradient
-  glow on the hero only.
-- **Motion**: small and quick (150–200ms), no bouncy animations. Skeletons while loading, never spinners on full pages.
-- **Density**: recruiter views can be denser (table/kanban); seeker views are roomier (cards).
-- Both themes must look intentional. Use CSS variables / shadcn tokens, never hard-coded colors in components.
-- Icons come only from `lucide-react`, at a consistent size per context (16px inline, 20px nav).
+**Concept: "Classifieds, reissued."** The job board's ancestor is the classifieds page: listings in a ruled column,
+a serif title on each, small monospace metadata, and a highlighter dragged across the one you want. JobBoard takes
+that and sets it like a well-made newspaper, not a SaaS template. Someone should recognise a cropped screenshot from
+the paper tone, the serif titles, the hairline rules and the yellow mark. The concept and the alternatives it beat
+are recorded under [Decisions & assumptions](#decisions--assumptions).
+
+The system lives in `src/index.css` (tokens, type sizes, the `page-x`, `meta` and `highlight` utilities) and in
+`src/components/ui`. Components use tokens only; nothing is hard-coded.
+
+- **Type.** Three families, all variable, latin subsets only (about 190 KB):
+  - `Newsreader` (serif, with its optical-size axis) for every heading, listing title, page title, big number and
+    pull quote. `h1`–`h3` are serif by default. Weight 500, tight tracking at display sizes.
+  - `Instrument Sans` for UI and body copy. 15–16px body, 14px in dense recruiter views.
+  - `Geist Mono` for metadata: the `meta` utility (11px, uppercase, 0.08em tracking, tabular figures) is used for
+    column headers, dates, counts, section labels in sheets and the back links. Badges are mono too.
+  - Display sizes are tokens: `text-display` (hero), `text-headline` (section and detail titles), `text-title`
+    (page titles, 28px, stepping to `text-4xl` from `sm`).
+- **Colour.** Paper and ink, no accent hue. Light is warm off-white paper (`oklch(0.982 0.004 85)`) with warm
+  near-black ink; dark is ink paper (`oklch(0.165 0.008 55)`) with the same hues at different lightness. Primary
+  actions are ink on paper (paper on ink in dark). The only colour is the **highlighter**: `--highlight` /
+  `--highlight-foreground`, always yellow with ink text in both themes, applied with the `highlight` utility to the
+  few things worth marking: the match score when it is a strong match, unreviewed applicant counts, an offer, the
+  "Current" role, one phrase in a headline, and "Job" in the wordmark. Status colours (`success`, `warning`,
+  `info`, `destructive`) are semantic and appear only in badges, dots and the progress bar. Every text pair was
+  checked against WCAG AA in both themes (muted text ≥ 6.2:1, status text on its 12% tint ≥ 4.5:1).
+- **Spacing and grid.** One column: `page-x` (max 72rem, 20px gutters, 32px from `sm`) for the masthead, every
+  page and every landing section. 4px base; section rhythm on 8. Landing sections are `py-20 sm:py-28`, separated
+  by a hairline, and lay out on a 12-column grid. Page headers end in a hairline (`PageHeader`); lists start under
+  it with `divide-y`, and tables and stat strips are ruled the same way.
+- **Surfaces.** Hairline rules instead of cards wherever something is a list: job results, the For-you feed, the
+  tracker, postings. A hairline panel (`Card`, `rounded-xl border`, no shadow) is reserved for things that are
+  genuinely a unit: forms, the apply panel, candidate cards on the board. Shadows exist only on things that float
+  (menus, dialogs, sheets). Radii: controls 6px, panels 8px, tags 2px. Nothing is a pill except avatars and status
+  dots. Company marks and avatars are serif monograms on a hairline square or disc. Stat strips are one bordered
+  grid with serif numerals, not four cards.
+- **Navigation.** The masthead is a 56px bar with a hairline. The current section is underlined with a 2px ink
+  bar, in the app nav and in every tab list (`Tabs` is underline-style, no grey pill group).
+- **Motion.** 150ms colour and border transitions; dialogs and sheets use tw-animate's fade/slide at 200ms.
+  `prefers-reduced-motion` collapses every animation and transition and turns off smooth scrolling. Skeletons while
+  loading, never spinners on full pages. Hover on a listing underlines the title; nothing lifts or glows.
+- **Focus.** A solid 2px ink ring with a 2px offset on buttons, links, tabs and checkboxes; inset on rows and
+  cards that stretch a link over themselves; inputs turn their border to ink and add a soft 3px ring.
+- **Density.** Recruiter views are denser (ledger table, five-column board at `lg`); seeker views are roomier
+  (listings with 20px vertical padding).
+- **Copy.** Plain, specific sentences about what the product does. No slogans, no eyebrow labels over every
+  heading, no emoji. Mono labels and numbered lists ("01", "02") carry the editorial feel instead.
+- Icons come only from `lucide-react`, 16px inline, 20px in the mobile menu, stroke 1.75 in empty states.
 
 ## Commands
 
@@ -328,6 +366,21 @@ Interview answers were brief, so we made these calls. Add to this list when you 
   timeline. `ApplicationTimeline` and `SentResume` take `audience="recruiter"` for recruiter wording.
 - A draft posting's applicants page explains that drafts can't receive applicants and links to the editor. A job id
   that doesn't exist or belongs to another company shows "Posting not found" (applicants aren't queried at all).
+
+- **Visual identity (Oct 2026): "Classifieds, reissued".** The first version was the default SaaS template
+  (gradient headline, purple glow and grid, fake browser chrome, logo strip, icon-in-tinted-square feature grids,
+  dark CTA box, Inter and one violet accent on `rounded-xl` cards). Four concepts were sketched and three thrown out:
+  a personnel-file look (manila folders, stamps, typewriter) for being skeuomorphic and hard to make feel expensive;
+  a split-flap departures board for being a gimmick that hurts readability at density; and a mirrored two-sided
+  "seam" layout for being abstract and not surviving into the app screens. The classifieds concept won because it
+  is rooted in what the product is (listings people mark up), it carries into every app screen (lists become ruled
+  columns, stats become "by the numbers" strips, the board becomes ruled columns), and it answers the accent
+  problem by removing the accent: buttons are ink and the one colour is a highlighter. Fonts: Newsreader was chosen
+  over Instrument Serif for its optical-size axis (titles at 17px and 88px from one file); Instrument Sans replaces
+  Inter; Geist Mono carries metadata. Italic files were left out to keep the payload near 190 KB. The `brand` button
+  variant stays as an alias of `default`, and the badge tone `brand` was renamed `highlight`. The light-mode input
+  border was darkened to 2:1 against paper (the shadcn default is 1.3:1); it is identified by its label and its ink
+  focus border rather than by border contrast alone.
 
 ## Status
 

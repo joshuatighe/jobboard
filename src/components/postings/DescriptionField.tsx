@@ -27,13 +27,13 @@ export function DescriptionField({
   const [tab, setTab] = useState('write')
 
   return (
-    <Tabs value={tab} onValueChange={setTab} className="gap-3">
+    <Tabs value={tab} onValueChange={setTab} className="gap-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <TabsList aria-label="Description editor">
-          <TabsTrigger value="write" className="px-3">
+          <TabsTrigger value="write">
             <PencilLine /> Write
           </TabsTrigger>
-          <TabsTrigger value="preview" className="px-3">
+          <TabsTrigger value="preview">
             <Eye /> Preview
           </TabsTrigger>
         </TabsList>
@@ -60,7 +60,7 @@ export function DescriptionField({
         </p>
       </TabsContent>
       <TabsContent value="preview">
-        <div className="min-h-72 rounded-md border bg-background/50 px-4 py-3 dark:bg-input/10">
+        <div className="min-h-72 rounded-lg border px-4 py-3">
           {value.trim() ? (
             <JobDescription text={value} />
           ) : (

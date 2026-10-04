@@ -39,9 +39,11 @@ export function JobFiltersPanel({
   const hasFilters = activeFilterCount(filters) > 0
 
   return (
-    <div className="grid gap-7">
+    <div className="grid gap-8">
       <section className="grid gap-2">
-        <Label htmlFor={`${idPrefix}-pay`}>Minimum pay</Label>
+        <Label htmlFor={`${idPrefix}-pay`} className="meta text-muted-foreground">
+          Minimum pay
+        </Label>
         <Select
           value={filters.minPay ? String(filters.minPay) : ANY_PAY}
           onValueChange={(value) => onChange({ minPay: value === ANY_PAY ? null : Number(value) })}
@@ -64,7 +66,9 @@ export function JobFiltersPanel({
       </section>
 
       <section className="grid gap-2">
-        <Label htmlFor={`${idPrefix}-location`}>Location</Label>
+        <Label htmlFor={`${idPrefix}-location`} className="meta text-muted-foreground">
+          Location
+        </Label>
         <div className="relative">
           <MapPin className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -84,7 +88,7 @@ export function JobFiltersPanel({
       </section>
 
       <section className="grid gap-2">
-        <h3 id={`${idPrefix}-level`} className="text-sm font-medium">
+        <h3 id={`${idPrefix}-level`} className="meta text-muted-foreground">
           Experience level
         </h3>
         <div role="group" aria-labelledby={`${idPrefix}-level`} className="-mx-2 grid gap-0.5">

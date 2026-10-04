@@ -79,13 +79,9 @@ export function ApplicationsPage() {
       <>
         {header}
         <div aria-busy="true" aria-label="Loading applications" className="space-y-6">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {[0, 1, 2, 3].map((i) => (
-              <Skeleton key={i} className="h-[74px] rounded-xl" />
-            ))}
-          </div>
-          <Skeleton className="h-9 w-full rounded-lg sm:w-80" />
-          <div className="grid gap-3">
+          <Skeleton className="h-[104px] rounded-xl" />
+          <Skeleton className="h-10 w-full sm:w-80" />
+          <div className="divide-y border-y">
             {[0, 1, 2].map((i) => (
               <ApplicationRowSkeleton key={i} />
             ))}
@@ -159,21 +155,21 @@ export function ApplicationsPage() {
       <div className="space-y-6">
         <ApplicationsSummary applications={all} />
 
-        <Tabs value={tab} onValueChange={changeTab} className="gap-4">
-          <TabsList className="w-full sm:w-fit" aria-label="Filter applications by status">
+        <Tabs value={tab} onValueChange={changeTab} className="gap-0">
+          <TabsList className="w-full gap-6 sm:w-fit" aria-label="Filter applications by status">
             {TRACKER_TABS.map((value) => (
-              <TabsTrigger key={value} value={value} className="sm:px-3">
+              <TabsTrigger key={value} value={value}>
                 {TAB_LABELS[value]}
-                <span className="text-xs text-muted-foreground tabular-nums">{counts[value]}</span>
+                <span className="meta text-muted-foreground">{counts[value]}</span>
               </TabsTrigger>
             ))}
           </TabsList>
 
           <TabsContent value={tab}>
             {visible.length === 0 && tab !== 'all' ? (
-              <EmptyState icon={Inbox} {...EMPTY_TAB[tab]} className="py-12" />
+              <EmptyState icon={Inbox} {...EMPTY_TAB[tab]} className="border-b py-12" />
             ) : (
-              <ul className="grid gap-3">
+              <ul className="divide-y border-b">
                 {visible.map((application) => (
                   <ApplicationRow
                     key={application.id}

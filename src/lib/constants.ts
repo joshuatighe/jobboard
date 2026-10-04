@@ -20,7 +20,7 @@ export const EMPLOYMENT_TYPES: { value: EmploymentType; label: string }[] = [
   { value: 'internship', label: 'Internship' },
 ]
 
-type BadgeTone = 'secondary' | 'info' | 'brand' | 'warning' | 'success' | 'destructive' | 'outline'
+type BadgeTone = 'secondary' | 'info' | 'highlight' | 'warning' | 'success' | 'destructive' | 'outline'
 
 export const APPLICATION_STATUSES: Record<
   ApplicationStatus,
@@ -28,7 +28,7 @@ export const APPLICATION_STATUSES: Record<
 > = {
   applied: { label: 'Applied', tone: 'secondary', description: 'Submitted and waiting for review' },
   reviewing: { label: 'In review', tone: 'info', description: 'The team is reviewing your application' },
-  interviewing: { label: 'Interviewing', tone: 'brand', description: "You're in the interview process" },
+  interviewing: { label: 'Interviewing', tone: 'highlight', description: "You're in the interview process" },
   offer: { label: 'Offer', tone: 'success', description: 'You received an offer' },
   rejected: { label: 'Not selected', tone: 'destructive', description: 'The team moved forward with others' },
   withdrawn: { label: 'Withdrawn', tone: 'outline', description: 'You withdrew this application' },

@@ -2,12 +2,12 @@ import { parseDescription } from '@/lib/description'
 
 export function JobDescription({ text }: { text: string }) {
   return (
-    <div className="space-y-4 text-[15px] leading-relaxed text-foreground/90">
+    <div className="space-y-4 text-[15px] leading-relaxed">
       {parseDescription(text).map((block, i) => {
         switch (block.type) {
           case 'heading':
             return (
-              <h2 key={i} className="pt-3 text-base font-semibold text-foreground">
+              <h2 key={i} className="pt-4 text-xl">
                 {block.text}
               </h2>
             )

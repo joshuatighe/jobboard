@@ -18,16 +18,16 @@ export function ExperienceItem({
   const { title, company, location, start_date, end_date, description } = experience
 
   return (
-    <li className="group flex gap-3 py-4 first:pt-0 last:pb-0">
-      <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg border bg-muted/50 text-muted-foreground">
+    <li className="group flex gap-3 py-5 first:pt-0 last:pb-0">
+      <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border text-muted-foreground">
         <Building2 className="size-4" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">
-            <h3 className="flex flex-wrap items-center gap-2 font-medium">
+            <h3 className="flex flex-wrap items-center gap-2 text-lg leading-tight">
               {title}
-              {!end_date && <Badge variant="brand">Current</Badge>}
+              {!end_date && <Badge variant="highlight">Current</Badge>}
             </h3>
             <p className="text-sm text-muted-foreground">
               {company}
@@ -51,7 +51,7 @@ export function ExperienceItem({
           </div>
           )}
         </div>
-        <p className="mt-0.5 text-xs text-muted-foreground">
+        <p className="mt-1 meta text-muted-foreground">
           {formatMonthYear(start_date)} – {end_date ? formatMonthYear(end_date) : 'Present'} ·{' '}
           {formatTenure(start_date, end_date)}
         </p>
