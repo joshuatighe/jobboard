@@ -1,0 +1,60 @@
+import { hourlyThreshold, sanitizeLocation, toTsQuery, type JobFilters } from '@/lib/job-filters'
+import { supabase } from '@/lib/supabase'
+
+const JOB_WITH_COMPANY = '*, company:companies (id, name, website, description)' as const
+
+export const JOBS_PAGE_SIZE = 20
+
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+/** R4/R5: open jobs matching the filters, newest first. RLS hides drafts and closed jobs from everyone else. */
+export async function searchJobs(filters: JobFilters, page: number) {
+  let query = supabase
+    .from('jobs')
+    .select(JOB_WITH_COMPANY, { count: 'exact' })
+    .eq('status', 'open')
+
+  const tsQuery = toTsQuery(filters.q)
+  if (tsQuery) query = query.textSearch('search', tsQuery, { config: 'english' })
+
+  if (filters.minPay) {
+    query = query.or(
+      `and(pay_period.eq.year,pay_max.gte.${filters.minPay}),` +
+        `and(pay_period.eq.hour,pay_max.gte.${hourlyThreshold(filters.minPay)})`,
+    )
+  }
+
+  const location = sanitizeLocation(filters.location)
+  if (location && filters.remote) {
+    query = query.or(`location.ilike."*${location}*",is_remote.is.true`)
+  } else if (location) {
+    query = query.ilike('location', `%${location}%`)
+  } else if (filters.remote) {
+    query = query.eq('is_remote', true)
+  }
+
+  if (filters.levels.length) query = query.in('experience_level', filters.levels)
+
+  const from = page * JOBS_PAGE_SIZE
+  const { data, error, count } = await query
+    .order('created_at', { ascending: false })
+    .order('id')
+    .range(from, from + JOBS_PAGE_SIZE - 1)
+  if (error) throw error
+  return { jobs: data, total: count ?? data.length }
+}
+
+export type JobWithCompany = Awaited<ReturnType<typeof searchJobs>>['jobs'][number]
+
+/** R7: one job with its company. Null when it doesn't exist or RLS hides it. */
+export async function fetchJob(jobId: string) {
+  // A malformed id in the URL is just a job that doesn't exist; don't send it to Postgres.
+  if (!UUID.test(jobId)) return null
+  const { data, error } = await supabase
+    .from('jobs')
+    .select(JOB_WITH_COMPANY)
+    .eq('id', jobId)
+    .maybeSingle()
+  if (error) throw error
+  return data
+}

@@ -66,3 +66,12 @@ export function initials(name: string): string {
       .join('') || '?'
   )
 }
+
+/** "lumen.example.com" from "https://lumen.example.com/about". Falls back to the input if it isn't a URL. */
+export function displayUrl(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '')
+  } catch {
+    return url
+  }
+}

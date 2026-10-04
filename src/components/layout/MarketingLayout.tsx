@@ -8,7 +8,8 @@ import { homeFor } from '@/lib/routes'
 
 const YEAR = new Date().getFullYear()
 
-export function MarketingLayout() {
+/** `contained` wraps pages in the standard content column (the landing page brings its own layout). */
+export function MarketingLayout({ contained = false }: { contained?: boolean }) {
   const { status, profile } = useAuth()
 
   return (
@@ -47,7 +48,13 @@ export function MarketingLayout() {
         </div>
       </header>
       <main className="flex-1">
-        <Outlet />
+        {contained ? (
+          <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
+            <Outlet />
+          </div>
+        ) : (
+          <Outlet />
+        )}
       </main>
       <footer className="border-t">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6">

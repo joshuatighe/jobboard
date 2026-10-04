@@ -11,7 +11,13 @@ export const router = createBrowserRouter([
     element: <MarketingLayout />,
     children: [
       { index: true, element: <LandingPage /> },
-      // Public, so anyone can browse open roles (R4, R5). Applying requires a seeker account.
+      { path: '*', element: <NotFoundPage /> },
+    ],
+  },
+  // Public, so anyone can browse open roles (R4, R5, R7). Applying requires a seeker account.
+  {
+    lazy: () => import('@/components/layout/JobsLayout').then((m) => ({ Component: m.JobsLayout })),
+    children: [
       {
         path: 'jobs',
         lazy: () => import('@/routes/seeker/JobSearchPage').then((m) => ({ Component: m.JobSearchPage })),
@@ -20,7 +26,6 @@ export const router = createBrowserRouter([
         path: 'jobs/:jobId',
         lazy: () => import('@/routes/seeker/JobDetailPage').then((m) => ({ Component: m.JobDetailPage })),
       },
-      { path: '*', element: <NotFoundPage /> },
     ],
   },
   {
