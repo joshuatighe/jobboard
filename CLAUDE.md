@@ -211,6 +211,10 @@ pnpm add <pkg>           # add a dependency (-D for dev). Never npm/yarn
 - Use `@/` path aliases (`@/components/...`, `@/lib/...`).
 - Format money with `Intl.NumberFormat`. Show pay ranges as `$120k – $160k` / `$35 – $45/hr`.
 - Use relative dates for recency ("Posted 3d ago"), absolute dates in tooltips.
+- **Branches**: `<type>/<short-kebab-description>` using the commit types, e.g. `feat/job-search`,
+  `feat/recruiter-pipeline`, `fix/apply-button-state`, `chore/ci`. One branch and one PR per feature, branched from
+  `main`. In Claude cloud sessions, don't use the auto-generated `claude/...` session branch: create a branch
+  following this convention and push there (the repo owner has asked for this).
 - Commit messages follow Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`) and reference requirement IDs
   where it applies.
 - Before pushing, `pnpm build` and `pnpm lint` must pass.
