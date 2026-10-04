@@ -96,6 +96,7 @@ src/
     api/                     # typed data access (auth.ts, jobs.ts, applications.ts, ...)
     queries/                 # TanStack Query hooks wrapping lib/api (useJobs, useApply, ...)
     matching.ts (+ .test.ts) # personalized-feed scoring (pure, unit-tested)
+    postings.ts (+ .test.ts) # posting form schema, allowed status actions, dashboard counts/sorting (pure)
     feed.ts (+ .test.ts)     # For-you feed: which preferences count, match tiers, hiding applied jobs
     applications.ts (+ .test.ts) # tracker grouping, timeline and pipeline-progress helpers (pure)
     constants.ts             # enum labels, status → badge tone, pipeline order
@@ -149,11 +150,16 @@ RLS summary:
 - Seekers read and write only their own profile, experiences and applications.
 - Recruiters read applications (and the applicant's profile, experiences and resume) only for their company's jobs,
   and may update `status` only.
+- Recruiters insert, update and close their company's jobs, and may delete only **drafts** (deleting a published job
+  would cascade to its applications).
 - Column grants back RLS up where a row is writable but some columns must not be (migration
   `20261004190000_restrict_client_writes.sql`): users update only `full_name` / `avatar_url` on `profiles` (never
   `role`), and seekers insert applications with only `job_id`, `seeker_id` and `cover_note` (status, resume snapshot
   and timestamps come from the database). `seeker_profiles.resume_path` must sit in the seeker's own folder (check
-  constraint). When adding a table or column clients can write, decide which columns they may set.
+  constraint). On `jobs` (migration `20261004210000_restrict_job_writes.sql`), recruiters insert and update only the
+  posting fields and `status`; `company_id` / `recruiter_id` default to the signed-in recruiter's company and id, and
+  `created_at` / `updated_at` / `search` come from the database. When adding a table or column clients can write,
+  decide which columns they may set.
 - Storage bucket `resumes` is private. The path is `{user_id}/{filename}.pdf`. Access is via signed URLs, granted
   to the owner and to recruiters with an application from that user.
 
@@ -287,10 +293,29 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - `/profile#section` links scroll to the section once the profile has loaded (it renders a skeleton first).
 - Profile sections (About, Experience, Preferences, Resume) save independently, each with its own save button and
   toast, rather than one big form. A "Profile strength" checklist links to whatever is still missing.
+- **Posting statuses (R10/R11).** A new posting is saved as a draft or published. Drafts publish or get deleted; open
+  postings close; closed postings reopen. An open posting can go **back to draft only while nobody has applied**:
+  applicants can't see drafts, so their tracker would lose it. Published postings are never deleted, only closed.
+  These rules live in the `check_job_status` trigger and the delete policy, and `postingActions` in `lib/postings.ts`
+  mirrors them for the UI.
+- **Closing asks first** (an `AlertDialog` explaining that applicants keep it in their tracker); publishing, reopening
+  and moving back to drafts happen straight away with a toast, since they're easy to undo. Deleting a draft asks first.
+- **A draft's "Posted" date is when it's published.** The first draft → open change sets `created_at` to now
+  (database-side), so a draft started last month doesn't appear as an old posting in search. Reopening a closed
+  posting keeps its original date.
+- The recruiter dashboard (`/dashboard`) lists every posting at the company, sorted open → drafts → closed, then by
+  last update, with a status filter in the URL (`?status=`). A table on desktop, cards below `md`. Applicant counts
+  show the total plus a breakdown of new / in review / interviewing / offer. Draft titles link to the editor, others
+  to the applicants pipeline.
+- The posting form validates pay against its period: an hourly rate over $1,000 or an annual salary under $1,000 is
+  flagged as likely the wrong period. The same number twice is a single figure. Drafts are validated like published
+  postings (the database needs pay, location and a description anyway). The description has a Write / Preview toggle
+  that renders through `JobDescription`, plus a "Start from an outline" template in that format. Leaving the editor
+  with unsaved changes asks first.
 
 ## Status
 
-**Scaffold done** (app shell, auth, routing, theme, landing page, schema, RLS, seed). The seeker side is built (search, job detail, apply, profile, application tracker, For-you feed); the recruiter pages are placeholders.
+**Scaffold done** (app shell, auth, routing, theme, landing page, schema, RLS, seed). The seeker side is built (search, job detail, apply, profile, application tracker, For-you feed); the recruiter dashboard and posting editor are built; the applicants pipeline is a placeholder.
 
 - [x] Vite + React + TS (strict) + Tailwind v4 + shadcn-style components, light/dark theme
 - [x] Landing page, sign in / sign up with role picker, role-based route guards, app shell
@@ -306,7 +331,10 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - [x] R8 application tracker: status tabs, summary, timeline, resume sent, withdraw. Migration
       `20261004200000_applicants_see_closed_jobs.sql` verified locally and applied to hosted (Management API)
 - [x] R6 For-you feed: ranked open jobs with match score and "why this matches" chips, sparse-profile prompt
-- [ ] R10/R11 recruiter dashboard + posting editor · R12/R13 applicants pipeline
+- [x] R10/R11 recruiter dashboard + posting editor: status tabs, applicant counts, create / edit / publish / close /
+      reopen / delete draft. Migration `20261004210000_restrict_job_writes.sql` verified locally (**not yet applied
+      to hosted**)
+- [ ] R12/R13 applicants pipeline
 
 ## Environment notes (Claude cloud sessions)
 

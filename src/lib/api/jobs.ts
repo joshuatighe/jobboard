@@ -5,7 +5,7 @@ const JOB_WITH_COMPANY = '*, company:companies (id, name, website, description)'
 
 export const JOBS_PAGE_SIZE = 20
 
-const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+export const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 /** R4/R5: open jobs matching the filters, newest first. RLS hides drafts and closed jobs from everyone else. */
 export async function searchJobs(filters: JobFilters, page: number) {
