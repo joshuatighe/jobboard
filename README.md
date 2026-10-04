@@ -43,7 +43,7 @@ calm, fast product: seekers get a feed tuned to them, recruiters get a pipeline 
 | **Frontend** | Vite · React · TypeScript · Tailwind CSS · shadcn/ui · Lucide |
 | **Data** | TanStack Query · react-hook-form · zod |
 | **Backend** | Supabase: Postgres, Auth, Storage, Row Level Security |
-| **Tooling** | pnpm · Supabase CLI · ESLint · Vitest |
+| **Tooling** | pnpm · Supabase CLI · oxlint · Vitest |
 | **Hosting** | Vercel |
 
 ## Getting started
@@ -68,6 +68,8 @@ pnpm supabase link --project-ref <your-project-ref>
 pnpm supabase db push     # apply schema, RLS policies, and storage bucket
 pnpm db:seed              # demo companies, jobs, users, and applications
 ```
+
+> **Tip:** for instant demo signups, turn off **Authentication → Sign In / Providers → Email → Confirm email** in Supabase.
 
 ### 4. Run
 
@@ -120,8 +122,8 @@ src/
   components/    ui (shadcn), layout, and feature components
   lib/           supabase client, typed API, query hooks, matching
 supabase/
-  migrations/    schema + RLS + storage
-scripts/         seed script
+  migrations/    schema, triggers, RLS, storage bucket
+scripts/         idempotent seed script + demo data
 ```
 
 See [`CLAUDE.md`](./CLAUDE.md) for the full requirements, data model and conventions.
