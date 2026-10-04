@@ -144,7 +144,8 @@ Enums:
   `withdrawn` (seeker-only action)
 
 RLS summary:
-- Open jobs are readable by anyone. Drafts and closed jobs are readable only by the owning company's recruiters.
+- Open jobs are readable by anyone. Drafts are readable only by the owning company's recruiters; closed jobs by
+  those recruiters and by seekers who applied to them (so the R8 tracker keeps the title and company).
 - Seekers read and write only their own profile, experiences and applications.
 - Recruiters read applications (and the applicant's profile, experiences and resume) only for their company's jobs,
   and may update `status` only.
@@ -303,7 +304,7 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - [x] R4/R5 job search + filters · R7 job detail + apply
 - [x] R2/R3 profile, experience, preferences, resume upload / replace / view
 - [x] R8 application tracker: status tabs, summary, timeline, resume sent, withdraw. Migration
-      `20261004200000_applicants_see_closed_jobs.sql` verified locally; **not yet applied to hosted**
+      `20261004200000_applicants_see_closed_jobs.sql` verified locally and applied to hosted (Management API)
 - [x] R6 For-you feed: ranked open jobs with match score and "why this matches" chips, sparse-profile prompt
 - [ ] R10/R11 recruiter dashboard + posting editor · R12/R13 applicants pipeline
 
