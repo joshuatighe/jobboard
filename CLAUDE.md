@@ -348,8 +348,8 @@ Interview answers were brief, so we made these calls. Add to this list when you 
       `20261004200000_applicants_see_closed_jobs.sql` verified locally and applied to hosted (Management API)
 - [x] R6 For-you feed: ranked open jobs with match score and "why this matches" chips, sparse-profile prompt
 - [x] R10/R11 recruiter dashboard + posting editor: status tabs, applicant counts, create / edit / publish / close /
-      reopen / delete draft. Migration `20261004210000_restrict_job_writes.sql` verified locally (**not yet applied
-      to hosted**)
+      reopen / delete draft. Migration `20261004210000_restrict_job_writes.sql` verified locally and applied to hosted
+      (Management API), then re-checked through the hosted API as recruiter@ and seeker@
 - [x] R12/R13 applicants pipeline: kanban board / mobile stage tabs, candidate sheet (profile, experience, snapshot
       resume, cover note, timeline), status moves with confirmation for offer/reject. Verified R13 → R8 end to end
 
