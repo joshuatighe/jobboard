@@ -202,7 +202,8 @@ The system lives in `src/index.css` (tokens, type sizes, the `page-x`, `meta` an
   actions are ink on paper (paper on ink in dark). The only colour is the **highlighter**: `--highlight` /
   `--highlight-foreground`, always yellow with ink text in both themes, applied with the `highlight` utility to the
   few things worth marking: the match score when it is a strong match, unreviewed applicant counts, an offer, the
-  "Current" role, one phrase in a headline, and "Job" in the wordmark. Status colours (`success`, `warning`,
+  "Current" role, one phrase in a headline, and "Job" in the wordmark. It is a flat fill, never outlined (an
+  outline turns it into a box, and reads as grey in dark mode). Status colours (`success`, `warning`,
   `info`, `destructive`) are semantic and appear only in badges, dots and the progress bar. Every text pair was
   checked against WCAG AA in both themes (muted text ≥ 6.2:1, status text on its 12% tint ≥ 4.5:1).
 - **Spacing and grid.** One column: `page-x` (max 72rem, 20px gutters, 32px from `sm`) for the masthead, every

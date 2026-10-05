@@ -90,7 +90,7 @@ export function ProductPreview() {
                 className={cn(
                   'block h-1.5',
                   step.done ? 'bg-foreground' : 'bg-border',
-                  step.current && 'bg-highlight ring-1 ring-foreground/70',
+                  step.current && 'bg-highlight',
                 )}
               />
               <p className={cn('mt-2 truncate text-[13px] font-medium', !step.done && 'text-muted-foreground')}>
