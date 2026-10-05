@@ -1,12 +1,14 @@
 import * as React from 'react'
 import { Close } from '@carbon/icons-react'
 
+import { addTags, type TagSeparator } from '@/lib/tags'
 import { cn } from '@/lib/utils'
 
 /**
- * A list of short tags (skills, locations). Enter or comma adds, Backspace on an empty input
- * removes the last tag, and pasting a comma-separated list adds each item. Duplicates are ignored
- * regardless of case.
+ * A list of short tags (skills, locations). Enter or the separator adds, Backspace on an empty input
+ * removes the last tag, and pasting a list (separated by the separator or one per line) adds each
+ * item. Duplicates are ignored regardless of case. The separator is a comma by default; pass `";"`
+ * when tags contain commas themselves ("San Francisco, CA").
  */
 function TagInput({
   id,
@@ -15,6 +17,7 @@ function TagInput({
   placeholder,
   maxTags = 30,
   maxLength = 40,
+  separator = ',',
   className,
   'aria-invalid': ariaInvalid,
   'aria-describedby': ariaDescribedBy,
@@ -25,6 +28,7 @@ function TagInput({
   placeholder?: string
   maxTags?: number
   maxLength?: number
+  separator?: TagSeparator
   className?: string
   'aria-invalid'?: boolean
   'aria-describedby'?: string
@@ -34,14 +38,8 @@ function TagInput({
   const full = value.length >= maxTags
 
   function add(raw: string) {
-    const next = [...value]
-    for (const part of raw.split(',')) {
-      const tag = part.trim().replace(/\s+/g, ' ').slice(0, maxLength)
-      if (!tag || next.length >= maxTags) continue
-      if (next.some((t) => t.toLowerCase() === tag.toLowerCase())) continue
-      next.push(tag)
-    }
-    if (next.length !== value.length) onChange(next)
+    const next = addTags(value, raw, { separator, maxTags, maxLength })
+    if (next !== value) onChange(next)
     setDraft('')
   }
 
@@ -92,8 +90,16 @@ function TagInput({
         placeholder={full ? `Up to ${maxTags}` : value.length ? 'Add another…' : placeholder}
         onChange={(event) => {
           const next = event.target.value
-          if (next.includes(',')) add(next)
+          if (next.includes(separator)) add(next)
           else setDraft(next)
+        }}
+        onPaste={(event) => {
+          // A single-line input drops line breaks from pasted text, so split a pasted list here.
+          const text = event.clipboardData.getData('text')
+          if (!/[\r\n]/.test(text)) return
+          event.preventDefault()
+          const { selectionStart, selectionEnd } = event.currentTarget
+          add(draft.slice(0, selectionStart ?? draft.length) + text + draft.slice(selectionEnd ?? draft.length))
         }}
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
