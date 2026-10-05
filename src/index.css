@@ -148,7 +148,11 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* The highlighter stroke. Wraps inline text; `box-decoration-break` keeps it whole across line breaks. */
+/*
+ * The highlighter stroke. Wraps inline text; `box-decoration-break` keeps it whole across line breaks.
+ * The negative margin pulls neighbouring text over the padding, so punctuation right after a highlight
+ * goes inside the span; outside, it sits on yellow in the page's text colour (paper in dark mode).
+ */
 @utility highlight {
   background-color: var(--highlight);
   color: var(--highlight-foreground);
