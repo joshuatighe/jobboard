@@ -14,7 +14,7 @@ const DOT_TONE: Record<Tone, string> = {
   warning: 'bg-warning',
   secondary: 'bg-muted-foreground',
   info: 'bg-info',
-  highlight: 'bg-highlight ring-1 ring-foreground/70',
+  highlight: 'bg-highlight',
   success: 'bg-success',
   destructive: 'bg-destructive',
   outline: 'bg-muted-foreground/50',
