@@ -85,6 +85,7 @@ export function PreferencesForm({ seeker }: { seeker: SeekerProfile }) {
           id="pref-locations"
           label="Where do you want to work?"
           error={errors.locations?.message}
+          hint={<span className="text-xs text-muted-foreground">Press Enter to add</span>}
         >
           <Controller
             control={control}
@@ -95,6 +96,7 @@ export function PreferencesForm({ seeker }: { seeker: SeekerProfile }) {
                 value={field.value}
                 onChange={field.onChange}
                 maxTags={10}
+                separator=";"
                 placeholder="San Francisco, CA · New York, NY"
                 aria-invalid={!!errors.locations}
               />

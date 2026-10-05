@@ -338,6 +338,9 @@ Interview answers were brief, so we made these calls. Add to this list when you 
 - Each match shows its score as "N% match" (80+ strong, brand tint; 50+ good; below that partial) and one chip per
   criterion it meets. Unmet criteria aren't listed: the chips explain the score rather than critique the job.
 - `/profile#section` links scroll to the section once the profile has loaded (it renders a skeleton first).
+- **Tag inputs end a tag on Enter or a separator key.** Skills use a comma. Preferred locations use a semicolon, so
+  "San Francisco, CA" stays one tag (that's the format job locations use, and a stray "CA" tag would match every
+  California job). Pasting one item per line works in both. Parsing lives in `lib/tags.ts`.
 - Profile sections (About, Experience, Preferences, Resume) save independently, each with its own save button and
   toast, rather than one big form. A "Profile strength" checklist links to whatever is still missing.
 - **Posting statuses (R10/R11).** A new posting is saved as a draft or published. Drafts publish or get deleted; open
