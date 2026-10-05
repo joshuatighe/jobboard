@@ -40,7 +40,7 @@ export function AuthLayout({
         <p className="meta text-muted-foreground">What you get</p>
         <div>
           <p className="font-serif text-headline">
-            Open roles, <span className="highlight">ranked by fit</span>. A pipeline both sides can read.
+            Open roles, <span className="highlight">ranked by fit.</span> A pipeline both sides can read.
           </p>
           <ol className="mt-12 border-t">
             {POINTS.map(([lead, rest], i) => (
