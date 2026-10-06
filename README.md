@@ -12,7 +12,24 @@
 A two-sided job board. Seekers get a feed scored against their profile, with the reasons shown.<br>
 Recruiters get a pipeline whose stages their candidates can see.
 
-<sub>[Features](#features) · [Demo accounts](#demo-accounts) · [Getting started](#getting-started) · [Deploy](#deploy) · [Stack](#stack)</sub>
+<p>
+  <a href="https://jobboard-eta-two.vercel.app"><img alt="Live demo" src="https://img.shields.io/badge/live_demo-jobboard--eta--two.vercel.app-ffe84a?style=flat-square&logo=vercel&logoColor=white&labelColor=1d1713"></a>
+  <a href="https://github.com/joshuatighe/jobboard/deployments"><img alt="Production deployment" src="https://img.shields.io/github/deployments/joshuatighe/jobboard/Production?style=flat-square&logo=vercel&logoColor=white&label=production&labelColor=1d1713"></a>
+  <a href="https://github.com/joshuatighe/jobboard/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/joshuatighe/jobboard/main?style=flat-square&logo=github&logoColor=white&label=last%20commit&labelColor=1d1713&color=faf9f6"></a>
+  <a href="https://github.com/joshuatighe/jobboard/pulls?q=is%3Apr+is%3Amerged"><img alt="Pull requests" src="https://img.shields.io/github/issues-pr-closed/joshuatighe/jobboard?style=flat-square&logo=github&logoColor=white&label=pull%20requests&labelColor=1d1713&color=faf9f6"></a>
+</p>
+
+<p>
+  <img alt="React 19" src="https://img.shields.io/badge/React-19-faf9f6?style=flat-square&logo=react&logoColor=white&labelColor=1d1713">
+  <img alt="TypeScript 6" src="https://img.shields.io/badge/TypeScript-6-faf9f6?style=flat-square&logo=typescript&logoColor=white&labelColor=1d1713">
+  <img alt="Vite 8" src="https://img.shields.io/badge/Vite-8-faf9f6?style=flat-square&logo=vite&logoColor=white&labelColor=1d1713">
+  <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-faf9f6?style=flat-square&logo=tailwindcss&logoColor=white&labelColor=1d1713">
+  <img alt="TanStack Query 5" src="https://img.shields.io/badge/TanStack_Query-5-faf9f6?style=flat-square&logo=reactquery&logoColor=white&labelColor=1d1713">
+  <img alt="Supabase" src="https://img.shields.io/badge/Supabase-Postgres_%2B_RLS-faf9f6?style=flat-square&logo=supabase&logoColor=white&labelColor=1d1713">
+  <img alt="pnpm 10" src="https://img.shields.io/badge/pnpm-10-faf9f6?style=flat-square&logo=pnpm&logoColor=white&labelColor=1d1713">
+</p>
+
+<sub>[Live demo](https://jobboard-eta-two.vercel.app) · [Features](#features) · [Demo accounts](#demo-accounts) · [Getting started](#getting-started) · [Deploy](#deploy) · [Stack](#stack)</sub>
 
 </div>
 
@@ -46,7 +63,7 @@ Recruiters get a pipeline whose stages their candidates can see.
 ## Demo accounts
 
 `pnpm db:seed` creates 8 companies, 40 jobs, 8 people and 16 applications with backdated timelines, so every screen
-has data on a fresh deploy.
+has data on a fresh deploy. Try them on the [live demo](https://jobboard-eta-two.vercel.app).
 
 | Role | Email | Password |
 | --- | --- | --- |
