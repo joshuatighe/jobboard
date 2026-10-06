@@ -1,56 +1,67 @@
 <div align="center">
 
-# JobBoard
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/logo-dark.svg">
+  <img src=".github/assets/logo-light.svg" alt="JobBoard" width="300">
+</picture>
 
-**Hiring, minus the noise.**
+<br>
 
-The job board that actually knows what you're looking for, and the recruiter pipeline that doesn't need a spreadsheet.
+**Every open role, ranked by how well it fits you.**
 
-![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
-![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?logo=supabase&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)
+A two-sided job board. Seekers get a feed scored against their profile, with the reasons shown.<br>
+Recruiters get a pipeline whose stages their candidates can see.
+
+<sub>[Features](#features) · [Demo accounts](#demo-accounts) · [Getting started](#getting-started) · [Deploy](#deploy) · [Stack](#stack)</sub>
 
 </div>
 
 ---
 
-## Why JobBoard
-
-Job boards are a firehose and applicant tracking systems are a maze. JobBoard puts both sides of hiring in one
-calm, fast product: seekers get a feed tuned to them, recruiters get a pipeline that updates in real time.
-
 ## Features
 
 ### For job seekers
-- **A feed made for you.** Jobs ranked by fit against your preferences, experience and skills, with the reasons shown.
-- **Search that respects your time.** Keyword search with filters for pay, location / remote and experience level.
-- **One profile, every application.** Experience, skills, preferences and a resume you upload once.
-- **Apply in seconds.** Your resume is attached automatically; add a note if you want.
-- **Always know where you stand.** Every application's status and timeline in one tracker.
+- **For You feed.** Every open job is scored 0–100 against your level, locations, minimum pay, job types and skills.
+  Each match shows its score and one chip per criterion it meets.
+- **Search and filters.** Keyword search with filters for pay, location / remote and experience level. Filters live in
+  the URL, so a search can be shared and survives back / forward.
+- **One profile.** Headline, bio, skills, work history, preferences and a PDF resume. Each section saves on its own.
+- **Apply in seconds.** The resume on file is attached and snapshotted with the application. Add a cover note if you
+  want. If there's no resume yet, you can upload one in the apply dialog.
+- **Application tracker.** Every application's status, a progress bar, the full timeline, the resume you sent, and
+  withdrawal (including declining an offer).
 
 ### For recruiters
-- **Post in minutes.** Pay range, location, level, type and a rich description.
-- **Every posting at a glance.** Open, closed and draft roles with live applicant counts.
-- **A real pipeline.** Review candidates and their resumes, then move them from *Applied* to *Offer*.
+- **Postings dashboard.** Open, draft and closed roles with applicant counts by stage.
+- **Posting editor.** Pay range, location / remote, level, type, skills and a description with a live preview. Save as
+  a draft or publish; close and reopen later.
+- **Applicants pipeline.** A board with columns for New, In review, Interviewing, Offer and Closed. Open a candidate to
+  read their resume, cover note and work history, then move them to any stage. The seeker's tracker shows the change.
 
-## Stack
+### Everywhere
+- Light and dark mode, responsive down to 375px, keyboard navigable.
+- Access is enforced by Postgres Row Level Security, not the UI. Resumes sit in a private bucket and are opened through
+  signed URLs.
 
-| | |
-| --- | --- |
-| **Frontend** | Vite · React · TypeScript · Tailwind CSS · shadcn/ui · Lucide |
-| **Data** | TanStack Query · react-hook-form · zod |
-| **Backend** | Supabase: Postgres, Auth, Storage, Row Level Security |
-| **Tooling** | pnpm · Supabase CLI · oxlint · Vitest |
-| **Hosting** | Vercel |
+## Demo accounts
+
+`pnpm db:seed` creates 8 companies, 40 jobs, 8 people and 16 applications with backdated timelines, so every screen
+has data on a fresh deploy.
+
+| Role | Email | Password |
+| --- | --- | --- |
+| Job seeker (Jordan Rivera) | `seeker@jobboard.dev` | `jobboard-demo` |
+| Recruiter (Morgan Lee, Lumen AI) | `recruiter@jobboard.dev` | `jobboard-demo` |
+
+> [!TIP]
+> To be signed in as both at once, use two browser windows that don't share storage (a normal and a private window,
+> or two browser profiles). Tabs in the same window share one session.
 
 ## Getting started
 
 ### 1. Prerequisites
-- Node.js 20+ and [pnpm](https://pnpm.io) 9+ (`corepack enable`)
-- A free [Supabase](https://supabase.com) project
+- Node.js 20.19+ or 22.12+, and [pnpm](https://pnpm.io) 10 (`corepack enable` picks up the pinned version)
+- A free [Supabase](https://supabase.com) project, or Docker to run Supabase locally
 
 ### 2. Install
 
@@ -65,15 +76,19 @@ cp .env.example .env.local   # then fill in your Supabase keys
 
 ```bash
 pnpm supabase link --project-ref <your-project-ref>
-pnpm supabase db push     # apply schema, RLS policies, and storage bucket
-pnpm db:seed              # demo companies, jobs, users, and applications
+pnpm supabase db push     # schema, triggers, RLS policies, storage bucket
+pnpm db:seed              # demo companies, jobs, users and applications
 ```
 
-> **Tip:** for instant demo signups, turn off **Authentication → Sign In / Providers → Email → Confirm email** in Supabase.
+> [!TIP]
+> For instant sign-ups, turn off **Authentication → Sign In / Providers → Email → Confirm email** in Supabase.
 
-### Or run Supabase locally
+<details>
+<summary><strong>Or run Supabase locally</strong></summary>
 
-With Docker running, skip the hosted project entirely:
+<br>
+
+With Docker running, you can skip the hosted project entirely:
 
 ```bash
 pnpm db:start                         # Postgres, Auth, REST and Storage in Docker; applies migrations
@@ -81,30 +96,28 @@ pnpm supabase status -o env           # copy API_URL / ANON_KEY into .env.local 
 SUPABASE_SERVICE_ROLE_KEY=<SERVICE_ROLE_KEY> pnpm db:seed
 ```
 
+</details>
+
 ### 4. Run
 
 ```bash
 pnpm dev
 ```
 
-Open [localhost:5173](http://localhost:5173).
-
-### Demo accounts
-
-After seeding, sign in as either side of the marketplace:
-
-| Role | Email | Password |
-| --- | --- | --- |
-| Job seeker | `seeker@jobboard.dev` | `jobboard-demo` |
-| Recruiter | `recruiter@jobboard.dev` | `jobboard-demo` |
+Open [localhost:5173](http://localhost:5173) and sign in with a [demo account](#demo-accounts).
 
 ## Environment
 
-| Variable | Description |
-| --- | --- |
-| `VITE_SUPABASE_URL` | Your Supabase project URL |
-| `VITE_SUPABASE_ANON_KEY` | Public anon key (access is enforced by RLS) |
-| `SUPABASE_SERVICE_ROLE_KEY` | Used **only** by the local seed script. Never deploy it |
+| Variable | Used by | Description |
+| --- | --- | --- |
+| `VITE_SUPABASE_URL` | App | Project URL, bare (`https://<ref>.supabase.co`) |
+| `VITE_SUPABASE_ANON_KEY` | App | Public anon key. Safe in the browser because RLS enforces access |
+| `SUPABASE_SERVICE_ROLE_KEY` | `pnpm db:seed` | Seeding only. **Never** prefix with `VITE_` or set it in Vercel |
+| `SUPABASE_PROJECT_REF` | `pnpm db:types` | Bare project ref, not a dashboard URL |
+| `SUPABASE_ACCESS_TOKEN` | Supabase CLI | Personal access token for `link` / `db push` |
+| `SUPABASE_DB_PASSWORD` | Supabase CLI | Database password for `db push` |
+
+`.env.example` lists them all with placeholders. `.env.local` is gitignored.
 
 ## Scripts
 
@@ -112,34 +125,50 @@ After seeding, sign in as either side of the marketplace:
 | --- | --- |
 | `pnpm dev` | Start the dev server |
 | `pnpm build` | Typecheck and build for production |
-| `pnpm lint` | Lint the codebase |
-| `pnpm test` | Run unit tests |
+| `pnpm preview` | Serve the production build |
+| `pnpm lint` | Lint with oxlint |
+| `pnpm typecheck` | Typecheck only |
+| `pnpm test` / `test:watch` | Run the Vitest unit tests (once / watch) |
 | `pnpm db:start` / `db:stop` | Start or stop local Supabase (Docker) |
-| `pnpm db:reset` | Re-apply migrations to the local database |
-| `pnpm db:types` | Regenerate TypeScript types from the hosted database |
-| `pnpm db:types:local` | Regenerate TypeScript types from the local database |
-| `pnpm db:seed` | Seed demo data |
+| `pnpm db:reset` | Wipe the local database and re-apply migrations |
+| `pnpm db:seed` / `db:seed:local` | Seed demo data (hosted / local) |
+| `pnpm db:types` / `db:types:local` | Regenerate `src/types/database.ts` (hosted / local) |
 
 ## Deploy
 
-1. Import the repo into [Vercel](https://vercel.com/new). The framework preset is **Vite**.
-2. Vercel detects pnpm from `pnpm-lock.yaml`. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` as environment variables.
-3. In Supabase → **Authentication → URL Configuration**, add your Vercel domain as the Site URL.
-4. Deploy. Client-side routes are handled by `vercel.json`.
+1. Import the repo into [Vercel](https://vercel.com/new). The framework preset is **Vite**, and pnpm is detected from
+   `pnpm-lock.yaml`.
+2. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` as environment variables.
+3. In Supabase → **Authentication → URL Configuration**, set your Vercel domain as the Site URL.
+4. Deploy. `vercel.json` rewrites every route to `index.html` for client-side routing.
+
+## Stack
+
+| | |
+| --- | --- |
+| **Frontend** | Vite · React · TypeScript (strict) · Tailwind CSS v4 · shadcn/ui (Radix) · IBM Carbon icons |
+| **Type** | Newsreader · Instrument Sans · Geist Mono |
+| **Data** | TanStack Query · react-hook-form · zod |
+| **Backend** | Supabase: Postgres, Auth, Storage, Row Level Security |
+| **Tooling** | pnpm · Supabase CLI · oxlint · Vitest |
+| **Hosting** | Vercel |
 
 ## Project structure
 
 ```
 src/
-  routes/        pages: marketing, auth, seeker, recruiter
-  components/    ui (shadcn), layout, and feature components
-  lib/           supabase client, typed API, query hooks, matching
+  routes/          pages: marketing, auth, seeker, recruiter
+  components/      ui (shadcn), layout, and feature components
+  lib/
+    api/           typed Supabase data access
+    queries/       TanStack Query hooks over lib/api
+    *.ts           pure, unit-tested logic: matching, feed, pipeline, postings, tracker
 supabase/
-  migrations/    schema, triggers, RLS, storage bucket
-scripts/         idempotent seed script + demo data
+  migrations/      schema, triggers, RLS, storage bucket
+scripts/           idempotent seed script and demo data
 ```
 
-See [`CLAUDE.md`](./CLAUDE.md) for the full requirements, data model and conventions.
+See [`CLAUDE.md`](./CLAUDE.md) for the full requirements, data model, design language and decisions.
 
 ---
 
