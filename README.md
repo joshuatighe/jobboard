@@ -12,7 +12,24 @@
 A two-sided job board. Seekers get a feed scored against their profile, with the reasons shown.<br>
 Recruiters get a pipeline whose stages their candidates can see.
 
-<sub>[Features](#features) · [Demo accounts](#demo-accounts) · [Getting started](#getting-started) · [Deploy](#deploy) · [Stack](#stack)</sub>
+<p>
+  <a href="https://jobboard-eta-two.vercel.app"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/live_demo-jobboard--eta--two.vercel.app-fad53b?style=flat-square&logo=vercel&logoColor=white&labelColor=5a544f"><img alt="Live demo" src="https://img.shields.io/badge/live_demo-jobboard--eta--two.vercel.app-ffe84a?style=flat-square&logo=vercel&logoColor=white&labelColor=1d1713"></picture></a>
+  <a href="https://github.com/joshuatighe/jobboard/deployments"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/deployments/joshuatighe/jobboard/Production?style=flat-square&logo=vercel&label=production&logoColor=white&labelColor=5a544f"><img alt="Production deployment" src="https://img.shields.io/github/deployments/joshuatighe/jobboard/Production?style=flat-square&logo=vercel&label=production&logoColor=white&labelColor=1d1713"></picture></a>
+  <a href="https://github.com/joshuatighe/jobboard/commits/main"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/last-commit/joshuatighe/jobboard/main?style=flat-square&logo=github&label=last%20commit&color=393430&logoColor=white&labelColor=5a544f"><img alt="Last commit" src="https://img.shields.io/github/last-commit/joshuatighe/jobboard/main?style=flat-square&logo=github&label=last%20commit&color=d4d0ca&logoColor=white&labelColor=1d1713"></picture></a>
+  <a href="https://github.com/joshuatighe/jobboard/pulls?q=is%3Apr+is%3Amerged"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/issues-pr-closed/joshuatighe/jobboard?style=flat-square&logo=github&label=pull%20requests&color=393430&logoColor=white&labelColor=5a544f"><img alt="Pull requests" src="https://img.shields.io/github/issues-pr-closed/joshuatighe/jobboard?style=flat-square&logo=github&label=pull%20requests&color=d4d0ca&logoColor=white&labelColor=1d1713"></picture></a>
+</p>
+
+<p>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/React-19-393430?style=flat-square&logo=react&logoColor=white&labelColor=5a544f"><img alt="React 19" src="https://img.shields.io/badge/React-19-d4d0ca?style=flat-square&logo=react&logoColor=white&labelColor=1d1713"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/TypeScript-6-393430?style=flat-square&logo=typescript&logoColor=white&labelColor=5a544f"><img alt="TypeScript 6" src="https://img.shields.io/badge/TypeScript-6-d4d0ca?style=flat-square&logo=typescript&logoColor=white&labelColor=1d1713"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Vite-8-393430?style=flat-square&logo=vite&logoColor=white&labelColor=5a544f"><img alt="Vite 8" src="https://img.shields.io/badge/Vite-8-d4d0ca?style=flat-square&logo=vite&logoColor=white&labelColor=1d1713"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Tailwind_CSS-4-393430?style=flat-square&logo=tailwindcss&logoColor=white&labelColor=5a544f"><img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-d4d0ca?style=flat-square&logo=tailwindcss&logoColor=white&labelColor=1d1713"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/TanStack_Query-5-393430?style=flat-square&logo=reactquery&logoColor=white&labelColor=5a544f"><img alt="TanStack Query 5" src="https://img.shields.io/badge/TanStack_Query-5-d4d0ca?style=flat-square&logo=reactquery&logoColor=white&labelColor=1d1713"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Supabase-Postgres_%2B_RLS-393430?style=flat-square&logo=supabase&logoColor=white&labelColor=5a544f"><img alt="Supabase" src="https://img.shields.io/badge/Supabase-Postgres_%2B_RLS-d4d0ca?style=flat-square&logo=supabase&logoColor=white&labelColor=1d1713"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/pnpm-10-393430?style=flat-square&logo=pnpm&logoColor=white&labelColor=5a544f"><img alt="pnpm 10" src="https://img.shields.io/badge/pnpm-10-d4d0ca?style=flat-square&logo=pnpm&logoColor=white&labelColor=1d1713"></picture>
+</p>
+
+<sub>[Live demo](https://jobboard-eta-two.vercel.app) · [Features](#features) · [Demo accounts](#demo-accounts) · [Getting started](#getting-started) · [Deploy](#deploy) · [Stack](#stack)</sub>
 
 </div>
 
@@ -46,7 +63,7 @@ Recruiters get a pipeline whose stages their candidates can see.
 ## Demo accounts
 
 `pnpm db:seed` creates 8 companies, 40 jobs, 8 people and 16 applications with backdated timelines, so every screen
-has data on a fresh deploy.
+has data on a fresh deploy. Try them on the [live demo](https://jobboard-eta-two.vercel.app).
 
 | Role | Email | Password |
 | --- | --- | --- |
